@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    /* https://aka.ms/tsconfig */
+    "target": "ESNext",
+    "module": "ESNext",
+    "rootDir": "src",
+    // "moduleResolution": "Node16",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": [
+        "*"
+      ]
+    },
+    "allowJs": true,
+    "checkJs": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    // "noImplicitAny": false,
+    "skipLibCheck": true,
+  },
+  "exclude": [
+    "public",
+    "vite.config.js",
+    "node_modules",
+    "**/*.test.js",
+    "**/*.spec.js",
+  ],
+}
