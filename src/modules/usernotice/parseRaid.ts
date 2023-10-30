@@ -5,10 +5,10 @@ interface RaidType {
   viewerCount: number
 }
 
-type RaidInfoType = RaidType | null;
+export type RaidInfoType = RaidType | object;
 
-export const parseRaid = (fields) : RaidInfoType => {
-  if (!fields["msg-param-profileImageURL"]) { return null; }
+export const parseRaid = (fields : any) : RaidInfoType => {
+  if (!fields["msg-param-profileImageURL"]) { return {}; }
 
   const profileImageURL = fields["msg-param-profileImageURL"].replaceAll("%s", "150x150");
 

@@ -1,11 +1,12 @@
-import { parseMessageWithEmotes } from "./parseMessageWithEmotes";
+import { parseMessageWithEmotes } from "./emotes/parseMessageWithEmotes";
 import { parseFlags, FlagsType } from "./parseFlags";
 
-interface MessageType {
+export interface MessageInfoType {
   id: string,
   isFirstMessage: boolean,
   isReturningChatter: boolean,
   isEmoteOnly: boolean,
+  isHighlightedMessage: boolean,
   flagsInfo?: FlagsType,
   roomId: number,
   channel: string,
@@ -16,7 +17,7 @@ interface MessageType {
   message: string
 }
 
-export const parseMessage = (fields) : MessageType => {
+export const parseMessage = (fields: any) : MessageInfoType => {
   const { username, channel, flags, rawMessage } = fields;
   const message = parseMessageWithEmotes({ rawMessage, ...fields });
   const flagsInfo = parseFlags({ flags, rawMessage });
@@ -26,6 +27,7 @@ export const parseMessage = (fields) : MessageType => {
     isEmoteOnly: Boolean(fields["emote-only"]),
     isFirstMessage: Boolean(fields["first-msg"]),
     isReturningChatter: Boolean(fields["returning-chatter"]),
+    isHighlightedMessage: fields["msg-id"] === "highlighted-message",
     flagsInfo,
     roomId: fields["room-id"],
     channel,

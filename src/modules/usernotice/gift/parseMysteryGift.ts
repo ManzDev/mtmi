@@ -1,19 +1,26 @@
 import { cleanMessage } from "@/modules/utils";
 
 export interface MysteryGiftType {
-  massGiftCount: number,
+  massGiftCount: number, // Regaladas
   originId: string,
-  senderCount: number,
-  subPlan: string
+  senderCount: number, // Total acumulado
+  senderUsername: string
+  subPlan: string,
+  systemMsg: string,
 }
 
-export const parseMysteryGift = (fields) : MysteryGiftType => {
+/**
+ * El usuario @senderUsername regala @massGiftCount subs a la comunidad.
+ */
+export const parseMysteryGift = (fields: any) : MysteryGiftType => {
   const originId = cleanMessage(fields["msg-param-origin-id"]);
 
   return {
     massGiftCount: Number(fields["msg-param-mass-gift-count"]),
     originId,
     senderCount: Number(fields["msg-param-sender-count"]),
-    subPlan: fields["msg-param-sub-plan"]
+    senderUsername: fields.login,
+    subPlan: fields["msg-param-sub-plan"],
+    systemMsg: cleanMessage(fields["system-msg"])
   };
 };

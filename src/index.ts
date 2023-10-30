@@ -4,6 +4,7 @@ const CHANNEL = "kaicenat";
 // const CHANNEL = "niv3k_el_pato";
 
 client.connect({ channels: [CHANNEL] });
+// client.fakeConnect();
 
 client.on("join", (data) => console.log("JOIN: ", data));
 client.on("part", (data) => console.log("PART: ", data));
@@ -20,15 +21,6 @@ client.on("standardpayforward", (data) => console.log("STANDARDPAYFORWARD: ", da
 client.on("giftpaidupgrade", (data) => console.log("GIFTPAIDUPGRADE: ", data));
 client.on("primepaidupgrade", (data) => console.log("PRIMEPAIDUPGRADE: ", data));
 
-// POR TESTEAR
-client.on("bitsbadgetier", (data) => console.log("BITSBADGETIER: ", data));
-client.on("rewardgift", (data) => console.log("REWARDGIFT: ", data));
-client.on("charity", (data) => console.log("CHARITY: ", data));
-client.on("anonsubgift", (data) => console.log("ANONSUBGIFT: ", data));
-client.on("anongiftpaidupgrade", (data) => console.log("ANONGIFTPAIDUPGRADE: ", data));
-client.on("extendsub", (data) => console.log("EXTENDSUB: ", data));
-client.on("ritual", (data) => console.log("RITUAL: ", data));
-
 client.on("clearchat", (data) => console.log("CLEARCHAT: ", data));
 client.on("ban", (data) => console.log("BAN: ", data));
 client.on("timeout", (data) => console.log("TIMEOUT: ", data));
@@ -43,7 +35,33 @@ client.on("roomstate", (data) => console.log("ROOMSTATE: ", data));
 client.on("announcement", (data) => console.log("ANNOUNCEMENT: ", data));
 
 client.on("usernotice", (data) => console.log("USERNOTICE: ", data));
+client.on("bits", (data) => console.log("BITS: ", data));
 client.on("message", (data) => console.log("MESSAGE: ", data));
 client.on("action", (data) => console.log("MESSAGE ACTION: ", data));
+
+// MODES
+client.on("emote_only_off", (data) => console.log("MODE: ", data));
+client.on("emote_only_on", (data) => console.log("MODE: ", data));
+
+client.on("followers_on", (data) => console.log("MODE: ", data));
+client.on("followers_off", (data) => console.log("MODE: ", data));
+
+client.on("slow_on", (data) => console.log("MODE: ", data));
+client.on("slow_off", (data) => console.log("MODE: ", data));
+
+client.on("subs_on", (data) => console.log("MODE: ", data));
+client.on("subs_off", (data) => console.log("MODE: ", data));
+
+client.on("r9k_on", (data) => console.log("MODE: ", data));
+client.on("r9k_off", (data) => console.log("MODE: ", data));
+
+// POR TESTEAR
+client.on("bitsbadgetier", (data) => console.log("BITSBADGETIER: ", data));
+client.on("rewardgift", (data) => console.log("REWARDGIFT: ", data));
+client.on("charity", (data) => console.log("CHARITY: ", data));
+client.on("anonsubgift", (data) => console.log("ANONSUBGIFT: ", data));
+client.on("anongiftpaidupgrade", (data) => console.log("ANONGIFTPAIDUPGRADE: ", data));
+client.on("extendsub", (data) => console.log("EXTENDSUB: ", data));
+client.on("ritual", (data) => console.log("RITUAL: ", data));
 
 client.on("raw", (data) => console.log("RAW: ", data));

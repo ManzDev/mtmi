@@ -1,11 +1,26 @@
 import { parseEquals } from "@/modules/utils";
-import { parseUser } from "@/modules/message/parseUser";
-import { parseMessage } from "@/modules/message/parseMessage";
-import { parseSub } from "@/modules/usernotice/sub/parseSub";
-import { parseGift } from "@/modules/usernotice/parseGift";
-import { parseRaid } from "@/modules/usernotice/parseRaid";
+import { parseUser, UserInfoType } from "@/modules/message/parseUser";
+import { parseMessage, MessageInfoType } from "@/modules/message/parseMessage";
+import { parseSub, SubInfoType } from "@/modules/usernotice/sub/parseSub";
+import { parseGift, GiftInfoType } from "@/modules/usernotice/parseGift";
+import { parseRaid, RaidInfoType } from "@/modules/usernotice/parseRaid";
+import { parseAnnouncement, AnnouncementInfoType } from "@/modules/usernotice/parseAnnouncement";
 
-export const parseUserNotice = ({ type, eventMessage, timeStamp }) => {
+interface UserNoticeType {
+  type: string,
+  channel: string,
+  userInfo: UserInfoType,
+  messageInfo: MessageInfoType,
+  message: string,
+  raw: string,
+  timeStamp: number,
+  subInfo?: SubInfoType,
+  giftInfo?: GiftInfoType,
+  raidInfo?: RaidInfoType,
+  announcementInfo?: AnnouncementInfoType
+}
+
+export const parseUserNotice = ({ eventMessage, timeStamp } : any) : UserNoticeType => {
   // eslint-disable-next-line
   const [rawFields, host, rawType, channel, ...rawMessage] = eventMessage.substring(1).split(" ");
   const fields = parseEquals(rawFields);
@@ -17,31 +32,22 @@ export const parseUserNotice = ({ type, eventMessage, timeStamp }) => {
   const subInfo = parseSub(fields);
   const raidInfo = parseRaid(fields);
   const giftInfo = parseGift(fields);
+  const announcementInfo = parseAnnouncement(fields);
 
-  return {
+  const data : UserNoticeType = {
     type: fields["msg-id"],
     channel,
     userInfo,
     messageInfo,
     message,
-    subInfo,
-    giftInfo,
-    raidInfo,
-    raw: eventMessage
+    raw: eventMessage,
+    timeStamp
   };
 
-  // if (msgId === "announcement") { }
-  /*
-  const subData = parseSubscription(fields);
+  Object.keys(subInfo).length && (data.subInfo = subInfo);
+  Object.keys(giftInfo).length && (data.giftInfo = giftInfo);
+  Object.keys(raidInfo).length && (data.raidInfo = raidInfo);
+  Object.keys(announcementInfo).length && (data.announcementInfo = announcementInfo);
 
-  return {
-    ...eventData,
-    type: msgId,
-    message,
-    messageWithEmotes: message,
-    timeStamp,
-    username: fields.login,
-    subData
-  };
-  */
+  return data;
 };

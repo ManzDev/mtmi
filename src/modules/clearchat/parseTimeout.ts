@@ -4,7 +4,7 @@ export interface TimeoutType extends BanType {
   banDuration: number,
 }
 
-export const parseTimeout = (fields): TimeoutType => {
+export const parseTimeout = (fields : any): TimeoutType => {
   const banData = parseBan(fields);
 
   return {

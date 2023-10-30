@@ -2,16 +2,12 @@ import { createEmotesDictionary } from "./createEmotesDictionary";
 import { getEmoteHTML } from "./getEmote";
 
 export const parseMessageWithEmotes = (fields) => {
-  // No tiene emotes
-  const { rawMessage } = fields;
-  if (!fields.emotes) { return rawMessage; }
+  const { rawMessage, emotes } = fields;
 
-  const options = {
-    emotes: fields.emotes,
-    emoteOnly: Boolean(fields?.["emote-only"]) ?? false
-  };
+  // El mensaje no tiene emotes
+  if (!emotes) { return rawMessage; }
 
-  const { emotes, emoteOnly } = options;
+  const emoteOnly = Boolean(fields?.["emote-only"]) ?? false;
   const emoteList = createEmotesDictionary(emotes);
 
   const newMessage: Array<String> = [];

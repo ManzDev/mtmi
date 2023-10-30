@@ -32,12 +32,14 @@ const BADGES = [
   "overwatch-league-insider_1",
   "overwatch-league-insider_2019A",
   "overwatch-league-insider_2018B",
+  "battlerite_1",
   "getting-over-it_1",
   "bits-charity",
   "rplace-2023",
   "creator-cs-go-2022",
   "superultracombo-2023",
   "twitchcon2017",
+  "twitchcon2018",
   "twitchconEU2019",
   "twitchconNA2019",
   "twitchconAmsterdam2020",
@@ -45,6 +47,7 @@ const BADGES = [
   "twitchconNA2022",
   "twitchconEU2023",
   "twitchconNA2023",
+  "ambassador",
   "staff"
 ];
 

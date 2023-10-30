@@ -1,4 +1,4 @@
-import { cleanMessage } from "@/modules/utils";
+import { parseSubPlan, SubPlanType } from "@/modules/usernotice/sub/parseSubPlan";
 
 interface SubType {
   cumulativeMonths: number,
@@ -7,29 +7,29 @@ interface SubType {
   multimonthTenure: number,
   shouldShareStreak: boolean,
   streakMonths: number,
-  subPlan: string,
-  subPlanName: string,
+  subPlan: SubPlanType,
   wasGifted: boolean
 }
 
-type SubInfoType = SubType | null;
+export type SubInfoType = SubType | object;
 
-export const parseSub = (fields) : SubInfoType => {
+const SUBTYPES = ["sub", "resub"];
+
+export const parseSub = (fields : any) : SubInfoType => {
   // Si no es de tipo suscripción
-  if (!fields["msg-param-sub-plan"]) { return null; }
+  if (!SUBTYPES.includes(fields["msg-id"])) { return {}; }
 
-  const subPlanName = cleanMessage(fields["msg-param-sub-plan-name"]);
+  const subPlan = parseSubPlan(fields);
   const wasGifted = fields["msg-param-was-gifted"];
 
   return {
-    subPlanName,
-    cumulativeMonths: fields["msg-param-cumulative-months"],
-    months: fields["msg-param-months"],
-    multimonthDuration: fields["msg-param-multimonth-duration"],
-    multimonthTenure: fields["msg-param-multimonth-tenure"],
+    cumulativeMonths: Number(fields["msg-param-cumulative-months"]),
+    months: Number(fields["msg-param-months"]),
+    multimonthDuration: Number(fields["msg-param-multimonth-duration"]),
+    multimonthTenure: Number(fields["msg-param-multimonth-tenure"]),
     shouldShareStreak: Boolean(Number(fields["msg-param-should-share-streak"])),
-    streakMonths: fields["msg-param-streak-months"] ?? null,
-    subPlan: fields["msg-param-sub-plan"],
+    streakMonths: Number(fields["msg-param-streak-months"] ?? 0),
+    subPlan,
     wasGifted: wasGifted !== "false",
   };
 };

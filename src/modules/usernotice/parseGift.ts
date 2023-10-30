@@ -3,9 +3,9 @@ import { parseStandardPayforward, StandardPayforwardType } from "./gift/parseSta
 import { parseGiftPaidUpgrade, GiftPaidUpgradeType } from "./gift/parseGiftPaidUpgrade";
 import { parseSubGift, GiftType } from "./gift/parseSubGift";
 
-type GiftInfoType = MysteryGiftType | StandardPayforwardType | GiftPaidUpgradeType | GiftType | null;
+export type GiftInfoType = MysteryGiftType | StandardPayforwardType | GiftPaidUpgradeType | GiftType | object;
 
-export const parseGift = (fields) : GiftInfoType => {
+export const parseGift = (fields: any) : GiftInfoType => {
   const msgId = fields["msg-id"];
 
   if (msgId === "submysterygift") {
@@ -25,6 +25,8 @@ export const parseGift = (fields) : GiftInfoType => {
   }
 
   if (!fields["msg-param-sub-plan"]) {
-    return null;
+    return {};
   }
+
+  return {};
 };

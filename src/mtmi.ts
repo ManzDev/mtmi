@@ -1,18 +1,20 @@
-import { Ban } from "@/modules/clearchat/parseBan";
-import { Timeout } from "@/modules/clearchat/parseTimeout";
+import { BanType } from "@/modules/clearchat/parseBan";
+import { TimeoutType } from "@/modules/clearchat/parseTimeout";
 
 import { parseUserMessage } from "@/modules/message/parseUserMessage";
-import { parseJoinPart } from "@/modules/joinpart/parseJoinPart";
+import { parseJoinPart, JoinPartType } from "@/modules/joinpart/parseJoinPart";
 import { parseClearChat } from "@/modules/clearchat/parseClearChat";
 import { parseClearMsg } from "@/modules/clearmsg/parseClearMsg";
 import { parseUserNotice } from "@/modules/usernotice/parseUserNotice";
 import { parseRawMessage } from "@/modules/parseRawMessage";
-import { parseNotice } from "@/modules/notice/parseNotice";
+import { NoticeEventType, parseNotice } from "@/modules/notice/parseNotice";
 import { parseRoomState } from "@/modules/roomstate/parseRoomState";
 import { chop } from "@/modules/utils";
 
+import { generateIRCMessage } from "./generateIRCMessage";
+
 type EventType =
-  "join" | "part" |
+  JoinPartType |
   "sub" | "resub" | "extendsub" |
   "subgift" | "submysterygift" |
   "communitypayforward" | "standardpayforward" |
@@ -21,22 +23,17 @@ type EventType =
   "bits" | "bitsbadgetier" | "charity" |
   "ritual" |
   "ban" | "timeout" |
-  "clearmsg" |
+  "clearmsg" | "clearchat" |
   "raid" | "unraid" |
   "notice" | "usernotice" |
   "roomstate" |
   "announcement" |
   "raw" |
-  "message" | "action";
-
-interface EventTypeAction {
-  type: EventType,
-  action: Function
-}
+  "message" | "action" | NoticeEventType;
 
 type EventTypeMap = {
-  ban: Ban,
-  timeout: Timeout,
+  "ban": BanType,
+  "timeout": TimeoutType,
 }
 
 interface OptionsObject {
@@ -74,6 +71,11 @@ class Client {
     this.client?.send(`JOIN #${this.channels.at(0)}`);
   }
 
+  fakeConnect() {
+    const TIME = 1000;
+    setInterval(() => this.message({ data: generateIRCMessage() }), TIME);
+  }
+
   on<T extends EventType>(type: T, action: (data: EventTypeMap[T]) => any) {
     const object = { type, action };
     this.events.push(object);
@@ -97,7 +99,7 @@ class Client {
       // EVENT-CONTROL
       switch (type) {
       case "PRIVMSG":
-        this.manageEvent(parseUserMessage({ type: "message", eventMessage: data, timeStamp }));
+        this.manageEvent(parseUserMessage({ eventMessage: data, timeStamp }));
         break;
       case "JOIN":
         this.manageEvent(parseJoinPart({ type: "join", eventMessage }));
@@ -115,10 +117,10 @@ class Client {
         this.manageEvent(parseRoomState({ type: "roomstate", eventMessage, timeStamp }));
         break;
       case "NOTICE":
-        this.manageEvent(parseNotice({ type: "notice", eventMessage, timeStamp }));
+        this.manageEvent(parseNotice({ eventMessage, timeStamp }));
         break;
       case "USERNOTICE":
-        this.manageEvent(parseUserNotice({ type: "usernotice", eventMessage, timeStamp }));
+        this.manageEvent(parseUserNotice({ eventMessage, timeStamp }));
         break;
       case "GLOBALUSERSTATE":
         console.log("----> GLOBALUSERSTATE: ", eventMessage);
@@ -143,9 +145,10 @@ class Client {
         // Ignore
         break;
       default:
-        this.manageEvent(parseRawMessage({ type: "raw", eventMessage, timeStamp }));
+        this.manageEvent(parseRawMessage({ eventMessage, timeStamp }));
         break;
       }
+      // console.log(eventMessage);
     });
   }
 
@@ -155,11 +158,13 @@ class Client {
     // FILTERS TEMP
 
     const FILTER = [
-      "message", "action",
-      "timeout", "ban",
+      "message",
+      "action",
+      "timeout",
+      "ban",
       // "clearmsg",
-      // "sub", "resub",
-      // "roomstate",
+      "sub", "resub",
+      "roomstate",
       // "subgift", "submysterygift",
       // "raid"
     ];
@@ -178,7 +183,7 @@ class Client {
       .filter(({ type }) => type === eventType)
       .forEach(({ type, action }) => action(eventData));
 
-    // console.log(eventData);
+    // console.log({ eventData });
   }
 
   pong() {

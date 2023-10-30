@@ -1,8 +1,8 @@
 import { parseIRCHost, parseEquals } from "@/modules/utils";
 
-export const parsePrivMsg = (data) => {
+export const parsePrivMsg = (rawMessage : string) => {
   // eslint-disable-next-line
-  const [rawFields, hostIRC, type, channel, ...message] = data.substring(1).split(" ");
+  const [rawFields, hostIRC, type, channel, ...message] = rawMessage.substring(1).split(" ");
 
   const { username } = parseIRCHost(hostIRC);
   const fields = parseEquals(rawFields);

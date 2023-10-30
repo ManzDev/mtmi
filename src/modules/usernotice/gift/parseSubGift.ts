@@ -1,4 +1,5 @@
 import { cleanMessage } from "@/modules/utils";
+import { parseSubPlan, SubPlanType } from "@/modules/usernotice/sub/parseSubPlan";
 
 export interface GiftType {
   giftMonths: number,
@@ -6,24 +7,24 @@ export interface GiftType {
   originId: string,
   recipientDisplayName: string,
   recipientId: number,
-  recipientUsername: string,
-  senderCount: number,
-  subPlanName: string,
-  subPlan: string
+  recipientUserName: string,
+  subPlan: SubPlanType
+  senderCount?: number,
+  funString?: string,
 }
 
-export const parseSubGift = (fields) : GiftType => {
+export const parseSubGift = (fields : any) : GiftType => {
   const originId = cleanMessage(fields["msg-param-origin-id"]);
+  const subPlan = parseSubPlan(fields);
 
   return {
     giftMonths: Number(fields["msg-param-gift-months"]),
     months: Number(fields["msg-param-months"]),
     originId,
-    recipientDisplayName: fields["msg-param-display-name"],
+    recipientDisplayName: fields["msg-param-recipient-display-name"],
     recipientId: Number(fields["msg-param-recipient-id"]),
-    recipientUsername: fields["msg-param-recipient-username"],
+    recipientUserName: fields["msg-param-recipient-user-name"],
     senderCount: Number(fields["msg-param-sender-count"]),
-    subPlan: fields["msg-param-sub-plan"],
-    subPlanName: cleanMessage(fields["msg-param-sub-plan-name"])
+    subPlan
   };
 };

@@ -1,6 +1,6 @@
 import { cleanMessage } from "@/modules/utils.js";
 
-export interface ReplyParentType {
+interface ReplyParentType {
   displayName: String;
   msgBody: String;
   msgId: String;
@@ -8,17 +8,21 @@ export interface ReplyParentType {
   userLogin: String;
 }
 
-export interface ReplyThreadType {
+interface ReplyThreadType {
   parentMsgId: String;
   parentUserLogin: String;
 }
 
-type ReplyMessage = (ReplyParentType & ReplyThreadType) | null;
+interface ReplyType extends ReplyParentType, ReplyThreadType {
+  type: string
+}
 
-export const parseReplyMessage = (fields) : ReplyMessage => {
+export type ReplyInfoType = ReplyType | object;
+
+export const parseReplyMessage = (fields : any) : ReplyInfoType => {
   const isReply = Boolean(fields["reply-parent-user-id"]);
   if (!isReply) {
-    return null;
+    return {};
   }
 
   const replyParent : ReplyParentType = {
@@ -35,6 +39,7 @@ export const parseReplyMessage = (fields) : ReplyMessage => {
   };
 
   return {
+    type: "reply",
     ...replyParent,
     ...replyThread
   };

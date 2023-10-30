@@ -6,7 +6,7 @@ export interface BanType {
   username: string
 }
 
-export const parseBan = (fields): BanType => {
+export const parseBan = (fields : any): BanType => {
   const { channel, username } = fields;
 
   return {

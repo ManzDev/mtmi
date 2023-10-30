@@ -12,7 +12,7 @@ interface ClearMsgType {
 export const parseClearMsg = ({ type, eventMessage }) => {
   // eslint-disable-next-line
   const [rawFields, host, rawType, channel, ...rawMessage] = eventMessage.split(" ");
-  const message = rawMessage.substring(1);
+  const message = rawMessage.join(" ").substring(1);
   const fields = parseEquals(rawFields.substring(1));
 
   const clearMsg : ClearMsgType = {
