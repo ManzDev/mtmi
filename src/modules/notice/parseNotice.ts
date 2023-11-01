@@ -13,7 +13,7 @@ interface NoticeInfoType {
   message: string
 }
 
-export const parseNotice = ({ eventMessage, timeStamp } : any) : NoticeInfoType => {
+export const parseNotice = ({ eventMessage } : any) : NoticeInfoType => {
   // eslint-disable-next-line
   const [rawFields, host, rawType, channel, ...rawMessage] = eventMessage.substring(1).split(" ");
   const fields = parseEquals(rawFields);

@@ -9,13 +9,13 @@ export interface JoinPartInfoType {
   raw: string
 }
 
-export const parseJoinPart = ({ type, eventMessage } : any) : JoinPartInfoType => {
+export const parseJoinPart = ({ eventMessage } : any) : JoinPartInfoType => {
   // eslint-disable-next-line
-  const [rawId, rawType, channel] = eventMessage.split(" ");
+  const [rawId, type, channel] = eventMessage.split(" ");
   const { username } = parseIRCHost(rawId);
 
   return {
-    type,
+    type: type.toLowerCase(),
     username,
     channel,
     raw: eventMessage

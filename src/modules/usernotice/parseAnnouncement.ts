@@ -1,12 +1,12 @@
-export interface AnnouncementType {
+export interface AnnouncementInfoType {
   color: string,
   roomId: number,
   systemMsg: string
 }
 
-export type AnnouncementInfoType = AnnouncementType | object;
+export type AnnouncementGroupType = AnnouncementInfoType | object;
 
-export const parseAnnouncement = (fields : any) : AnnouncementInfoType => {
+export const parseAnnouncement = (fields : any) : AnnouncementGroupType => {
   if (fields.msgId !== "announcement") {
     return {};
   }

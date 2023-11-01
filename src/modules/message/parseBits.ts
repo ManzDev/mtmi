@@ -1,10 +1,10 @@
-interface BitsType {
+export interface BitsInfoType {
   bits: number
 }
 
-export type BitsInfoType = BitsType | object;
+export type BitsGroupType = BitsInfoType | object;
 
-export const parseBits = (fields : any) : BitsInfoType => {
+export const parseBits = (fields : any) : BitsGroupType => {
   const bits = Number(fields.bits ?? 0);
 
   if (!bits) {

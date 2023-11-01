@@ -4,7 +4,7 @@ import { parseMessage, MessageInfoType } from "@/modules/message/parseMessage";
 import { parseSub, SubInfoOptionalType } from "@/modules/usernotice/sub/parseSub";
 import { parseGift, GiftGroupType } from "@/modules/usernotice/parseGift";
 import { parseRaid, RaidGroupType } from "@/modules/usernotice/parseRaid";
-import { parseAnnouncement, AnnouncementInfoType } from "@/modules/usernotice/parseAnnouncement";
+import { parseAnnouncement, AnnouncementGroupType } from "@/modules/usernotice/parseAnnouncement";
 
 interface UserNoticeInfoType {
   type: string,
@@ -13,14 +13,13 @@ interface UserNoticeInfoType {
   messageInfo: MessageInfoType,
   message: string,
   raw: string,
-  timeStamp: number,
   subInfo?: SubInfoOptionalType,
   giftInfo?: GiftGroupType,
   raidInfo?: RaidGroupType,
-  announcementInfo?: AnnouncementInfoType
+  announcementInfo?: AnnouncementGroupType
 }
 
-export const parseUserNotice = ({ eventMessage, timeStamp } : any) : UserNoticeInfoType => {
+export const parseUserNotice = ({ eventMessage } : any) : UserNoticeInfoType => {
   // eslint-disable-next-line
   const [rawFields, host, rawType, channel, ...rawMessage] = eventMessage.substring(1).split(" ");
   const fields = parseEquals(rawFields);
@@ -40,8 +39,7 @@ export const parseUserNotice = ({ eventMessage, timeStamp } : any) : UserNoticeI
     userInfo,
     messageInfo,
     message,
-    raw: eventMessage,
-    timeStamp
+    raw: eventMessage
   };
 
   Object.keys(subInfo).length && (data.subInfo = subInfo);

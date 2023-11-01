@@ -8,7 +8,6 @@ export const parseRawMessage = ({ eventMessage, timeStamp } : any) => {
 
   return {
     type: "raw",
-    eventMessage,
-    timeStamp
+    raw: eventMessage
   };
 };

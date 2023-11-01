@@ -1,18 +1,18 @@
 import { parseEquals } from "@/modules/utils";
 
-interface RoomStateType {
+export interface RoomStateInfoType {
+  type: string,
   emoteOnly: boolean,
   followersOnly: number, // minutos que debe seguir el canal para hablar
   r9k: boolean, // ritual: los mensajes deben ser únicos (solo mensajes > 9 chars)
   roomId: number,
   slow: number, // segundos que debe esperar el usuario entre mensajes para enviarlos
   subsOnly: boolean,
-  type: string
 }
 
-export const parseRoomState = ({ eventMessage, timeStamp } : any) : RoomStateType => {
+export const parseRoomState = ({ eventMessage } : any) : RoomStateInfoType => {
   // eslint-disable-next-line
-  const [options, host, id, channel] = eventMessage.substring(1).split(" ");
+  const [options, host, type, channel] = eventMessage.substring(1).split(" ");
   const fields = parseEquals(options);
 
   return {
@@ -22,6 +22,6 @@ export const parseRoomState = ({ eventMessage, timeStamp } : any) : RoomStateTyp
     roomId: Number(fields["room-id"]),
     slow: Number(fields.slow ?? -1),
     subsOnly: fields["subs-only"] === "1",
-    type: "roomstate"
+    type: type.toLowerCase()
   };
 };

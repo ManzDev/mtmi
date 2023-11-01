@@ -1,6 +1,6 @@
 import { parseEquals } from "@/modules/utils";
 
-interface ClearMsgInfoType {
+export interface ClearMsgInfoType {
   username: string,
   roomId: number,
   type: string,

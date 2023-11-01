@@ -5,9 +5,9 @@ import { BadgeInfoType, parseBadgeInfo } from "./parseBadgeInfo";
 import { parseHypeChat, HypeChatInfoType } from "./parseHypeChat";
 import { UserInfoType, parseUser } from "./parseUser";
 import { MessageInfoType, parseMessage } from "./parseMessage";
-import { parseBits, BitsInfoType } from "./parseBits";
+import { parseBits, BitsGroupType } from "./parseBits";
 
-interface UserMessageType {
+export interface UserMessageInfoType {
   type: string,
   username: string,
   badges: BadgesType,
@@ -16,12 +16,11 @@ interface UserMessageType {
   messageInfo: MessageInfoType,
   replyInfo?: ReplyInfoType,
   hypeChatInfo?: HypeChatInfoType,
-  bitsInfo?: BitsInfoType,
-  raw: string,
-  timeStamp: number
+  bitsInfo?: BitsGroupType,
+  raw: string
 }
 
-export const parseUserMessage = ({ eventMessage, timeStamp } : any): UserMessageType => {
+export const parseUserMessage = ({ eventMessage } : any): UserMessageInfoType => {
   const { fields, username, rawMessage, channel } = parsePrivMsg(eventMessage);
 
   const badges = parseBadges(fields.badges);
@@ -34,15 +33,14 @@ export const parseUserMessage = ({ eventMessage, timeStamp } : any): UserMessage
 
   const newType = rawMessage.startsWith("\u0001ACTION ") ? "action" : "message";
 
-  const data : UserMessageType = {
+  const data : UserMessageInfoType = {
     type: newType,
     username,
     badges,
     badgeInfo,
     userInfo,
     messageInfo,
-    raw: eventMessage,
-    timeStamp
+    raw: eventMessage
   };
 
   Object.keys(replyInfo).length && (data.replyInfo = replyInfo);

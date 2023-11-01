@@ -1,6 +1,8 @@
 import { cleanMessage } from "@/modules/utils";
 import { parseSubPlan, SubPlanType } from "@/modules/usernotice/sub/parseSubPlan";
 
+// Annonymous msg-param-fun-string=FunStringFive
+
 export interface GiftInfoType {
   giftMonths: number,
   months: number,

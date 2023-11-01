@@ -23,7 +23,7 @@ class Client {
   channels : Array<String> = [];
   client : WebSocket | undefined;
   startTime: Number | undefined;
-  events : Array<{ type: keyof EventTypeMap, action: (data: any) => any }> = [];
+  events : Array<{ type: keyof EventTypeMap, action: (data: EventTypeMap) => any }> = [];
   done = false;
   options: OptionsObject | undefined;
 
@@ -52,12 +52,11 @@ class Client {
   }
 
   on<T extends keyof EventTypeMap>(type: T, action: (data: EventTypeMap[T]) => any) {
-    const object = { type, action };
+    const object : any = { type, action };
     this.events.push(object);
   }
 
   message(event : any) {
-    const { timeStamp } = event;
     const data = chop(event.data);
 
     // PING-PONG
@@ -66,7 +65,7 @@ class Client {
       return;
     }
 
-    const eventMessages = data.split("\r\n");
+    const eventMessages : Array<any> = data.split("\r\n");
 
     eventMessages.forEach(eventMessage => {
       const type = eventMessage.split("tmi.twitch.tv ").at(1).split(" ").at(0);
@@ -74,29 +73,30 @@ class Client {
       // EVENT-CONTROL
       switch (type) {
       case "PRIVMSG":
-        this.manageEvent(parseUserMessage({ eventMessage: data, timeStamp }));
+        this.manageEvent(parseUserMessage({ eventMessage: data }));
         break;
       case "JOIN":
-        this.manageEvent(parseJoinPart({ type: "join", eventMessage }));
+        this.manageEvent(parseJoinPart({ eventMessage }));
         break;
       case "PART":
-        this.manageEvent(parseJoinPart({ type: "part", eventMessage }));
+        this.manageEvent(parseJoinPart({ eventMessage }));
         break;
       case "CLEARCHAT":
-        this.manageEvent(parseClearChat({ eventMessage, timeStamp }));
+        this.manageEvent(parseClearChat({ eventMessage }));
         break;
       case "CLEARMSG":
-        this.manageEvent(parseClearMsg({ type: "clearmsg", eventMessage }));
+        this.manageEvent(parseClearMsg({ eventMessage }));
         break;
       case "ROOMSTATE":
-        this.manageEvent(parseRoomState({ type: "roomstate", eventMessage, timeStamp }));
+        this.manageEvent(parseRoomState({ eventMessage }));
         break;
       case "NOTICE":
-        this.manageEvent(parseNotice({ eventMessage, timeStamp }));
+        this.manageEvent(parseNotice({ eventMessage }));
         break;
       case "USERNOTICE":
-        this.manageEvent(parseUserNotice({ eventMessage, timeStamp }));
+        this.manageEvent(parseUserNotice({ eventMessage }));
         break;
+      /*
       case "GLOBALUSERSTATE":
         console.log("----> GLOBALUSERSTATE: ", eventMessage);
         break;
@@ -106,6 +106,7 @@ class Client {
       case "RECONNECT":
         console.log("----> RECONNECT: ", eventMessage);
         break;
+      */
       case "CAP": // CAP: Connect
       case "001": // 001: Welcome
       case "002": // 002: Host
@@ -120,7 +121,7 @@ class Client {
         // Ignore
         break;
       default:
-        this.manageEvent(parseRawMessage({ eventMessage, timeStamp }));
+        this.manageEvent(parseRawMessage({ eventMessage }));
         break;
       }
       // console.log(eventMessage);
@@ -130,25 +131,8 @@ class Client {
   manageEvent(eventData : any) {
     const eventType = eventData.type;
 
-    // FILTERS TEMP
-
-    const FILTER = [
-      // "message",
-      // "action",
-      // "timeout",
-      // "ban",
-      // "clearmsg",
-      // "sub", "resub",
-      // "roomstate",
-      // "subgift", "submysterygift",
-      // "raid"
-    ];
-    if (FILTER.includes(eventType)) {
-      return;
-    }
-
     // Ignore own username
-    if ((eventType === "join" || eventType === "part") && eventData.username && eventData.username.startsWith("justinfan")) {
+    if (["join", "part"].includes(eventType) && eventData.username && eventData.username.startsWith("justinfan")) {
       return;
     }
 
@@ -156,9 +140,9 @@ class Client {
 
     this.events
       .filter(({ type }) => type === eventType)
-      .forEach(({ type, action }) => action(eventData));
+      .forEach(({ action }) => action(eventData));
 
-    // console.log({ eventData });
+    // console.log(eventData);
   }
 
   pong() {

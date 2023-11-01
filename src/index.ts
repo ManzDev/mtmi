@@ -1,6 +1,6 @@
 import { client } from "./mtmi";
 
-const CHANNEL = "padawanstrainer"; // "kaicenat";
+const CHANNEL = "kaicenat";
 // const CHANNEL = "niv3k_el_pato";
 
 client.connect({ channels: [CHANNEL] });
@@ -27,7 +27,8 @@ client.on("timeout", (data) => console.log("TIMEOUT: ", data));
 client.on("clearmsg", (data) => console.log("DELETE MESSAGE: ", data));
 
 client.on("raid", (data) => console.log("RAID: ", data));
-client.on("unraid", (data) => console.log("UNRAID: ", data));
+
+// client.on("unraid", (data) => console.log("UNRAID: ", data));
 
 client.on("roomstate", (data) => console.log("ROOMSTATE: ", data));
 
@@ -35,7 +36,7 @@ client.on("announcement", (data) => console.log("ANNOUNCEMENT: ", data));
 
 client.on("bits", (data) => console.log("BITS: ", data));
 
-client.on("message", (data) => console.log("MESSAGE: ", data));
+// client.on("message", (data) => console.log("MESSAGE: ", data));
 
 client.on("action", (data) => console.log("MESSAGE ACTION: ", data));
 
@@ -55,6 +56,8 @@ client.on("subs_off", (data) => console.log("MODE: ", data));
 client.on("r9k_on", (data) => console.log("MODE: ", data));
 client.on("r9k_off", (data) => console.log("MODE: ", data));
 
+client.on("raw", (data) => console.log("RAW: ", data));
+
 // POR TESTEAR
 /*
 client.on("bitsbadgetier", (data) => console.log("BITSBADGETIER: ", data));
@@ -65,7 +68,4 @@ client.on("anongiftpaidupgrade", (data) => console.log("ANONGIFTPAIDUPGRADE: ", 
 client.on("extendsub", (data) => console.log("EXTENDSUB: ", data));
 client.on("ritual", (data) => console.log("RITUAL: ", data));
 
-client.on("raw", (data) => console.log("RAW: ", data));
 */
-
-// client.on("sub", ({  }) => {});
