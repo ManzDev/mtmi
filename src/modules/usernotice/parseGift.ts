@@ -1,11 +1,13 @@
-import { parseMysteryGift, MysteryGiftType } from "./gift/parseMysteryGift";
-import { parseStandardPayforward, StandardPayforwardType } from "./gift/parseStandardPayforward";
-import { parseGiftPaidUpgrade, GiftPaidUpgradeType } from "./gift/parseGiftPaidUpgrade";
-import { parseSubGift, GiftType } from "./gift/parseSubGift";
+import { parseMysteryGift, MysteryGiftInfoType } from "./gift/parseMysteryGift";
+import { parseStandardPayforward, StandardPayforwardInfoType } from "./gift/parseStandardPayforward";
+import { parseGiftPaidUpgrade, GiftPaidUpgradeInfoType } from "./gift/parseGiftPaidUpgrade";
+import { parseSubGift, GiftInfoType } from "./gift/parseSubGift";
 
-export type GiftInfoType = MysteryGiftType | StandardPayforwardType | GiftPaidUpgradeType | GiftType | object;
+export type GiftType = "submysterygift" | "standardpayforward" | "subgiftpaidupgrade" | "subgift";
 
-export const parseGift = (fields: any) : GiftInfoType => {
+export type GiftGroupType = MysteryGiftInfoType | StandardPayforwardInfoType | GiftPaidUpgradeInfoType | GiftInfoType | object;
+
+export const parseGift = (fields: any) : GiftGroupType => {
   const msgId = fields["msg-id"];
 
   if (msgId === "submysterygift") {

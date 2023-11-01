@@ -1,6 +1,6 @@
 import { client } from "./mtmi";
 
-const CHANNEL = "kaicenat";
+const CHANNEL = "padawanstrainer"; // "kaicenat";
 // const CHANNEL = "niv3k_el_pato";
 
 client.connect({ channels: [CHANNEL] });
@@ -15,11 +15,11 @@ client.on("resub", (data) => console.log("RESUB: ", data));
 client.on("subgift", (data) => console.log("SUBGIFT: ", data));
 client.on("submysterygift", (data) => console.log("SUBMYSTERYGIFT: ", data));
 
-client.on("communitypayforward", (data) => console.log("COMMUNITYPAYFORWARD: ", data));
+// client.on("communitypayforward", (data) => console.log("COMMUNITYPAYFORWARD: ", data));
 client.on("standardpayforward", (data) => console.log("STANDARDPAYFORWARD: ", data));
 
-client.on("giftpaidupgrade", (data) => console.log("GIFTPAIDUPGRADE: ", data));
-client.on("primepaidupgrade", (data) => console.log("PRIMEPAIDUPGRADE: ", data));
+// client.on("giftpaidupgrade", (data) => console.log("GIFTPAIDUPGRADE: ", data));
+// client.on("primepaidupgrade", (data) => console.log("PRIMEPAIDUPGRADE: ", data));
 
 client.on("clearchat", (data) => console.log("CLEARCHAT: ", data));
 client.on("ban", (data) => console.log("BAN: ", data));
@@ -29,14 +29,14 @@ client.on("clearmsg", (data) => console.log("DELETE MESSAGE: ", data));
 client.on("raid", (data) => console.log("RAID: ", data));
 client.on("unraid", (data) => console.log("UNRAID: ", data));
 
-client.on("notice", (data) => console.log("NOTICE: ", data));
 client.on("roomstate", (data) => console.log("ROOMSTATE: ", data));
 
 client.on("announcement", (data) => console.log("ANNOUNCEMENT: ", data));
 
-client.on("usernotice", (data) => console.log("USERNOTICE: ", data));
 client.on("bits", (data) => console.log("BITS: ", data));
+
 client.on("message", (data) => console.log("MESSAGE: ", data));
+
 client.on("action", (data) => console.log("MESSAGE ACTION: ", data));
 
 // MODES
@@ -56,6 +56,7 @@ client.on("r9k_on", (data) => console.log("MODE: ", data));
 client.on("r9k_off", (data) => console.log("MODE: ", data));
 
 // POR TESTEAR
+/*
 client.on("bitsbadgetier", (data) => console.log("BITSBADGETIER: ", data));
 client.on("rewardgift", (data) => console.log("REWARDGIFT: ", data));
 client.on("charity", (data) => console.log("CHARITY: ", data));
@@ -65,3 +66,6 @@ client.on("extendsub", (data) => console.log("EXTENDSUB: ", data));
 client.on("ritual", (data) => console.log("RITUAL: ", data));
 
 client.on("raw", (data) => console.log("RAW: ", data));
+*/
+
+// client.on("sub", ({  }) => {});

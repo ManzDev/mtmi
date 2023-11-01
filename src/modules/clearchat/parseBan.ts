@@ -1,4 +1,4 @@
-export interface BanType {
+export interface BanInfoType {
   roomId: number,
   targetUserId: number,
   tmi: number,
@@ -6,7 +6,7 @@ export interface BanType {
   username: string
 }
 
-export const parseBan = (fields : any): BanType => {
+export const parseBan = (fields : any): BanInfoType => {
   const { channel, username } = fields;
 
   return {

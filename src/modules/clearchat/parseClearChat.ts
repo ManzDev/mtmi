@@ -1,19 +1,20 @@
 import { parseEquals } from "@/modules/utils.js";
-import { parseBan, BanType } from "./parseBan";
-import { parseTimeout, TimeoutType } from "./parseTimeout";
+import { parseBan, BanInfoType } from "./parseBan";
+import { parseTimeout, TimeoutInfoType } from "./parseTimeout";
 
-type EventType = "clearchat" | "timeout" | "ban";
+export type ClearChatType = "clearchat" | "timeout" | "ban";
 
-interface ClearChatType {
+export interface ClearChatInfoType {
+  type: ClearChatType,
   roomId: number,
   timeStamp: number,
   tmi: number,
-  type: EventType
+  raw: string
 }
 
-type ClearChatEventType = ClearChatType | TimeoutType | BanType;
+type ClearChatGroupType = ClearChatInfoType | TimeoutInfoType | BanInfoType;
 
-export const parseClearChat = ({ eventMessage, timeStamp }) : ClearChatEventType => {
+export const parseClearChat = ({ eventMessage, timeStamp } : any) : ClearChatGroupType => {
   // eslint-disable-next-line
   const [rawFields, host, rawType, channel, rawUsername] = eventMessage.substring(1).split(" ");
   const username = rawUsername?.substring(1) ?? "";

@@ -2,14 +2,14 @@ import { parseIRCHost } from "@/modules/utils.js";
 
 export type JoinPartType = "join" | "part";
 
-interface UserJoinPartType {
+export interface JoinPartInfoType {
   type: JoinPartType,
   username: string,
   channel: string,
   raw: string
 }
 
-export const parseJoinPart = ({ type, eventMessage } : any) : UserJoinPartType => {
+export const parseJoinPart = ({ type, eventMessage } : any) : JoinPartInfoType => {
   // eslint-disable-next-line
   const [rawId, rawType, channel] = eventMessage.split(" ");
   const { username } = parseIRCHost(rawId);

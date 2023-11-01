@@ -1,7 +1,7 @@
 import { cleanMessage } from "@/modules/utils";
 import { parseSubPlan, SubPlanType } from "@/modules/usernotice/sub/parseSubPlan";
 
-export interface GiftType {
+export interface GiftInfoType {
   giftMonths: number,
   months: number,
   originId: string,
@@ -13,7 +13,7 @@ export interface GiftType {
   funString?: string,
 }
 
-export const parseSubGift = (fields : any) : GiftType => {
+export const parseSubGift = (fields : any) : GiftInfoType => {
   const originId = cleanMessage(fields["msg-param-origin-id"]);
   const subPlan = parseSubPlan(fields);
 

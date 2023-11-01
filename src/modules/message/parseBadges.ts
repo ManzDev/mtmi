@@ -19,6 +19,7 @@ const BADGES = [
   /* GIFTS */
   "sub-gifter",
   "sub-gift-leader",
+  "bits-leader",
   /* STATUS */
   "no_video",
   "no_audio",

@@ -1,12 +1,12 @@
 import { parseEquals } from "@/modules/utils";
 import { parseUser, UserInfoType } from "@/modules/message/parseUser";
 import { parseMessage, MessageInfoType } from "@/modules/message/parseMessage";
-import { parseSub, SubInfoType } from "@/modules/usernotice/sub/parseSub";
-import { parseGift, GiftInfoType } from "@/modules/usernotice/parseGift";
-import { parseRaid, RaidInfoType } from "@/modules/usernotice/parseRaid";
+import { parseSub, SubInfoOptionalType } from "@/modules/usernotice/sub/parseSub";
+import { parseGift, GiftGroupType } from "@/modules/usernotice/parseGift";
+import { parseRaid, RaidGroupType } from "@/modules/usernotice/parseRaid";
 import { parseAnnouncement, AnnouncementInfoType } from "@/modules/usernotice/parseAnnouncement";
 
-interface UserNoticeType {
+interface UserNoticeInfoType {
   type: string,
   channel: string,
   userInfo: UserInfoType,
@@ -14,13 +14,13 @@ interface UserNoticeType {
   message: string,
   raw: string,
   timeStamp: number,
-  subInfo?: SubInfoType,
-  giftInfo?: GiftInfoType,
-  raidInfo?: RaidInfoType,
+  subInfo?: SubInfoOptionalType,
+  giftInfo?: GiftGroupType,
+  raidInfo?: RaidGroupType,
   announcementInfo?: AnnouncementInfoType
 }
 
-export const parseUserNotice = ({ eventMessage, timeStamp } : any) : UserNoticeType => {
+export const parseUserNotice = ({ eventMessage, timeStamp } : any) : UserNoticeInfoType => {
   // eslint-disable-next-line
   const [rawFields, host, rawType, channel, ...rawMessage] = eventMessage.substring(1).split(" ");
   const fields = parseEquals(rawFields);
@@ -34,7 +34,7 @@ export const parseUserNotice = ({ eventMessage, timeStamp } : any) : UserNoticeT
   const giftInfo = parseGift(fields);
   const announcementInfo = parseAnnouncement(fields);
 
-  const data : UserNoticeType = {
+  const data : UserNoticeInfoType = {
     type: fields["msg-id"],
     channel,
     userInfo,

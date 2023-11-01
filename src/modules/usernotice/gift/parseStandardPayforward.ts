@@ -1,4 +1,4 @@
-export interface StandardPayforwardType {
+export interface StandardPayforwardInfoType {
   gifterAnonymous: boolean,
   gifterId: number,
   gifterUserName: string,
@@ -8,7 +8,7 @@ export interface StandardPayforwardType {
   recipientDisplayName: string,
 }
 
-export const parseStandardPayforward = (fields: any) : StandardPayforwardType => {
+export const parseStandardPayforward = (fields: any) : StandardPayforwardInfoType => {
   const gifterAnonymous = fields["msg-param-prior-gifter-anonymous"] !== "false";
 
   return {

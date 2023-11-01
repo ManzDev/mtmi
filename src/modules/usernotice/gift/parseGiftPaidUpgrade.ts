@@ -1,10 +1,10 @@
-export interface GiftPaidUpgradeType {
+export interface GiftPaidUpgradeInfoType {
   senderUsername: string,
   senderDisplayName: string,
   username: string
 }
 
-export const parseGiftPaidUpgrade = (fields: any) : GiftPaidUpgradeType => {
+export const parseGiftPaidUpgrade = (fields: any) : GiftPaidUpgradeInfoType => {
   const username = fields.login;
 
   return {

@@ -1,10 +1,10 @@
-import { parseBan, BanType } from "./parseBan.js";
+import { parseBan, BanInfoType } from "./parseBan.js";
 
-export interface TimeoutType extends BanType {
+export interface TimeoutInfoType extends BanInfoType {
   banDuration: number,
 }
 
-export const parseTimeout = (fields : any): TimeoutType => {
+export const parseTimeout = (fields : any): TimeoutInfoType => {
   const banData = parseBan(fields);
 
   return {

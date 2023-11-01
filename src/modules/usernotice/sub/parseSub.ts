@@ -1,6 +1,8 @@
 import { parseSubPlan, SubPlanType } from "@/modules/usernotice/sub/parseSubPlan";
 
-interface SubType {
+export type SubType = "sub" | "resub";
+
+export interface SubInfoType {
   cumulativeMonths: number,
   months: number,
   multimonthDuration: number,
@@ -11,13 +13,11 @@ interface SubType {
   wasGifted: boolean
 }
 
-export type SubInfoType = SubType | object;
+export type SubInfoOptionalType = SubInfoType | object;
 
-const SUBTYPES = ["sub", "resub"];
-
-export const parseSub = (fields : any) : SubInfoType => {
+export const parseSub = (fields : any) : SubInfoOptionalType => {
   // Si no es de tipo suscripción
-  if (!SUBTYPES.includes(fields["msg-id"])) { return {}; }
+  if (!["sub", "resub"].includes(fields["msg-id"])) { return {}; }
 
   const subPlan = parseSubPlan(fields);
   const wasGifted = fields["msg-param-was-gifted"];

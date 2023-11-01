@@ -1,6 +1,6 @@
 import { cleanMessage } from "@/modules/utils";
 
-export interface MysteryGiftType {
+export interface MysteryGiftInfoType {
   massGiftCount: number, // Regaladas
   originId: string,
   senderCount: number, // Total acumulado
@@ -12,7 +12,7 @@ export interface MysteryGiftType {
 /**
  * El usuario @senderUsername regala @massGiftCount subs a la comunidad.
  */
-export const parseMysteryGift = (fields: any) : MysteryGiftType => {
+export const parseMysteryGift = (fields: any) : MysteryGiftInfoType => {
   const originId = cleanMessage(fields["msg-param-origin-id"]);
 
   return {

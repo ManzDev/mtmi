@@ -1,13 +1,13 @@
-interface RaidType {
+export interface RaidInfoType {
   displayName: string,
   username: string,
   profileImageURL: string,
   viewerCount: number
 }
 
-export type RaidInfoType = RaidType | object;
+export type RaidGroupType = RaidInfoType | object;
 
-export const parseRaid = (fields : any) : RaidInfoType => {
+export const parseRaid = (fields : any) : RaidGroupType => {
   if (!fields["msg-param-profileImageURL"]) { return {}; }
 
   const profileImageURL = fields["msg-param-profileImageURL"].replaceAll("%s", "150x150");

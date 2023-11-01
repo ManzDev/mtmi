@@ -1,40 +1,15 @@
-import { BanType } from "@/modules/clearchat/parseBan";
-import { TimeoutType } from "@/modules/clearchat/parseTimeout";
-
-import { parseUserMessage } from "@/modules/message/parseUserMessage";
-import { parseJoinPart, JoinPartType } from "@/modules/joinpart/parseJoinPart";
+import { EventTypeMap } from "./types";
 import { parseClearChat } from "@/modules/clearchat/parseClearChat";
+import { parseUserMessage } from "@/modules/message/parseUserMessage";
+import { parseJoinPart } from "@/modules/joinpart/parseJoinPart";
 import { parseClearMsg } from "@/modules/clearmsg/parseClearMsg";
 import { parseUserNotice } from "@/modules/usernotice/parseUserNotice";
 import { parseRawMessage } from "@/modules/parseRawMessage";
-import { NoticeEventType, parseNotice } from "@/modules/notice/parseNotice";
+import { parseNotice } from "@/modules/notice/parseNotice";
 import { parseRoomState } from "@/modules/roomstate/parseRoomState";
 import { chop } from "@/modules/utils";
 
 import { generateIRCMessage } from "./generateIRCMessage";
-
-type EventType =
-  JoinPartType |
-  "sub" | "resub" | "extendsub" |
-  "subgift" | "submysterygift" |
-  "communitypayforward" | "standardpayforward" |
-  "giftpaidupgrade" | "primepaidupgrade" |
-  "rewardgift" | "anonsubgift" | "anongiftpaidupgrade" |
-  "bits" | "bitsbadgetier" | "charity" |
-  "ritual" |
-  "ban" | "timeout" |
-  "clearmsg" | "clearchat" |
-  "raid" | "unraid" |
-  "notice" | "usernotice" |
-  "roomstate" |
-  "announcement" |
-  "raw" |
-  "message" | "action" | NoticeEventType;
-
-type EventTypeMap = {
-  "ban": BanType,
-  "timeout": TimeoutType,
-}
 
 interface OptionsObject {
   channels: Array<String>
@@ -48,7 +23,7 @@ class Client {
   channels : Array<String> = [];
   client : WebSocket | undefined;
   startTime: Number | undefined;
-  events = [];
+  events : Array<{ type: keyof EventTypeMap, action: (data: any) => any }> = [];
   done = false;
   options: OptionsObject | undefined;
 
@@ -63,7 +38,7 @@ class Client {
     this.client.addEventListener("close", (event) => this.close(event));
   }
 
-  open(event) {
+  open(event : any) {
     DEBUG && console.log(`Conectado a Twitch: ${event.target.url}`);
 
     this.client?.send("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership");
@@ -76,12 +51,12 @@ class Client {
     setInterval(() => this.message({ data: generateIRCMessage() }), TIME);
   }
 
-  on<T extends EventType>(type: T, action: (data: EventTypeMap[T]) => any) {
+  on<T extends keyof EventTypeMap>(type: T, action: (data: EventTypeMap[T]) => any) {
     const object = { type, action };
     this.events.push(object);
   }
 
-  message(event) {
+  message(event : any) {
     const { timeStamp } = event;
     const data = chop(event.data);
 
@@ -152,19 +127,19 @@ class Client {
     });
   }
 
-  manageEvent(eventData) {
+  manageEvent(eventData : any) {
     const eventType = eventData.type;
 
     // FILTERS TEMP
 
     const FILTER = [
-      "message",
-      "action",
-      "timeout",
-      "ban",
+      // "message",
+      // "action",
+      // "timeout",
+      // "ban",
       // "clearmsg",
-      "sub", "resub",
-      "roomstate",
+      // "sub", "resub",
+      // "roomstate",
       // "subgift", "submysterygift",
       // "raid"
     ];
@@ -191,13 +166,13 @@ class Client {
     DEBUG && console.log("PONG :tmi.twitch.tv");
   }
 
-  close(event) {
+  close(event : any) {
     const { type, reason, code } = event;
     DEBUG && console.log(`${type}: REASON ${reason} ${code}`);
 
     if (code === 1006) {
       console.log("Reconnectando en 5 segundos...");
-      setTimeout(() => this.connect(this.options), 5000);
+      setTimeout(() => this.options && this.connect(this.options), 5000);
     }
   }
 }
