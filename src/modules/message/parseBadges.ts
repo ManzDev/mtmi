@@ -1,64 +1,37 @@
-import { parseSlash } from "@/modules/utils";
+import { parseSlashToString, cleanMessage } from "@/modules/utils";
+import { BadgeInfoType, parseBadgeInfo } from "./badges/parseBadgeInfo";
+import badgesInfo from "./badges/badges.json";
 
-export interface BadgesType {
-  [name: string]: string;
-}
+export const parseBadges = (fields : any) : Array<BadgeInfoType> => {
+  const badges : any = parseSlashToString(fields.badges) || {};
+  const badgeInfo: any = parseBadgeInfo(fields["badge-info"]);
+  const badgesName = Object.keys(badges);
 
-const BADGES = [
-  "broadcaster",
-  "partner",
-  "moderator",
-  "founder",
-  "subscriber",
-  "vip",
-  "hype-train",
-  "bits",
-  "moments",
-  "artist-badge",
-  "predictions",
-  /* GIFTS */
-  "sub-gifter",
-  "sub-gift-leader",
-  "bits-leader",
-  /* STATUS */
-  "no_video",
-  "no_audio",
-  "turbo",
-  "premium",
-  "game-developer",
-  /* EVENTS */
-  "glhf-pledge",
-  "glitchcon2020",
-  "chatter-cs-go-2022",
-  "overwatch-league-insider_1",
-  "overwatch-league-insider_2019A",
-  "overwatch-league-insider_2018B",
-  "battlerite_1",
-  "getting-over-it_1",
-  "bits-charity",
-  "rplace-2023",
-  "creator-cs-go-2022",
-  "superultracombo-2023",
-  "twitchcon2017",
-  "twitchcon2018",
-  "twitchconEU2019",
-  "twitchconNA2019",
-  "twitchconAmsterdam2020",
-  "twitchconEU2022",
-  "twitchconNA2022",
-  "twitchconEU2023",
-  "twitchconNA2023",
-  "ambassador",
-  "staff"
-];
+  // DEBUG
+  /*
+  const isPresent = badgesName.every(badge => badgesInfo.map(b => b.text.split("/").at(0)).includes(badge));
+  !isPresent && console.log("----> badge descubierto: ", badges);
+  const biKeys = Object.keys(badgeInfo).filter(key => key !== "subscriber" && key !== "founder");
+  biKeys.length > 0 && console.log(badgeInfo);
+  */
+  // ***
 
-export const parseBadges = (badges : string) => {
-  const fieldBadges: BadgesType = parseSlash(badges, String) || {};
+  return badgesName.map(name => {
+    const value = badges[name];
+    const key = `${name}/${value}`;
+    const keyData = badgesInfo.find(badge => badge.text === key);
 
-  const isPresent = Object.keys(fieldBadges).every(badge => BADGES.includes(badge));
-  !isPresent && console.log("----> badge descubierto: ", fieldBadges);
+    const data : BadgeInfoType = {
+      name,
+      value,
+      image: keyData?.image,
+      description: keyData?.description
+    };
 
-  return {
-    ...fieldBadges
-  };
+    name === "subscriber" && (data.fullMonths = Number(badgeInfo.subscriber));
+    name === "founder" && (data.founderNumber = Number(badgeInfo.founder));
+    name === "predictions" && (data.predictionInfo = cleanMessage(badgeInfo.predictions));
+
+    return data;
+  });
 };

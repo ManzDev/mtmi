@@ -6,6 +6,7 @@ export interface StandardPayforwardInfoType {
   recipientId: number,
   recipientUserName: string
   recipientDisplayName: string,
+  systemMsg: string,
 }
 
 export const parseStandardPayforward = (fields: any) : StandardPayforwardInfoType => {
@@ -18,6 +19,7 @@ export const parseStandardPayforward = (fields: any) : StandardPayforwardInfoTyp
     gifterDisplayName: fields["msg-param-prior-gifter-display-name"],
     recipientId: Number(fields["msg-param-recipient-id"]),
     recipientUserName: fields["msg-param-recipient-user-name"],
-    recipientDisplayName: fields["msg-param-recipient-display-name"]
+    recipientDisplayName: fields["msg-param-recipient-display-name"],
+    systemMsg: fields["system-msg"]
   };
 };

@@ -1,4 +1,5 @@
 import { parseSubPlan, SubPlanType } from "@/modules/usernotice/sub/parseSubPlan";
+import { cleanMessage } from "@/modules/utils";
 
 export type SubType = "sub" | "resub";
 
@@ -10,7 +11,8 @@ export interface SubInfoType {
   shouldShareStreak: boolean,
   streakMonths: number,
   subPlan: SubPlanType,
-  wasGifted: boolean
+  wasGifted: boolean,
+  systemMsg: string
 }
 
 export type SubInfoOptionalType = SubInfoType | object;
@@ -31,5 +33,6 @@ export const parseSub = (fields : any) : SubInfoOptionalType => {
     streakMonths: Number(fields["msg-param-streak-months"] ?? 0),
     subPlan,
     wasGifted: wasGifted !== "false",
+    systemMsg: cleanMessage(fields["system-msg"])
   };
 };

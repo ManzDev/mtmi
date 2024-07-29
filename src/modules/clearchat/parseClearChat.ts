@@ -4,24 +4,17 @@ import { parseTimeout, TimeoutInfoType } from "./parseTimeout";
 
 export type ClearChatType = "clearchat" | "timeout" | "ban";
 
+/**
+ * El streamer o un moderador ha borrado todos los mensajes del canal
+ */
 export interface ClearChatInfoType {
-  /**
-   * El tipo de evento, "clearchat" en este caso.
-   *
-   * @default "Hello!"
-   */
+  /** type - El tipo de evento, "clearchat" en este caso. */
   type: ClearChatType,
-  /**
-   * Identificación numérica del canal en cuestión.
-   */
+  /** roomId - Identificación numérica del canal en cuestión. */
   roomId: number,
-  /**
-   * Timestamp del momento en que ocurre el evento.
-   */
+  /** tmi - Timestamp del momento en que ocurre el evento. */
   tmi: number,
-  /**
-   * Información cruda del evento, directamente desde Twitch.
-   */
+  /** raw - Información cruda del evento, directamente desde Twitch. */
   raw: string
 }
 
@@ -33,29 +26,22 @@ export const parseClearChat = ({ eventMessage } : any) : ClearChatGroupType => {
   const username = rawUsername?.substring(1) ?? "";
   const fields = parseEquals(rawFields);
 
-  // timeout
   if (fields["ban-duration"]) {
     return {
-      type: "timeout",
       ...parseTimeout({ username, channel, ...fields }),
-      raw: eventMessage,
+      raw: eventMessage
     };
-  }
-
-  // ban
-  if (fields["target-user-id"]) {
+  } else if (fields["target-user-id"]) {
     return {
-      type: "ban",
       ...parseBan({ username, channel, ...fields }),
-      raw: eventMessage,
+      raw: eventMessage
+    };
+  } else {
+    return {
+      type: "clearchat",
+      roomId: Number(fields["room-id"]),
+      tmi: Number(fields["tmi-sent-ts"]),
+      raw: eventMessage
     };
   }
-
-  // clearchat
-  return {
-    type: "clearchat",
-    roomId: Number(fields["room-id"]),
-    tmi: Number(fields["tmi-sent-ts"]),
-    raw: eventMessage,
-  };
 };

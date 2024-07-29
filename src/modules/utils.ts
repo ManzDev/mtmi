@@ -21,10 +21,18 @@ export const parseIRCHost = (irchost) => {
 };
 
 // Parse raw field/value,field2/value2...
-export const parseSlash = (message, castTo = Number) => {
+export const parseSlashToString = (message) => {
   const entries = message.split(",")
     .map(badge => badge.split("/"))
-    .map(([field, value]) => [field, castTo(value)]);
+    .map(([field, value]) => [field, String(value)]);
+
+  return message && Object.fromEntries(entries);
+};
+
+export const parseSlashToNumber = (message) => {
+  const entries = message.split(",")
+    .map(badge => badge.split("/"))
+    .map(([field, value]) => [field, Number(value)]);
 
   return message && Object.fromEntries(entries);
 };

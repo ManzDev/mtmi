@@ -7,9 +7,8 @@ import { parseUserNotice } from "@/modules/usernotice/parseUserNotice";
 import { parseRawMessage } from "@/modules/parseRawMessage";
 import { parseNotice } from "@/modules/notice/parseNotice";
 import { parseRoomState } from "@/modules/roomstate/parseRoomState";
+import { debugId } from "@/debugId";
 import { chop } from "@/modules/utils";
-
-import { generateIRCMessage } from "./generateIRCMessage";
 
 interface OptionsObject {
   channels: Array<String>
@@ -43,15 +42,10 @@ class Client {
 
     this.client?.send("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership");
     this.client?.send(`NICK ${USERNAME}`);
-    this.client?.send(`JOIN #${this.channels.at(0)}`);
+    this.channels.forEach(channel => this.client?.send(`JOIN #${channel}`));
   }
 
-  fakeConnect() {
-    const TIME = 1000;
-    setInterval(() => this.message({ data: generateIRCMessage() }), TIME);
-  }
-
-  on<T extends keyof EventTypeMap>(type: T, action: (data: EventTypeMap[T]) => any) {
+  on<T extends keyof EventTypeMap>(type: T, action: (data: EventTypeMap[T]) => void): void {
     const object : any = { type, action };
     this.events.push(object);
   }
@@ -70,31 +64,33 @@ class Client {
     eventMessages.forEach(eventMessage => {
       const type = eventMessage.split("tmi.twitch.tv ").at(1).split(" ").at(0);
 
+      debugId(eventMessage);
+
       // EVENT-CONTROL
       switch (type) {
       case "PRIVMSG":
-        this.manageEvent(parseUserMessage({ eventMessage: data }));
+        this.#manageEvent(parseUserMessage({ eventMessage: data }));
         break;
       case "JOIN":
-        this.manageEvent(parseJoinPart({ eventMessage }));
+        this.#manageEvent(parseJoinPart({ eventMessage }));
         break;
       case "PART":
-        this.manageEvent(parseJoinPart({ eventMessage }));
+        this.#manageEvent(parseJoinPart({ eventMessage }));
         break;
       case "CLEARCHAT":
-        this.manageEvent(parseClearChat({ eventMessage }));
+        this.#manageEvent(parseClearChat({ eventMessage }));
         break;
       case "CLEARMSG":
-        this.manageEvent(parseClearMsg({ eventMessage }));
+        this.#manageEvent(parseClearMsg({ eventMessage }));
         break;
       case "ROOMSTATE":
-        this.manageEvent(parseRoomState({ eventMessage }));
+        this.#manageEvent(parseRoomState({ eventMessage }));
         break;
       case "NOTICE":
-        this.manageEvent(parseNotice({ eventMessage }));
+        this.#manageEvent(parseNotice({ eventMessage }));
         break;
       case "USERNOTICE":
-        this.manageEvent(parseUserNotice({ eventMessage }));
+        this.#manageEvent(parseUserNotice({ eventMessage }));
         break;
       /*
       case "GLOBALUSERSTATE":
@@ -121,14 +117,14 @@ class Client {
         // Ignore
         break;
       default:
-        this.manageEvent(parseRawMessage({ eventMessage }));
+        !this.done && console.log(eventMessage);
+        this.#manageEvent(parseRawMessage({ eventMessage }));
         break;
       }
-      // console.log(eventMessage);
     });
   }
 
-  manageEvent(eventData : any) {
+  #manageEvent(eventData : any) {
     const eventType = eventData.type;
 
     // Ignore own username
@@ -142,7 +138,7 @@ class Client {
       .filter(({ type }) => type === eventType)
       .forEach(({ action }) => action(eventData));
 
-    // console.log(eventData);
+    // console.log("->", eventData);
   }
 
   pong() {

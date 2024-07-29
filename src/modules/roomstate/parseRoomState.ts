@@ -8,6 +8,7 @@ export interface RoomStateInfoType {
   roomId: number,
   slow: number, // segundos que debe esperar el usuario entre mensajes para enviarlos
   subsOnly: boolean,
+  channel: string
 }
 
 export const parseRoomState = ({ eventMessage } : any) : RoomStateInfoType => {
@@ -22,6 +23,7 @@ export const parseRoomState = ({ eventMessage } : any) : RoomStateInfoType => {
     roomId: Number(fields["room-id"]),
     slow: Number(fields.slow ?? -1),
     subsOnly: fields["subs-only"] === "1",
-    type: type.toLowerCase()
+    type: type.toLowerCase(),
+    channel
   };
 };

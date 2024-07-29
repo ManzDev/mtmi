@@ -20,7 +20,7 @@ interface FlagFragmentType {
 
 export type FlagsType = FlagFragmentType | Object;
 
-export const parseFlags = (fields) : FlagsType => {
+export const parseFlags = (fields : any) : FlagsType => {
   const { flags, rawMessage } = fields;
   // No hay flags en el mensaje
   if (!flags) {
@@ -29,12 +29,12 @@ export const parseFlags = (fields) : FlagsType => {
 
   // eslint-disable-next-line
   const flagData = flags.split(",")
-    .map(field => field.split(":"))
-    .map(([range, list]) : FlagFragmentType => {
+    .map((field : any) => field.split(":"))
+    .map(([range, list] : String[]) : FlagFragmentType => {
       const [start, end] = range.split("-");
       const categories = list.split("/") ?? [];
       const messageFragment = rawMessage.substring(start, end + 1);
-      const scoreList = categories.map((score) : ScoreType => {
+      const scoreList = categories.map((score: any) : ScoreType => {
         const [flag, level] = score.split(".");
         return { flag, level: Number(level) };
       });

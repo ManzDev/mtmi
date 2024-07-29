@@ -1,11 +1,20 @@
 {
   "name": "mtmi",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "main": "./src/mtmi.ts",
+  "module": "./dist/mtmi.js",
+  "types": "./dist/mtmi.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/mtmi.js",
+      "require": "./dist/mtmi.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf dist && vite build",
+    "build": "rm dist/* && tsup --format esm,cjs --dts src/mtmi.ts src/mtmi.ts",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "test": "vitest"
@@ -16,6 +25,7 @@
     "eslint": "^8.52.0",
     "eslint-config-manzdev": "^0.0.3",
     "gh-pages": "^6.0.0",
+    "tsup": "^8.1.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
     "vite-tsconfig-paths": "^4.2.1"

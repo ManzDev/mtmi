@@ -1,7 +1,13 @@
-import { parseSlash } from "@/modules/utils";
+import { parseSlashToString } from "@/modules/utils";
 
 export interface BadgeInfoType {
-  [name: string]: string;
+  name: string,
+  value: number,
+  image: string,
+  fullMonths?: number,
+  founderNumber?: number,
+  predictionInfo?: string,
+  description: string
 }
 
 const BADGES = [
@@ -11,7 +17,7 @@ const BADGES = [
 ];
 
 export const parseBadgeInfo = (badgeInfo: string) => {
-  const fieldsBadgeInfo: BadgeInfoType = parseSlash(badgeInfo, String) || {};
+  const fieldsBadgeInfo: BadgeInfoType = parseSlashToString(badgeInfo) || {};
 
   const isPresent = Object.keys(fieldsBadgeInfo).every(badge => BADGES.includes(badge));
   !isPresent && console.log("----> badgeInfo descubierto: ", fieldsBadgeInfo);

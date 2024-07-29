@@ -7,7 +7,7 @@ export interface AnnouncementInfoType {
 export type AnnouncementGroupType = AnnouncementInfoType | object;
 
 export const parseAnnouncement = (fields : any) : AnnouncementGroupType => {
-  if (fields.msgId !== "announcement") {
+  if (fields["msg-id"] !== "announcement") {
     return {};
   }
 

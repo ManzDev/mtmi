@@ -11,16 +11,18 @@ import { NoticeGroupType } from "@/modules/notice/parseNotice";
 import { RaidInfoType } from "@/modules/usernotice/parseRaid";
 import { MysteryGiftInfoType } from "@/modules/usernotice/gift/parseMysteryGift";
 import { StandardPayforwardInfoType } from "@/modules/usernotice/gift/parseStandardPayforward";
+import { CommunityPayforwardInfoType } from "@/modules/usernotice/gift/parseCommunityPayforward";
 import { GiftPaidUpgradeInfoType } from "@/modules/usernotice/gift/parseGiftPaidUpgrade";
+import { PrimePaidUpgradeInfoType } from "@/modules/usernotice/gift/parsePrimePaidUpgrade";
 import { GiftInfoType } from "@/modules/usernotice/gift/parseSubGift";
 import { BitsInfoType } from "@/modules/message/parseBits";
+import { ViewerMilestoneType } from "@/modules/usernotice/parseViewerMilestone";
 
 export type EventType =
   "join" | "part" |
   "sub" | "resub" | "extendsub" | "primepaidupgrade" | "primecommunitygiftreceived" |
   "subgift" | "submysterygift" | "standardpayforward" | "subgiftpaidupgrade" |
-  "anonsubgift" | "rewardgift" | "anongiftpaidupgrade" |
-  "communitypayforward" |
+  "anonsubgift" | "rewardgift" | "anongiftpaidupgrade" | "communitypayforward" |
   "bits" | "bitsbadgetier" | "charity" |
   "ritual" |
   "clearchat" | "ban" | "timeout" |
@@ -34,7 +36,8 @@ export type EventType =
   "followers_on" | "followers_off" |
   "slow_on" | "slow_off" |
   "subs_on" | "subs_off" |
-  "r9k_on" | "r9k_off";
+  "r9k_on" | "r9k_off" |
+  "viewermilestone";
 
 /**
  * Tipos de eventos de Twitch que puedes escuchar
@@ -61,9 +64,13 @@ export type EventTypeMap = {
   // Un usuario ha regalado subs en el canal
   "submysterygift": MysteryGiftInfoType,
   // (no claro hasta ahora)
+  "communitypayforward": CommunityPayforwardInfoType,
+  // (no claro hasta ahora)
   "standardpayforward": StandardPayforwardInfoType,
   // Un usuario ha renovado su suscripción regalada
-  "subgiftpaidupgrade": GiftPaidUpgradeInfoType,
+  "primepaidupgrade": PrimePaidUpgradeInfoType,
+  // Un usuario ha renovado su suscripción regalada
+  "giftpaidupgrade": GiftPaidUpgradeInfoType,
   // Un usuario ha recibido una suscripción regalada
   "subgift": GiftInfoType,
   // Se han modificado los modos del canal
@@ -98,4 +105,6 @@ export type EventTypeMap = {
   "r9k_on": NoticeGroupType,
   // Se ha desactivado el modo mensajes únicos en el canal
   "r9k_off": NoticeGroupType,
+  // Un usuario ha alcanzado un hito o racha
+  "viewermilestone": ViewerMilestoneType
 }

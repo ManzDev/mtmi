@@ -5,6 +5,7 @@ import { parseSub, SubInfoOptionalType } from "@/modules/usernotice/sub/parseSub
 import { parseGift, GiftGroupType } from "@/modules/usernotice/parseGift";
 import { parseRaid, RaidGroupType } from "@/modules/usernotice/parseRaid";
 import { parseAnnouncement, AnnouncementGroupType } from "@/modules/usernotice/parseAnnouncement";
+import { parseViewerMilestone, ViewerMilestoneType } from "@/modules/usernotice/parseViewerMilestone.js";
 
 interface UserNoticeInfoType {
   type: string,
@@ -16,7 +17,8 @@ interface UserNoticeInfoType {
   subInfo?: SubInfoOptionalType,
   giftInfo?: GiftGroupType,
   raidInfo?: RaidGroupType,
-  announcementInfo?: AnnouncementGroupType
+  announcementInfo?: AnnouncementGroupType,
+  milestoneInfo?: ViewerMilestoneType
 }
 
 export const parseUserNotice = ({ eventMessage } : any) : UserNoticeInfoType => {
@@ -31,6 +33,7 @@ export const parseUserNotice = ({ eventMessage } : any) : UserNoticeInfoType => 
   const subInfo = parseSub(fields);
   const raidInfo = parseRaid(fields);
   const giftInfo = parseGift(fields);
+  const milestoneInfo = parseViewerMilestone(fields);
   const announcementInfo = parseAnnouncement(fields);
 
   const data : UserNoticeInfoType = {
@@ -46,6 +49,7 @@ export const parseUserNotice = ({ eventMessage } : any) : UserNoticeInfoType => 
   Object.keys(giftInfo).length && (data.giftInfo = giftInfo);
   Object.keys(raidInfo).length && (data.raidInfo = raidInfo);
   Object.keys(announcementInfo).length && (data.announcementInfo = announcementInfo);
+  milestoneInfo?.category && (data.milestoneInfo = milestoneInfo);
 
   return data;
 };

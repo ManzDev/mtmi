@@ -1,7 +1,7 @@
 import { createEmotesDictionary } from "./createEmotesDictionary";
 import { getEmoteHTML } from "./getEmote";
 
-export const parseMessageWithEmotes = (fields) => {
+export const parseMessageWithEmotes = (fields : any) => {
   const { rawMessage, emotes } = fields;
 
   // El mensaje no tiene emotes
