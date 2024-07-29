@@ -2,9 +2,8 @@
   "name": "mtmi",
   "version": "0.0.1",
   "type": "module",
-  "main": "./src/mtmi.ts",
-  "module": "./dist/mtmi.js",
-  "types": "./dist/mtmi.d.ts",
+  "module": "dist/mtmi.js",
+  "types": "dist/mtmi.d.ts",
   "exports": {
     ".": {
       "import": "./dist/mtmi.js",
