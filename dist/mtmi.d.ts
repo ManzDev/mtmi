@@ -141,7 +141,7 @@ interface MessageInfoType {
     userId: number;
     tmi: number;
     msgId: string;
-    message: string;
+    message: HTMLSpanElement;
     rawMessage: string;
 }
 
@@ -164,6 +164,7 @@ interface UserMessageInfoType {
     type: string;
     username: string;
     channel: string;
+    message: string;
     badges: Array<BadgeInfoType>;
     userInfo: UserInfoType;
     messageInfo: MessageInfoType;
@@ -296,6 +297,7 @@ type EventTypeMap = {
     "subgift": GiftInfoType;
     "roomstate": RoomStateInfoType;
     "announcement": AnnouncementInfoType;
+    /** Un usuario ha escrito un mensaje en el canal */
     "message": UserMessageInfoType;
     "action": UserMessageInfoType;
     "bits": BitsInfoType;

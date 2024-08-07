@@ -1517,27 +1517,40 @@ var createEmotesDictionary = (rawMessage) => {
 };
 
 // src/modules/message/emotes/getEmote.ts
-var getEmoteHTML = (id, format = "default", theme = "dark", scale = "1.0") => {
-  const url = `https://static-cdn.jtvnw.net/emoticons/v2/${id}/${format}/${theme}/${scale}`;
-  return `<img class="emote" src="${url}" alt="emote" />`;
+var getEmoteImage = (id, format = "default", theme = "dark", scale = "1.0") => {
+  const img = document.createElement("img");
+  img.className = "emote";
+  img.src = `https://static-cdn.jtvnw.net/emoticons/v2/${id}/${format}/${theme}/${scale}`;
+  img.alt = "emote";
+  return img;
+};
+var createFragment = (message) => {
+  const tag = document.createElement("span");
+  tag.textContent = message;
+  return tag;
 };
 
 // src/modules/message/emotes/parseMessageWithEmotes.ts
+var groupElements = (elements) => {
+  const container = document.createElement("span");
+  container.append(...elements);
+  return container;
+};
 var parseMessageWithEmotes = (fields) => {
   const { rawMessage, emotes } = fields;
-  if (!emotes) {
-    return rawMessage;
-  }
+  if (!emotes) return createFragment(rawMessage);
   const emoteOnly = Boolean(fields?.["emote-only"]) ?? false;
   const emoteList = createEmotesDictionary(emotes);
   const newMessage = [];
   let i = 0;
   emoteList.forEach(({ name, start, end }) => {
-    !emoteOnly && newMessage.push(rawMessage.substring(i, start));
-    newMessage.push(getEmoteHTML(name));
+    if (!emoteOnly) {
+      newMessage.push(createFragment(rawMessage.substring(i, start)));
+    }
+    newMessage.push(getEmoteImage(name));
     i = end + 1;
   });
-  return newMessage.join("");
+  return groupElements(newMessage);
 };
 
 // src/modules/message/parseFlags.ts
@@ -1606,6 +1619,7 @@ var parseUserMessage = ({ eventMessage }) => {
     badges,
     userInfo,
     messageInfo,
+    message: rawMessage,
     channel,
     raw: eventMessage
   };
@@ -1956,7 +1970,8 @@ var debugId = (raw) => {
 };
 
 // src/mtmi.ts
-var WEBSOCKET_URL = "ws://irc-ws.chat.twitch.tv:80";
+var isHttp = location.protocol === "http:";
+var WEBSOCKET_URL = isHttp ? "ws://irc-ws.chat.twitch.tv:80" : "wss://irc-ws.chat.twitch.tv:443";
 var USERNAME = "justinfan123";
 var DEBUG = true;
 var Client = class {
