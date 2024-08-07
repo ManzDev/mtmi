@@ -1,7 +1,6 @@
-// import { client } from "../src/mtmi.ts";
 import { client } from "../dist/mtmi.js";
 
-const channels = ["padawanstrainer", "chrisvdev"];
+const channels = ["manzdev"];
 
 client.connect({ channels });
 

@@ -14,7 +14,8 @@ interface OptionsObject {
   channels: Array<String>
 }
 
-const WEBSOCKET_URL = "ws://irc-ws.chat.twitch.tv:80";
+const isHttp = location.protocol === "http:";
+const WEBSOCKET_URL = isHttp ? "ws://irc-ws.chat.twitch.tv:80" : "wss://irc-ws.chat.twitch.tv:443";
 const USERNAME = "justinfan123";
 const DEBUG = true;
 

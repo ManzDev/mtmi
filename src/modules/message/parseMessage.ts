@@ -12,7 +12,7 @@ export interface MessageInfoType {
   userId: number,
   tmi: number,
   msgId: string,
-  message: string,
+  message: HTMLSpanElement,
   rawMessage: string
 }
 

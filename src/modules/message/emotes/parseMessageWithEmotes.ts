@@ -1,23 +1,29 @@
 import { createEmotesDictionary } from "./createEmotesDictionary";
-import { getEmoteHTML } from "./getEmote";
+import { createFragment, getEmoteImage } from "./getEmote";
+
+const groupElements = (elements : Array<Element>) => {
+  const container = document.createElement("span");
+  container.append(...elements);
+  return container;
+};
 
 export const parseMessageWithEmotes = (fields : any) => {
   const { rawMessage, emotes } = fields;
 
   // El mensaje no tiene emotes
-  if (!emotes) { return rawMessage; }
+  if (!emotes) return createFragment(rawMessage);
 
   const emoteOnly = Boolean(fields?.["emote-only"]) ?? false;
   const emoteList = createEmotesDictionary(emotes);
 
-  const newMessage: Array<String> = [];
+  const newMessage: Array<Element> = [];
   let i = 0;
 
   emoteList.forEach(({ name, start, end }) => {
-    !emoteOnly && newMessage.push(rawMessage.substring(i, start));
-    newMessage.push(getEmoteHTML(name));
+    if (!emoteOnly) { newMessage.push(createFragment(rawMessage.substring(i, start))); }
+    newMessage.push(getEmoteImage(name));
     i = end + 1;
   });
 
-  return newMessage.join("");
+  return groupElements(newMessage);
 };

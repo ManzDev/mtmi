@@ -10,6 +10,7 @@ export interface UserMessageInfoType {
   type: string,
   username: string,
   channel: string,
+  message: string,
   badges: Array<BadgeInfoType>,
   userInfo: UserInfoType,
   messageInfo: MessageInfoType,
@@ -35,6 +36,7 @@ export const parseUserMessage = ({ eventMessage } : any): UserMessageInfoType =>
     badges,
     userInfo,
     messageInfo,
+    message: rawMessage,
     channel,
     raw: eventMessage
   };

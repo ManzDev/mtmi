@@ -77,7 +77,7 @@ export type EventTypeMap = {
   "roomstate": RoomStateInfoType,
   // Se ha hecho un anuncio en el canal
   "announcement": AnnouncementInfoType,
-  // Un usuario ha escrito un mensaje en el canal
+  /** Un usuario ha escrito un mensaje en el canal */
   "message": UserMessageInfoType,
   // Un usuario ha realizado una acción en el canal
   "action": UserMessageInfoType,
