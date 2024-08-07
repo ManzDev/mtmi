@@ -7,6 +7,9 @@ export interface MessageInfoType {
   isReturningChatter: boolean,
   isEmoteOnly: boolean,
   isHighlightedMessage: boolean,
+  isGigantifiedEmoteMessage: boolean,
+  isAnimatedMessage: boolean,
+  // animatedMessageInfo?: string,   // `animation-id`
   flagsInfo?: FlagsType,
   roomId: number,
   userId: number,
@@ -28,6 +31,8 @@ export const parseMessage = (fields: any) : MessageInfoType => {
     isFirstMessage: Number(fields["first-msg"] ?? 0) !== 0,
     isReturningChatter: Number(fields["returning-chatter"] ?? 0) !== 0,
     isHighlightedMessage: fields["msg-id"] === "highlighted-message",
+    isGigantifiedEmoteMessage: fields["msg-id"] === "gigantified-emote-message",
+    isAnimatedMessage: fields["msg-id"] === "animated-message",
     flagsInfo,
     roomId: Number(fields["room-id"]),
     tmi: Number(fields["tmi-sent-ts"]),
