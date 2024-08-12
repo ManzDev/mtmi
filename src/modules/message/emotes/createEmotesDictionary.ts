@@ -1,12 +1,18 @@
-export const createEmotesDictionary = (rawMessage) => {
+export interface EmoteItem {
+  name: string,
+  start: number,
+  end: number
+}
+
+export const createEmotesDictionary = (rawMessage): Array<EmoteItem> | [] => {
   if (!rawMessage) {
-    return {};
+    return [];
   }
 
-  const emoteDictionary = [];
+  const emoteDictionary : Array<EmoteItem> = [];
 
-  const emoteList = rawMessage.split("/");
-  emoteList.forEach(emoteMessage => {
+  const emoteList : Array<string> = rawMessage.split("/");
+  emoteList.forEach((emoteMessage: string) => {
     const [name, rawPosList] = emoteMessage.split(":");
     const posList = rawPosList.split(",");
     posList.forEach(positions => {

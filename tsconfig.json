@@ -3,8 +3,9 @@
     /* https://aka.ms/tsconfig */
     "target": "ESNext",
     "module": "ESNext",
-    "rootDir": "src",
+    "rootDir": "./src",
     // "moduleResolution": "Node16",
+    "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
       "@/*": [
@@ -13,7 +14,6 @@
     },
     "allowJs": true,
     "checkJs": true,
-    "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

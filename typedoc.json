@@ -1,0 +1,12 @@
+{
+  "entryPoints": [
+    "src/mtmi.ts"
+  ],
+  "out": "docs",
+  "exclude": [
+    "**/node_modules/**",
+    "**/sandbox/**"
+  ],
+  "excludePrivate": true,
+  "includeVersion": true
+}

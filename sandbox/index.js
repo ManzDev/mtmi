@@ -1,8 +1,13 @@
 import { client } from "../dist/mtmi.js";
 
-const channels = ["manzdev"];
+const channels = ["afor_digital"];
 
 client.connect({ channels });
+
+// client.on("message", ({ badges }) => {
+//   badges.forEach(data => {
+//   });
+// });
 
 client.on("join", (data) => console.log("JOIN: ", data));
 client.on("part", (data) => console.log("PART: ", data));

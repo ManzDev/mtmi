@@ -1,6 +1,6 @@
 import { parseSlashToString, cleanMessage } from "@/modules/utils";
 import { BadgeInfoType, parseBadgeInfo } from "./badges/parseBadgeInfo";
-import badgesInfo from "./badges/badges.json";
+import badgesInfo from "./badges/badges";
 
 export const parseBadges = (fields : any) : Array<BadgeInfoType> => {
   const badges : any = parseSlashToString(fields.badges) || {};
@@ -19,13 +19,13 @@ export const parseBadges = (fields : any) : Array<BadgeInfoType> => {
   return badgesName.map(name => {
     const value = badges[name];
     const key = `${name}/${value}`;
-    const keyData = badgesInfo.find(badge => badge.text === key);
+    const keyData = badgesInfo.find(badge => badge.text === key) ?? { image: "", description: "" };
 
     const data : BadgeInfoType = {
       name,
       value,
-      image: keyData?.image,
-      description: keyData?.description
+      image: keyData.image,
+      description: keyData.description
     };
 
     name === "subscriber" && (data.fullMonths = Number(badgeInfo.subscriber));

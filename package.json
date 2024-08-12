@@ -23,7 +23,9 @@
     "eslint": "^8.52.0",
     "eslint-config-manzdev": "^0.0.3",
     "gh-pages": "^6.0.0",
+    "jsdoc": "^4.0.3",
     "tsup": "^8.1.0",
+    "typedoc": "^0.26.5",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
     "vite-tsconfig-paths": "^4.2.1"
