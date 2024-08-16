@@ -1,4 +1,4 @@
-export const parseRawMessage = ({ eventMessage, timeStamp } : any) => {
+export const parseRawMessage = ({ eventMessage } : any) => {
   // eslint-disable-next-line
   const [host, id, user] = eventMessage.split(" ", 3);
   // eslint-disable-next-line

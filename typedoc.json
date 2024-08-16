@@ -1,6 +1,6 @@
 {
   "entryPoints": [
-    "src/mtmi.ts"
+    "src/**/*.ts"
   ],
   "out": "docs",
   "exclude": [

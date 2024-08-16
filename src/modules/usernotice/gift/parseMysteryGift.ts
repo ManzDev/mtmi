@@ -11,7 +11,7 @@ export interface MysteryGiftInfoType {
 }
 
 /**
- * El usuario @senderUsername regala @massGiftCount subs a la comunidad.
+ * El usuario senderUsername regala massGiftCount subs a la comunidad.
  */
 export const parseMysteryGift = (fields: any) : MysteryGiftInfoType => {
   const originId = cleanMessage(fields["msg-param-origin-id"]);

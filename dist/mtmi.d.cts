@@ -136,6 +136,8 @@ interface MessageInfoType {
     isReturningChatter: boolean;
     isEmoteOnly: boolean;
     isHighlightedMessage: boolean;
+    isGigantifiedEmoteMessage: boolean;
+    isAnimatedMessage: boolean;
     flagsInfo?: FlagsType;
     roomId: number;
     userId: number;
@@ -150,14 +152,24 @@ interface BitsInfoType {
 }
 type BitsGroupType = BitsInfoType | object;
 
+/**
+ * Badges que el usuario tiene visibles en el chat.
+ */
 interface BadgeInfoType {
+    /** Nombre del badge. */
     name: string;
+    /** Valor asociado al badge. */
     value: number;
+    /** Imagen identificativa del badge. */
     image: string;
-    fullMonths?: number;
-    founderNumber?: number;
-    predictionInfo?: string;
+    /** Descripción del badge. */
     description: string;
+    /** Número completo de meses. */
+    fullMonths?: number;
+    /** Número del fundador. */
+    founderNumber?: number;
+    /** El usuario ha votado una predicción. */
+    predictionInfo?: string;
 }
 
 interface UserMessageInfoType {
@@ -318,15 +330,16 @@ type EventTypeMap = {
 interface OptionsObject {
     channels: Array<String>;
 }
+interface OnParametersType<T extends keyof EventTypeMap> {
+    type: T;
+    action: (data: EventTypeMap[T]) => void;
+}
 declare class Client {
     #private;
     channels: Array<String>;
     client: WebSocket | undefined;
     startTime: Number | undefined;
-    events: Array<{
-        type: keyof EventTypeMap;
-        action: (data: EventTypeMap) => any;
-    }>;
+    events: Array<OnParametersType<any>>;
     done: boolean;
     options: OptionsObject | undefined;
     connect(options: OptionsObject): void;

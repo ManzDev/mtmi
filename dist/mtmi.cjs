@@ -144,7 +144,7 @@ var parseBadgeInfo = (badgeInfo) => {
   };
 };
 
-// src/modules/message/badges/badges.json
+// src/modules/message/badges/badges.ts
 var badges_default = [
   {
     text: "1979-revolution/1",
@@ -1488,12 +1488,12 @@ var parseBadges = (fields) => {
   return badgesName.map((name) => {
     const value = badges[name];
     const key = `${name}/${value}`;
-    const keyData = badges_default.find((badge) => badge.text === key);
+    const keyData = badges_default.find((badge) => badge.text === key) ?? { image: "", description: "" };
     const data = {
       name,
       value,
-      image: keyData?.image,
-      description: keyData?.description
+      image: keyData.image,
+      description: keyData.description
     };
     name === "subscriber" && (data.fullMonths = Number(badgeInfo.subscriber));
     name === "founder" && (data.founderNumber = Number(badgeInfo.founder));
@@ -1527,7 +1527,7 @@ var parseUser = (fields) => ({
 // src/modules/message/emotes/createEmotesDictionary.ts
 var createEmotesDictionary = (rawMessage) => {
   if (!rawMessage) {
-    return {};
+    return [];
   }
   const emoteDictionary = [];
   const emoteList = rawMessage.split("/");
@@ -1609,6 +1609,8 @@ var parseMessage = (fields) => {
     isFirstMessage: Number(fields["first-msg"] ?? 0) !== 0,
     isReturningChatter: Number(fields["returning-chatter"] ?? 0) !== 0,
     isHighlightedMessage: fields["msg-id"] === "highlighted-message",
+    isGigantifiedEmoteMessage: fields["msg-id"] === "gigantified-emote-message",
+    isAnimatedMessage: fields["msg-id"] === "animated-message",
     flagsInfo,
     roomId: Number(fields["room-id"]),
     tmi: Number(fields["tmi-sent-ts"]),
@@ -1925,7 +1927,7 @@ var parseUserNotice = ({ eventMessage }) => {
 };
 
 // src/modules/parseRawMessage.ts
-var parseRawMessage = ({ eventMessage, timeStamp }) => {
+var parseRawMessage = ({ eventMessage }) => {
   const [host, id, user] = eventMessage.split(" ", 3);
   const message = eventMessage.split(" ").slice(3).join(" ").substring(1);
   console.log("RAW: ", eventMessage);

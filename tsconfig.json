@@ -21,6 +21,9 @@
     "skipLibCheck": true,
   },
   "exclude": [
+    "dist",
+    "docs",
+    "sandbox",
     "public",
     "vite.config.js",
     "node_modules",

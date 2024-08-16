@@ -14,6 +14,11 @@ interface OptionsObject {
   channels: Array<String>
 }
 
+interface OnParametersType<T extends keyof EventTypeMap> {
+  type: T;
+  action: (data: EventTypeMap[T]) => void
+}
+
 const isHttp = location.protocol === "http:";
 const WEBSOCKET_URL = isHttp ? "ws://irc-ws.chat.twitch.tv:80" : "wss://irc-ws.chat.twitch.tv:443";
 const USERNAME = "justinfan123";
@@ -23,7 +28,7 @@ class Client {
   channels : Array<String> = [];
   client : WebSocket | undefined;
   startTime: Number | undefined;
-  events : Array<{ type: keyof EventTypeMap, action: (data: EventTypeMap) => any }> = [];
+  events : Array<OnParametersType<any>> = [];
   done = false;
   options: OptionsObject | undefined;
 
@@ -47,8 +52,8 @@ class Client {
   }
 
   on<T extends keyof EventTypeMap>(type: T, action: (data: EventTypeMap[T]) => void): void {
-    const object : any = { type, action };
-    this.events.push(object);
+    const object : OnParametersType<T> = { type, action };
+    this.events.push(object as OnParametersType<any>);
   }
 
   message(event : any) {

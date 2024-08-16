@@ -1,6 +1,6 @@
 import { client } from "../dist/mtmi.js";
 
-const channels = ["afor_digital"];
+const channels = ["elesky"];
 
 client.connect({ channels });
 
@@ -31,7 +31,7 @@ client.on("clearmsg", (data) => console.log("DELETE MESSAGE: ", data));
 
 client.on("raid", (data) => console.log("RAID: ", data));
 
-client.on("unraid", (data) => console.log("UNRAID: ", data));
+// client.on("unraid", (data) => console.log("UNRAID: ", data));
 
 client.on("viewermilestone", (data) => console.log("VIEWERMILESTONE: ", data));
 
@@ -64,10 +64,10 @@ client.on("r9k_off", (data) => console.log("MODE: ", data));
 client.on("raw", (data) => console.log("RAW: ", data));
 
 // POR TESTEAR
-client.on("bitsbadgetier", (data) => console.log("BITSBADGETIER: ", data));
-client.on("rewardgift", (data) => console.log("REWARDGIFT: ", data));
-client.on("charity", (data) => console.log("CHARITY: ", data));
-client.on("anonsubgift", (data) => console.log("ANONSUBGIFT: ", data));
-client.on("anongiftpaidupgrade", (data) => console.log("ANONGIFTPAIDUPGRADE: ", data));
-client.on("extendsub", (data) => console.log("EXTENDSUB: ", data));
-client.on("ritual", (data) => console.log("RITUAL: ", data));
+// client.on("bitsbadgetier", (data) => console.log("BITSBADGETIER: ", data));
+// client.on("rewardgift", (data) => console.log("REWARDGIFT: ", data));
+// client.on("charity", (data) => console.log("CHARITY: ", data));
+// client.on("anonsubgift", (data) => console.log("ANONSUBGIFT: ", data));
+// client.on("anongiftpaidupgrade", (data) => console.log("ANONGIFTPAIDUPGRADE: ", data));
+// client.on("extendsub", (data) => console.log("EXTENDSUB: ", data));
+// client.on("ritual", (data) => console.log("RITUAL: ", data));
