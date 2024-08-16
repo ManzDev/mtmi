@@ -2,9 +2,7 @@
 
 > **IMPORTANTE**: Versión pre-alpha actualmente en desarrollo. No usar en producción.
 
-## Cómo empezar
-
-### Recibiendo mensajes
+## Mensajes en el chat
 
 ```js
 import { client } from "https://unpkg.com/mtmi@0.0.3/dist/mtmi.js";
@@ -29,7 +27,7 @@ client.on("message", ({ username, channel, message }) => {
 | `bitsInfo` | Información de los bits enviados (si es un mensaje con bits). |
 | `raw` | Mensaje crudo (el que envía Twitch) |
 
-#### Badges
+#### > Badges del usuario
 
 | Parámetro | Descripción |
 |-|-|
@@ -41,7 +39,7 @@ client.on("message", ({ username, channel, message }) => {
 | `founderNumber` | Número de fundador. |
 | `predictionInfo` | Información sobre la predicción del usuario. |
 
-#### Información del usuario
+#### > Información del usuario
 
 | Parámetro | Descripción |
 |-|-|
@@ -55,11 +53,10 @@ client.on("message", ({ username, channel, message }) => {
 | `isPrime` | Si el usuario tiene Prime. |
 | `isBot` | Si el usuario es un bot conocido. |
 
-#### Información del mensaje
+#### > Información del mensaje
 
 | Parámetro | Descripción |
 |-|-|
-| `id` | ID del mensaje. |
 | `isFirstMessage` | Si es el primer mensaje del usuario en el canal. |
 | `isReturningChatter` | Si el usuario ha regresado al canal. |
 | `isEmoteOnly` | Si el mensaje solo contiene emotes. |
@@ -96,15 +93,38 @@ client.on("message", ({ username, channel, message }) => {
 
 ## Entradas/Salidas del canal
 
-* Pendiente de documentar *
+| Parámetro | Descripción |
+|-|-|
+| `type` | Tipo de evento. Si el usuario está llegando, `join`. Si se ha ido, `part`. |
+| `username` | Nombre del usuario. |
+| `channel` | Canal donde ha ocurrido el evento. |
+| `raw` | Mensaje sin procesar. |
 
-## Baneos/Timeout/Eliminar mensajes
+> Nota: Los eventos de entrada y salida del canal sólo las emite Twitch en canales con menos de 1000 espectadores. No se emiten en tiempo real, sino cada 4-5 minutos.
 
-* Pendiente de documentar *
+## Baneos/Timeout
+
+| Parámetro | Descripción |
+|-|-|
+| `type` | Tipo de evento. Si es un permaban, `ban`. Si es un ban temporal, `timeout`. |
+| `banDuration` | Tiempo del ban temporal. Sólo en los `timeout`. |
+| `username` | Nombre del usuario baneado. |
+| `channel` | Canal donde ha ocurrido el baneo. |
+| `roomId` | ID del canal. |
+| `targetUserId` | ID del usuario baneado. |
+| `tmi` | Timestamp del momento en el que ocurre el evento. |
+| `raw` | Mensaje sin procesar |
 
 ## Borrar el chat
 
-* Pendiente de documentar *
+Un moderador ha borrado el chat.
+
+| Parámetro | Descripción |
+|-|-|
+| `type` | Tipo de evento: `clearchat`. |
+| `roomId` | ID del canal. |
+| `tmi` | Timestamp del momento en el que ocurre el evento. |
+| `raw` | Mensaje sin procesar. |
 
 ## Cambios de modo del canal
 
