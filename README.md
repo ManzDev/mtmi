@@ -27,7 +27,9 @@ client.on("message", ({ username, channel, message }) => {
 | `bitsInfo` | Información de los bits enviados (si es un mensaje con bits). |
 | `raw` | Mensaje crudo (el que envía Twitch) |
 
-#### > Badges del usuario
+<details>
+<summary>Badges del usuario: <code>badges</code></summary>
+<div>
 
 | Parámetro | Descripción |
 |-|-|
@@ -39,7 +41,12 @@ client.on("message", ({ username, channel, message }) => {
 | `founderNumber` | Número de fundador. |
 | `predictionInfo` | Información sobre la predicción del usuario. |
 
-#### > Información del usuario
+</div>
+</details>
+
+<details>
+<summary>Información del usuario: <code>userInfo</code></summary>
+<div>
 
 | Parámetro | Descripción |
 |-|-|
@@ -53,7 +60,12 @@ client.on("message", ({ username, channel, message }) => {
 | `isPrime` | Si el usuario tiene Prime. |
 | `isBot` | Si el usuario es un bot conocido. |
 
-#### > Información del mensaje
+</div>
+</details>
+
+<details>
+<summary>Información del mensaje: <code>messageInfo</code></summary>
+<div>
 
 | Parámetro | Descripción |
 |-|-|
@@ -71,15 +83,38 @@ client.on("message", ({ username, channel, message }) => {
 | `message` | Mensaje procesado (sanitizado) para mostrar emotes. Devuelve un elemento `<span>`. |
 | `rawMessage` | Mensaje sin procesar. |
 
-#### Mensajes de respuesta
+</div>
+</details>
 
-* Pendiente de documentar *
+<details>
+<summary>Mensajes de respuesta: <code>replyInfo</code></summary>
+<div>
 
-#### Información de bits
+| Parámetro | Descripción |
+|-|-|
+| `type` | Tipo de evento: `reply` en este caso. |
+| `userLogin` | Nombre del usuario original. |
+| `parentUserLogin` | Nombre del usuario original. |
+| `msgBody` | Mensaje original al que se le responde. |
+| `userId` | ID del usuario original. |
+| `parentMsgId` | ID del mensaje original. |
+| `msgId` | ID del mensaje de respuesta. |
 
-* Pendiente de documentar *
+</div>
+</details>
 
-#### Información de flags
+<details>
+<summary> Información de bits: <code>bitsInfo</code></summary>
+<div>
+
+| Parámetro | Descripción |
+|-|-|
+| `bits` | Número de bits (cheers) enviados en el mensaje. |
+
+</div>
+</details>
+
+#### Información de flags: `flagsInfo`
 
 * Pendiente de documentar *
 
