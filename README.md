@@ -2,7 +2,52 @@
 
 > **IMPORTANTE**: Versión pre-alpha actualmente en desarrollo. No usar en producción.
 
-## Mensajes de chat
+`mtmi` es una librería Javascript para obtener información de la actividad en un chat de Twitch, de forma sencilla, sin necesidad de utilizar un backend, ni de registrar una cuenta. La información se obtiene mediante la API oficial de IRC de Twitch y es de sólo lectura (ideal para detectar eventos o sucesos del chat).
+
+Nota: Si tu intención es escribir mensajes en el chat, tendrías que utilizar la API oficial y sus métodos de autenticación o librerías como [twurple](https://twurple.js.org/).
+
+## Posibilidades de `mtmi`
+
+¿Qué cosas puedo detectar con `mtmi`? Aquí tienes una lista:
+
+- 💬 Mensajes en el chat (mensajes, acciones, respuestas, etc...)
+- 💸 Suscripciones (prime, de pago, regaladas, etc...)
+- 💲 Bits (cheers) enviados a un canal
+- 📢 Anuncios de moderadores enviados a un canal
+- 🥇 Emblemas o insignias de los usuarios
+- ⛔ Baneos permanentes o temporales
+- 🚫 Detección de palabras o fragmentos malsonantes (automod)
+- 🔁 Entradas y salidas de usuarios en un canal
+- ⚓ Raids recibidas en un canal
+- 🔊 Avisos de hitos o rachas conseguidas
+
+## Instalación
+
+Puedes utilizar `mtmi` directamente desde un CDN, sin necesidad de usar `npm` u otros:
+
+```js
+import { client } from "https://unpkg.com/mtmi@0.0.3/dist/mtmi.js";
+```
+
+Si lo prefieres, puedes usar `npm`, `yarn` o `pnpm`:
+
+```bash
+npm install mtmi
+```
+
+Y luego, importando la librería desde el `node_modules/`:
+
+```js
+import { client } from "mtmi";
+```
+
+## Uso
+
+A continuación tienes una lista de desplegables con la información necesaria para realizar diferentes acciones. Elige la que prefieras:
+
+<details>
+<summary>💬 Mensajes de chat</summary>
+<div>
 
 ```js
 import { client } from "https://unpkg.com/mtmi@0.0.3/dist/mtmi.js";
@@ -16,16 +61,16 @@ client.on("message", ({ username, channel, message }) => {
 
 | Parámetro | Descripción |
 |-|-|
-| `type`     | Tipo de mensaje. |
+| `type`     | Tipo de evento. En este caso, `message`. |
 | `username` | Nombre del usuario (nombre interno) |
 | `channel`  | Canal donde se envió el mensaje. |
 | `message`  | Mensaje enviado (sólo texto). |
-| `badges`   | Array con los badges mostrados en el chat por el usuario. |
-| `userInfo` | Información del usuario. |
-| `messageInfo` | Información del mensaje. |
-| `replyInfo` | Información de la respuesta (si es un mensaje respuesta). |
-| `bitsInfo` | Información de los bits enviados (si es un mensaje con bits). |
-| `raw` | Mensaje crudo (el que envía Twitch) |
+| `badges` ➕ | Lista de badges mostrados por el usuario. |
+| `userInfo` ➕ | Información del usuario. |
+| `messageInfo` ➕ | Información del mensaje. |
+| `replyInfo` ➕ | Información de la respuesta (si es una respuesta). |
+| `bitsInfo` ➕ | Información de los bits enviados (si fueron enviados). |
+| `raw` | Mensaje sin procesar de Twitch. |
 
 <details>
 <summary>Badges del usuario: <code>badges</code></summary>
@@ -135,7 +180,25 @@ Los `scoreList` tienen un campo `level` (numérico) y un campo `flag` que puede 
 </div>
 </details>
 
-## Subscripción
+---
+
+</div>
+</details>
+
+<details>
+<summary>💸 Subscripción</summary>
+<div>
+
+```js
+import { client } from "https://unpkg.com/mtmi@0.0.3/dist/mtmi.js";
+
+client.connect({ channels: ["manzdev"] });
+
+client.on("resub", ({ channel, message, subInfo }) => {
+  const { cumulativeMonths } = subInfo;
+  console.log(`${channel} [${username}] se ha vuelto a suscribir. Lleva ${cumulativeMonths} mes(es).`);
+});
+```
 
 | Parámetro | Descripción |
 |-|-|
@@ -153,7 +216,7 @@ Los `scoreList` tienen un campo `level` (numérico) y un campo `flag` que puede 
 | Parámetro | Descripción |
 |-|-|
 | `cumulativeMonths` | Cantidad total de meses de suscripción acumulados. |
-| `months` | Mes actual. `0` si es `sub`. **DEPRECATED** |
+| `months` | Mes actual. `0` si es `sub`. ⛔ **DEPRECATED** |
 | `multimonthDuration` | El usuario se ha suscrito varios meses por adelantado. Por defecto, `1`. |
 | `multimonthTenure` |  |
 | `shouldShareStreak` | Indica si el usuario ha compartido su racha. |
@@ -181,7 +244,15 @@ Los `scoreList` tienen un campo `level` (numérico) y un campo `flag` que puede 
 </div>
 </details>
 
-## Suscripciones regaladas
+---
+
+</div>
+</details>
+
+<details>
+<summary>💖 Suscripciones regaladas</summary>
+
+<div>
 
 | Parámetro | Descripción |
 |-|-|
@@ -216,7 +287,15 @@ Los `scoreList` tienen un campo `level` (numérico) y un campo `flag` que puede 
 </div>
 </details>
 
-## Suscripciones en masa
+---
+
+</div>
+</details>
+
+<details>
+<summary>💕 Suscripciones en masa</summary>
+
+<div>
 
 Los regalos de suscripción masiva pueden ser con eventos `submysterygift`.
 
@@ -230,7 +309,15 @@ Los regalos de suscripción masiva pueden ser con eventos `submysterygift`.
 | `subPlan` | Información del plan de la sub. |
 | `systemMsg` | Mensaje del sistema. |
 
-## Entradas/Salidas del canal
+---
+
+</div>
+</details>
+
+<details>
+<summary>🔁 Entradas/Salidas del canal</summary>
+
+<div>
 
 | Parámetro | Descripción |
 |-|-|
@@ -241,7 +328,15 @@ Los regalos de suscripción masiva pueden ser con eventos `submysterygift`.
 
 > Nota: Los eventos de entrada y salida del canal sólo las emite Twitch en canales con menos de 1000 espectadores. No se emiten en tiempo real, sino cada 4-5 minutos.
 
-## Baneos/Timeout
+---
+
+</div>
+</details>
+
+<details>
+<summary>⛔ Baneos/Timeout</summary>
+
+<div>
 
 | Parámetro | Descripción |
 |-|-|
@@ -254,7 +349,15 @@ Los regalos de suscripción masiva pueden ser con eventos `submysterygift`.
 | `tmi` | Timestamp del momento en el que ocurre el evento. |
 | `raw` | Mensaje sin procesar |
 
-## Borrar el chat
+---
+
+</div>
+</details>
+
+<details>
+<summary>✏ Borrado del chat</summary>
+
+<div>
 
 Un moderador ha borrado el chat.
 
@@ -265,18 +368,47 @@ Un moderador ha borrado el chat.
 | `tmi` | Timestamp del momento en el que ocurre el evento. |
 | `raw` | Mensaje sin procesar. |
 
-## Cambios de modo del canal
+---
 
-* Pendiente de documentar *
+</div>
+</details>
 
-## Anuncios de moderador
+<details>
+<summary>🚦 Cambios de modo del canal</summary>
 
-* Pendiente de documentar *
+<div>
+  * Pendiente de documentar *
 
-## Avisos de raid
+  ---
+</div>
+</details>
 
-* Pendiente de documentar *
+<details>
+<summary>📢 Anuncios de moderador</summary>
 
-## Anuncios de hitos (rachas)
+<div>
+  * Pendiente de documentar *
 
-* Pendiente de documentar *
+  ---
+</div>
+</details>
+
+<details>
+<summary>⚓ Avisos de raid</summary>
+
+<div>
+  * Pendiente de documentar *
+
+  ---
+</div>
+</details>
+
+<details>
+<summary>📢 Anuncios de hitos (rachas)</summary>
+
+<div>
+  * Pendiente de documentar *
+
+  ---
+</div>
+</details>
