@@ -1,6 +1,6 @@
 import { client } from "../dist/mtmi.js";
 
-const channels = ["elesky"];
+const channels = ["manzdev"];
 
 client.connect({ channels });
 

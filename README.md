@@ -2,7 +2,7 @@
 
 > **IMPORTANTE**: Versión pre-alpha actualmente en desarrollo. No usar en producción.
 
-## Mensajes en el chat
+## Mensajes de chat
 
 ```js
 import { client } from "https://unpkg.com/mtmi@0.0.3/dist/mtmi.js";
@@ -104,7 +104,7 @@ client.on("message", ({ username, channel, message }) => {
 </details>
 
 <details>
-<summary> Información de bits: <code>bitsInfo</code></summary>
+<summary>Información de bits: <code>bitsInfo</code></summary>
 <div>
 
 | Parámetro | Descripción |
@@ -114,17 +114,121 @@ client.on("message", ({ username, channel, message }) => {
 </div>
 </details>
 
-#### Información de flags: `flagsInfo`
+<details>
+<summary>Información de flags: <code>flagsInfo</code></summary>
+<div>
 
-* Pendiente de documentar *
+| Parámetro | Descripción |
+|-|-|
+| `messageFragment` | Fragmento del mensaje marcado por el automod. |
+| `scoreList`       | Lista de flags alcanzados por el fragmento de mensaje. |
 
-## Subscripciones
+Los `scoreList` tienen un campo `level` (numérico) y un campo `flag` que puede ser:
 
-* Pendiente de documentar *
+| Flag | Descripción |
+|-|-|
+| `I` | ISCORE: Identity language (raza, religión, género, orientación, discapacidad, hate...) |
+| `S` | SSCORE: Sexually explicit language (palabras de tipo sexual, partes íntimas...) |
+| `A` | ASCORE: Aggressive language (hostilidad, bullying...) |
+| `P` | PSCORE: Profanity (lenguaje vulgar, útil para mantener un chat family-friendly) |
 
-## Regalos de suscripción
+</div>
+</details>
 
-* Pendiente de documentar *
+## Subscripción
+
+| Parámetro | Descripción |
+|-|-|
+| `type` | Tipo de subscripción. primera suscripción: `sub`, renovación de suscripción: `resub` |
+| `channel` | Canal al que se subscribió. |
+| `message` | Mensaje enviado en la suscripción. |
+| `messageInfo` | Información sobre el mensaje de la suscripción. |
+| `subInfo` | Información sobre la suscripción. |
+| `raw` | Mensaje sin procesar. |
+
+<details>
+<summary>Información de suscripción: <code>subInfo</code></summary>
+<div>
+
+| Parámetro | Descripción |
+|-|-|
+| `cumulativeMonths` | Cantidad total de meses de suscripción acumulados. |
+| `months` | Mes actual. `0` si es `sub`. **DEPRECATED** |
+| `multimonthDuration` | El usuario se ha suscrito varios meses por adelantado. Por defecto, `1`. |
+| `multimonthTenure` |  |
+| `shouldShareStreak` | Indica si el usuario ha compartido su racha. |
+| `streakMonths` | Racha de meses consecutivos. |
+| `subPlan` | Información del plan de suscripción |
+| `systemMsg` | Mensaje del sistema. |
+| `wasGifted` | Indica si la suscripción fue regalada. |
+
+</div>
+</details>
+
+<details>
+<summary>Información del plan: <code>subPlan</code></summary>
+<div>
+
+| Parámetro | Descripción |
+|-|-|
+| `isPrime` | Indica si es una suscripción Prime. |
+| `isTier1` | Indica si es una suscripción Tier 1. |
+| `isTier2` | Indica si es una suscripción Tier 2. |
+| `isTier3` | Indica si es una suscripción Tier 3. |
+| `plan`    | Número de identificación del plan. Personalizable en Twitch. |
+| `planName` | Nombre del plan. Personalizable en Twitch. |
+
+</div>
+</details>
+
+## Suscripciones regaladas
+
+| Parámetro | Descripción |
+|-|-|
+| `isAnonymous` | Indica si es una suscripción anónima. |
+| `giftMonths` | Número de meses regalados (Sólo en `subgift` y `anonsubgift`) |
+| `months` | Número de meses acumulados. |
+| `originId` | ID de la suscripción regalada. |
+| `gifterUserName` | Nombre de usuario del que regala la sub. |
+| `gifterDisplayName` | Nombre de usuario para mostrar del que regala la sub. |
+| `recipientUserName` | Nombre de usuario del que recibe la sub. |
+| `recipientDisplayName` | Nombre de usuario para mostrar del que recibe la sub. |
+| `recipientId` | ID del usuario que recibe la sub. |
+| `senderCount` | Total acumulado de suscripciones regaladas por este usuario. |
+| `subPlan` | Información del plan de la sub. |
+| `systemMsg` | Mensaje del sistema. |
+| `funString` | |
+| `goalInfo` | Información del objetivo del streamer. |
+
+<details>
+<summary>Tipos de eventos: <code>type</code></summary>
+<div>
+
+| Tipo de evento | Descripción |
+|-|-|
+| `subgift` | Un usuario ha regalado una suscripción. |
+| `submysterygift` | Un usuario ha regalado una suscripción aleatoria. |
+| `standardpayforward` | |
+| `communitypayforward` | |
+| `primepaidupgrade` | Un usuario ha renovado su suscripción de prime a una de pago. |
+| `giftpaidupgrade` | Un usuario ha renovado su suscripción regalada a una de pago. |
+
+</div>
+</details>
+
+## Suscripciones en masa
+
+Los regalos de suscripción masiva pueden ser con eventos `submysterygift`.
+
+| Parámetro | Descripción |
+|-|-|
+| `isAnonymous` | Indica si es una suscripción anónima. |
+| `massGiftCount` | Número de subs regaladas (En `submysterygift`) |
+| `senderCount` | Total acumulado de suscripciones regaladas por este usuario. |
+| `originId` | ID del regalo de suscripciones. |
+| `senderUsername` | Usuario que envía el regalo. |
+| `subPlan` | Información del plan de la sub. |
+| `systemMsg` | Mensaje del sistema. |
 
 ## Entradas/Salidas del canal
 
