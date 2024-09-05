@@ -1,6 +1,9 @@
 import { client } from "../dist/mtmi.js";
+// import { client } from "../src/mtmi.ts";
 
-const channels = ["manzdev"];
+window.client = client;
+
+const channels = ["padawanstrainer"];
 
 client.connect({ channels });
 

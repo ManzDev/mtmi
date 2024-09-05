@@ -34,16 +34,17 @@ class Client {
 
   connect(options: OptionsObject) {
     this.options = options;
+    this.done = false;
     this.client = new WebSocket(WEBSOCKET_URL);
     this.startTime = new Date().getTime();
-    this.channels.push(...options.channels);
+    this.channels = [...options.channels];
 
-    this.client.addEventListener("open", (event) => this.open(event));
-    this.client.addEventListener("message", (event) => this.message(event));
-    this.client.addEventListener("close", (event) => this.close(event));
+    this.client.addEventListener("open", this.#open.bind(this));
+    this.client.addEventListener("message", this.#message.bind(this));
+    this.client.addEventListener("close", this.#close.bind(this));
   }
 
-  open(event : any) {
+  #open(event : any) {
     DEBUG && console.log(`Conectado a Twitch: ${event.target.url}`);
 
     this.client?.send("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership");
@@ -56,7 +57,7 @@ class Client {
     this.events.push(object as OnParametersType<any>);
   }
 
-  message(event : any) {
+  #message(event : any) {
     const data = chop(event.data);
 
     // PING-PONG
@@ -152,9 +153,17 @@ class Client {
     DEBUG && console.log("PONG :tmi.twitch.tv");
   }
 
-  close(event : any) {
+  close() {
+    this.client?.removeEventListener("open", this.#open.bind(this));
+    this.client?.removeEventListener("message", this.#message.bind(this));
+    this.client?.removeEventListener("close", this.#close.bind(this));
+    this.client?.close();
+  }
+
+  #close(event : any) {
     const { type, reason, code } = event;
     DEBUG && console.log(`${type}: REASON ${reason} ${code}`);
+    this.close();
 
     if (code === 1006) {
       console.log("Reconnectando en 5 segundos...");

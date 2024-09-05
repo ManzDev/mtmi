@@ -343,11 +343,9 @@ declare class Client {
     done: boolean;
     options: OptionsObject | undefined;
     connect(options: OptionsObject): void;
-    open(event: any): void;
     on<T extends keyof EventTypeMap>(type: T, action: (data: EventTypeMap[T]) => void): void;
-    message(event: any): void;
     pong(): void;
-    close(event: any): void;
+    close(): void;
 }
 declare const client: Client;
 
