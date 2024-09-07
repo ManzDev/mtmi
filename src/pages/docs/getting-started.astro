@@ -1,0 +1,21 @@
+---
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import Warning from "@/components/Warning.astro";
+import CopyCode from "@/components/CopyCode.astro";
+import * as content from '@/markdown/getting-started.md';
+
+const { frontmatter, Content } = content;
+const { title, description } = frontmatter;
+---
+
+<DocsLayout title={title} description={description}>
+
+  <Warning />
+  <Content />
+
+  <div>
+    <CopyCode>npm install <mark>mtmi</mark></CopyCode>
+    <CopyCode><mark>import</mark> &lbrace; client &rbrace; <mark>from</mark> <i>"https://unpkg.com/mtmi@0.0.3/dist/mtmi.js"</i>;</CopyCode>
+  </div>
+
+</DocsLayout>

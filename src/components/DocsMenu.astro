@@ -1,0 +1,55 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<style>
+  nav {
+    padding: 2rem 3rem 2rem 1.5rem;
+  }
+
+  span {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.25rem;
+    color: #888888;
+  }
+
+  a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.25rem;
+    color: #888888;
+    display: grid;
+    grid-template-columns: 72px 1fr 32px;
+    align-items: center;
+    gap: 0 1rem;
+    padding: 1rem 0;
+    text-decoration: none;
+    transition: translate 0.25s;
+
+    & :global(svg) {
+      font-size: 1.75rem;
+      justify-self: center;
+    }
+
+    &:hover {
+      text-decoration: 2px wavy underline #dbe04f;
+      text-underline-offset: 10px;
+      color: #f5f5f5;
+      translate: 15px 0;
+    }
+  }
+</style>
+
+<nav>
+  <a href="/docs/getting-started/"><Icon name="rocket" /> Inicio rápido →</a>
+  <a href="/docs/messages/"><Icon name="message" /> Mensajes →</a>
+  <a href="/docs/subs/"><Icon name="star" /> Suscripción →</a>
+  <a href="/docs/gifts/"><Icon name="gift" /> Subs regaladas   →</a>
+  <a href="/docs/mass-gifts/"><Icon name="gifts" /> Subs en masa →</a>
+  <a href="/docs/events/"><Icon name="door" /> Entradas/Salidas →</a>
+  <a href="/docs/bans/"><Icon name="ban" /> Baneos/Timeouts →</a>
+  <a href="/docs/delete-chat/"><Icon name="erase" /> Borrado del chat →</a>
+  <a href="/docs/modes/"><Icon name="cat" /> Modos del canal →</a>
+  <a href="/docs/announcement/"><Icon name="announcement" /> Anuncios de moderador →</a>
+  <a href="/docs/raids/"><Icon name="train" /> Avisos de Raid →</a>
+  <a href="/docs/milestones/"><Icon name="streak" /> Logros o Rachas →</a>
+</nav>

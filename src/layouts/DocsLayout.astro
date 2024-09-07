@@ -1,0 +1,65 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import DocsMenu from "@/components/DocsMenu.astro";
+import "@/layouts/prism-okaidia.min.css";
+
+const { title, description } = Astro.props;
+---
+
+<style>
+  .layout {
+    --menu-width: 500px;
+    --pad: 3rem;
+    --page-width: calc(100% - 500px - var(--pad));
+
+    display: grid;
+    grid-template-columns: var(--menu-width) var(--page-width);
+  }
+
+  .page {
+    margin: 2rem var(--pad) 2rem 0;
+  }
+</style>
+
+<style is:global>
+  .page {
+
+    & :is(h1, h2, h3) {
+      font-family: Jost, sans-serif;
+      font-weight: bold;
+      margin: 4rem auto 2rem;
+    }
+
+    & h1 { font-size: 4rem; }
+    & h2 {
+      font-size: 2rem;
+      color: gold;
+      text-decoration: 1px solid underline;
+      text-underline-offset: 10px
+    }
+
+    & p {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.5rem;
+    }
+
+    & pre {
+      background: #060606;
+      padding: 2rem;
+
+      & code {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 1.25rem;
+      }
+    }
+  }
+</style>
+
+<BaseLayout title={title} description={description}>
+  <div class="layout">
+    <DocsMenu />
+    <div class="page">
+      <slot></slot>
+    </div>
+  </div>
+</BaseLayout>

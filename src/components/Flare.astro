@@ -1,0 +1,21 @@
+---
+const { width, height, color, x, y } = Astro.props;
+---
+
+<style define:vars={{ width, height, color, x, y }}>
+
+  /* TODO: Decidir si cambiar transparencia para evitar que Blur me mate */
+  .flare {
+    width: calc(var(--width, 256) * 1px);
+    height: calc(var(--height, 256) * 1px);
+    background-color: color-mix(in srgb, var(--color, red), transparent 0%);
+    border-radius: 50%;
+    filter: blur(100px);
+    position: absolute;
+    top: calc((var(--y, 0) - ((var(--height) / 1.25)) * 1px));
+    left: calc((var(--x, 0) - ((var(--width) / 2)) * 1px));
+    z-index: -1;
+  }
+</style>
+
+<div class="flare"></div>

@@ -1,16 +1,27 @@
 ---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Flare from "@/components/Flare.astro";
+import MainHero from "@/components/MainHero.astro";
+import MainFeatures from "@/components/MainFeatures.astro";
 
+const title = "mtmi - Librería Javascript para conectar con el chat de Twitch";
+const description = "Mtmi es una librería Javascript para obtener información del chat de Twitch y detectar eventos como subs, bits, raids... sin necesidad de backend ni registro.";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<style>
+  main {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+  }
+</style>
+
+<BaseLayout title={title} description={description}>
+  <Flare width="1080" height="358" color="#D24FE1" x="50%" y="-5%" />
+
+  <main>
+    <MainHero />
+    <MainFeatures />
+  </main>
+
+</BaseLayout>

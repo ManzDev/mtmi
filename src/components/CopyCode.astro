@@ -1,0 +1,45 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<style>
+  .code {
+    display: inline-grid;
+    grid-template-columns: 1fr min-content;
+    border: 2px solid #d24fe1;
+    border-radius: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.25rem;
+    overflow: hidden;
+    margin: 0.5rem;
+
+    & .pad {
+      padding: 0.75rem 1.25rem;
+    }
+
+    & .zone {
+      background: #603073;
+    }
+
+    & :global(mark) {
+      color: #DBE04F;
+      background: transparent;
+      text-shadow:
+        0 0 5px #DBE04F,
+        0 0 10px #DBE04F;
+    }
+
+    & :global(i) {
+      color: #f27cff;
+    }
+  }
+</style>
+
+<div class="code">
+  <div class="pad">
+    <slot></slot>
+  </div>
+  <div class="zone pad">
+    <Icon name="copy" />
+  </div>
+</div>

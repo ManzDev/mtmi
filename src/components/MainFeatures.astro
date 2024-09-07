@@ -1,0 +1,118 @@
+---
+import FeatureBox from "@/components/FeatureBox.astro";
+---
+
+<style>
+  section.features {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    margin: 14rem auto;
+
+    & h1 {
+      margin-bottom: 8rem;
+    }
+
+    &::before {
+      --size: 700px;
+
+      content: "";
+      background: url("/images/dots.png");
+      background-size: 64px;
+
+      display: block;
+      width: var(--size);
+      height: var(--size);
+      position: absolute;
+      z-index: -1;
+      mix-blend-mode: overlay;
+      mask: radial-gradient(circle 600px at 50% 50%, black 0%, transparent 50%);
+      opacity: 64%;
+    }
+  }
+
+  .feature-list {
+    display: grid;
+    grid-template-areas:  ". one one two two ."
+                          "three three four four five five"
+                          " . six six seven seven ."
+                          "eight eight nine nine ten ten";
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-columns: 250px;
+    gap: 4rem;
+    max-width: 1200px;
+    text-align: left;
+
+    & :global(.feature-box) {
+      &:nth-child(1){ grid-area: one;}
+      &:nth-child(2){ grid-area: two;}
+      &:nth-child(3){ grid-area: three;}
+      &:nth-child(4){ grid-area: four;}
+      &:nth-child(5){ grid-area: five;}
+      &:nth-child(6){ grid-area: six;}
+      &:nth-child(7){ grid-area: seven;}
+      &:nth-child(8){ grid-area: eight;}
+      &:nth-child(9){ grid-area: nine;}
+      &:nth-child(10){ grid-area: ten;}
+    }
+  }
+</style>
+
+<section class="features">
+
+  <h1>Posibilidades de <span>MTMI</span></h1>
+
+  <div class="feature-list">
+    <FeatureBox icon="message" iconPosition="start">
+      <h2>Chat</h2>
+      <p>Mensajes de usuarios y sus respuestas.</p>
+    </FeatureBox>
+
+    <FeatureBox icon="star" iconPosition="end">
+      <h2>Suscripciones</h2>
+      <p>Prime, de pago, regaladas, masivas...</p>
+    </FeatureBox>
+
+    <FeatureBox icon="bits" iconPosition="start">
+      <h2>Bits</h2>
+      <p>Cheers (donaciones) enviados a un canal</p>
+    </FeatureBox>
+
+    <FeatureBox icon="announcement" iconPosition="center">
+      <h2>Anuncios</h2>
+      <p>Mensajes especiales de moderadores</p>
+    </FeatureBox>
+
+    <FeatureBox icon="badge" iconPosition="end">
+      <h2>Emblemas</h2>
+      <p>Insignias de los usuarios.</p>
+    </FeatureBox>
+
+    <FeatureBox icon="ban" iconPosition="start">
+      <h2>Baneos</h2>
+      <p>Baneos permanentes o temporales.</p>
+    </FeatureBox>
+
+    <FeatureBox icon="bot" iconPosition="end">
+      <h2>AutoMod</h2>
+      <p>Detección de palabras malsonantes.</p>
+    </FeatureBox>
+
+    <FeatureBox icon="door" iconPosition="start">
+      <h2>Eventos</h2>
+      <p>Entradas y salidas de usuarios a un canal.</p>
+    </FeatureBox>
+
+    <FeatureBox icon="train" iconPosition="center">
+      <h2>Raids</h2>
+      <p>Llegadas masivas desde otro canal.</p>
+    </FeatureBox>
+
+    <FeatureBox icon="streak" iconPosition="end">
+      <h2>Hitos</h2>
+      <p>Avisos de rachas o logros de usuarios.</p>
+    </FeatureBox>
+
+  </div>
+
+</section>

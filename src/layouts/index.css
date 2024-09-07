@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "IBM Plex Mono";
+  src:
+    url("/fonts/ibm-plex-mono-regular.woff2") format("woff2"),
+    url("/fonts/ibm-plex-mono-regular.woff") format("woff"),
+    url("/fonts/ibm-plex-mono-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: italic;
+  font-weight: bold;
+  src:
+    url("/fonts/ibm-plex-mono-bold-italic.woff2") format("woff2"),
+    url("/fonts/ibm-plex-mono-bold-italic.woff") format("woff"),
+    url("/fonts/ibm-plex-mono-bold-italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-weight: bold;
+  src:
+    url("/fonts/ibm-plex-mono-bold.woff2") format("woff2"),
+    url("/fonts/ibm-plex-mono-bold.woff") format("woff"),
+    url("/fonts/ibm-plex-mono-bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: italic;
+  src:
+    url("/fonts/ibm-plex-mono-italic.woff2") format("woff2"),
+    url("/fonts/ibm-plex-mono-italic.woff") format("woff"),
+    url("/fonts/ibm-plex-mono-italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: italic;
+  src:
+    url("/fonts/jost-italic-vf.woff2") format("woff2"),
+    url("/fonts/jost-italic-vf.woff") format("woff"),
+    url("/fonts/jost-italic-vf.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  src:
+    url("/fonts/jost-vf.woff2") format("woff2"),
+    url("/fonts/jost-vf.woff") format("woff"),
+    url("/fonts/jost-vf.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  background-color: #180C1D;
+  background-image: url("/images/noise.png");
+  background-blend-mode: overlay;
+  color: #fff;
+}
+
+h1 {
+  font-family: Jost, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  text-wrap: balance;
+
+  & span {
+    font-weight: 700;
+    color: #d24fe1
+  }
+}

@@ -1,0 +1,61 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const { icon, iconPosition, iconColor } = Astro.props;
+---
+
+<style define:vars={{ "icon-color": iconColor }}>
+  .feature-box {
+    font-family: "IBM Plex Mono", monospace;
+    border: 2px dashed #d24fe1;
+    border-radius: 12px;
+    padding: 2rem 3rem 2.5rem;
+    background: #24122b;
+    position: relative;
+    /* max-width: 400px; */
+
+    & :global(svg) {
+      color: var(--icon-color, #dbe04f);
+      font-size: 3.5rem;
+      position: absolute;
+      filter: drop-shadow(0 0 16px #dbe04faa);
+
+      &.start {
+        top: -1.75rem;
+        left: -1.75rem;
+        rotate: -20deg;
+      }
+
+      &.center {
+        top: -1.75rem;
+        left: calc(50% - 1.75rem);
+      }
+
+      &.end {
+        top: -1.75rem;
+        right: -1.75rem;
+        rotate: 20deg;
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #f5f5f5;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: #888888;
+      margin: 0;
+      margin-top: 1rem;
+    }
+  }
+</style>
+
+<div class="feature-box">
+  <Icon class:list={ iconPosition } name={icon} />
+  <slot></slot>
+</div>

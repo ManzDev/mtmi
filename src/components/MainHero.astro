@@ -1,0 +1,77 @@
+---
+import { Icon } from 'astro-icon/components';
+import Button from "@/components/Button.astro";
+import Warning from "@/components/Warning.astro";
+---
+
+<style>
+  .container {
+    display: flex;
+    margin: 2rem auto;
+  }
+
+  header {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+
+    &::before {
+      --size: 700px;
+
+      content: "";
+      background: url("/images/grid.png");
+
+      display: block;
+      width: var(--size);
+      height: var(--size);
+      position: absolute;
+      z-index: -1;
+      mix-blend-mode: overlay;
+      mask: radial-gradient(circle 600px at 50% 50%, black 0%, transparent 50%);
+      opacity: 64%;
+    }
+
+    & .hero-logo {
+      font-size: 10rem;
+    }
+
+    & .text-container {
+      max-width: 150ch;
+      text-align: center;
+    }
+
+    & p {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.5rem;
+      text-wrap: pretty;
+      max-width: 60ch;
+      margin: 1.5rem auto;
+      font-weight: 300;
+
+      & strong {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .muted {
+    color: #888;
+  }
+</style>
+
+<header>
+  <Icon class="hero-logo" name="mtmi" />
+  <div class="text-container">
+    <h1><span>M</span>anz <span>T</span>witch <span>M</span>essaging <span>I</span>nterface</h1>
+    <p class="muted">Paquete <strong>Front-end</strong> para el chat de <strong>Twitch</strong></p>
+    <p><strong>Mtmi</strong> es una librería <strong>Javascript</strong> que facilita obtener información del <strong>chat de Twitch</strong> y detectar eventos como subs, bits, raids... sin necesidad de backend ni registro.</p>
+  </div>
+
+  <Warning />
+
+  <div class="container">
+    <Button fill href="/docs/getting-started/">¡Comienza ahora!</Button>
+    <Button href="/docs/messages/">Documentación →</Button>
+  </div>
+
+</header>

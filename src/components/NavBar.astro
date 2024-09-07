@@ -1,0 +1,61 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* background: #0003; */
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+
+    & svg[data-icon] {
+      font-size: 2.5rem;
+    }
+
+    & a {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.3rem;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    & span {
+      display: inline-grid;
+      align-items: center;
+      color: #888;
+      font-size: 0.75rem;
+    }
+
+    & .menu {
+      display: flex;
+      gap: 0 1.5rem;
+      padding: 0.5rem 1rem;
+    }
+
+    & .social {
+      display: flex;
+      gap: 0 1.5rem;
+      padding: 0.5rem 1rem;
+      margin-left: auto;
+    }
+  }
+</style>
+
+<nav>
+  <div class="menu">
+    <a href="/">Inicio</a>
+    <span>●</span>
+    <a href="/docs/messages/">Documentación</a>
+  </div>
+
+  <div class="social">
+    <a href="https://discord.manz.dev/"><Icon name="discord" /></a>
+    <span>●</span>
+    <a href="https://github.com/ManzDev/mtmi"><Icon name="github" /></a>
+    <span>●</span>
+    <a href="https://links.manz.dev/"><Icon name="manzdev" /></a>
+  </div>
+</nav>

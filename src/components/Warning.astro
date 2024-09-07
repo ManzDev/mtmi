@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<style>
+  mark.warning {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: transparent;
+    border: 2px solid #e8ff39;
+    color: #e8ff39;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.5rem;
+
+    & [data-icon] {
+      color: #e8ff39;
+    }
+
+    & [data-icon]:first-child { padding-right: 0.75rem; }
+    & [data-icon]:last-child { padding-left: 0.75rem; }
+  }
+</style>
+
+<mark class="warning">
+  <div>
+    <Icon name="warning" />
+    <slot><strong>IMPORTANTE:</strong> Versión <strong>pre-alpha</strong> actualmente en desarrollo. <strong>NO</strong> usar en <strong>producción</strong>.</slot>
+    <Icon name="warning" />
+  </div>
+</mark>
