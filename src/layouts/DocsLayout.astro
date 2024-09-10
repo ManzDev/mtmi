@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import DocsMenu from "@/components/DocsMenu.astro";
+import { Icon } from 'astro-icon/components';
 import "@/layouts/prism-okaidia.min.css";
 
 const { title, description } = Astro.props;
@@ -22,38 +23,154 @@ const { title, description } = Astro.props;
 </style>
 
 <style is:global>
-  .page {
+.page {
 
-    & :is(h1, h2, h3) {
-      font-family: Jost, sans-serif;
-      font-weight: bold;
-      margin: 4rem auto 2rem;
+  & :is(h1, h2, h3) {
+    font-family: Jost, sans-serif;
+    font-weight: bold;
+    margin: 4rem auto 2rem;
+  }
+
+  & h1 {
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+  }
+  & h2 {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    color: gold;
+    text-decoration: 1px solid underline;
+    text-underline-offset: 10px
+  }
+
+  & :is(h1, h2)::before {
+    display: inline-block;
+    content: url("/images/anchor.svg");
+    width: 32px;
+    padding-right: 12px;
+    translate: 0 -6px;
+  }
+
+  & h2::before {
+    translate: 0 6px;
+  }
+
+  & :is(h1, h2)::after {
+    content: "";
+    display: flex;
+    flex: 1;
+    margin-left: 1.5rem;
+    border-bottom: 2px dashed #888;
+  }
+
+  & p {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.5rem;
+
+    & > :is(code, strong) {
+      color: #d24fe1;
     }
 
-    & h1 { font-size: 4rem; }
-    & h2 {
-      font-size: 2rem;
-      color: gold;
-      text-decoration: 1px solid underline;
-      text-underline-offset: 10px
+    & a {
+      color: #d24fe1;
+      text-decoration-color: #d24fe1;
     }
+  }
 
-    & p {
+  & pre {
+    background: #0f0b11;
+    padding: 1.5rem;
+    border: 2px solid #d24fe1;
+    border-radius: 15px;
+    margin-bottom: 4rem;
+    position: relative;
+
+    & code {
       font-family: "IBM Plex Mono", monospace;
-      font-size: 1.5rem;
-    }
+      font-size: 1.3rem;
 
-    & pre {
-      background: #060606;
-      padding: 2rem;
+      & .popbtn {
+        --size: 28px;
+        width: var(--size);
+        height: var(--size);
+        position: absolute;
+        right: 1rem;
+        bottom: 1rem;
+        opacity: 0.5;
 
-      & code {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 1.25rem;
+        &:hover {
+          cursor: pointer;
+          opacity: 1;
+        }
       }
     }
   }
+
+  & table {
+    --color-odd: #301839;
+    --color-even: #3c1e48;
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.3rem;
+    border-radius: 15px;
+    overflow: hidden;
+    border-collapse: collapse;
+    width: 100%;
+
+    & a {
+      text-decoration-color: #f5f5f5;
+      text-decoration-line: underline;
+      text-underline-offset: 2px;
+    }
+
+    & th {
+      background: #24122b;
+      border-bottom: 3px solid #180c1d;
+      color: #f5f5f5;
+    }
+
+    & tr :is(td, th):first-child {
+      border-right: 3px solid #180c1d;
+    }
+
+    & :is(th, td) {
+      padding: 0.75rem 0;
+    }
+
+    & td {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    & tr:nth-child(odd) { background: var(--color-odd); }
+    & tr:nth-child(even) { background: var(--color-even); }
+
+    & code { color: #f27cff; }
+    & td:first-child code { color: #f5f5f5 }
+  }
+}
 </style>
+
+<script type="module">
+  const preCode = document.querySelectorAll("pre code");
+  preCode.forEach(code => {
+    const img = document.createElement("img");
+    img.classList.add("popbtn");
+    img.src = "/images/copy.svg";
+    code.append(img);
+
+    img.addEventListener("click", async () => {
+      const text = code.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        // Popover con OK / Cambiar icono
+      }).catch(err => {
+        // Popover con error / Cambiar icono
+      });
+    });
+  });
+</script>
 
 <BaseLayout title={title} description={description}>
   <div class="layout">

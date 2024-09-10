@@ -1,0 +1,16 @@
+---
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import Warning from "@/components/Warning.astro";
+import CopyCode from "@/components/CopyCode.astro";
+import * as content from '@/markdown/messages.md';
+
+const { frontmatter, Content } = content;
+const { title, description } = frontmatter;
+---
+
+<DocsLayout title={title} description={description}>
+
+  <Warning />
+  <Content />
+
+</DocsLayout>
