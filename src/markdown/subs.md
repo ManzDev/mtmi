@@ -5,6 +5,8 @@ description:
 
 # Suscripciones
 
+Los usuarios de Twitch pueden suscribirse al canal. Este evento se dispara cuando un usuario se suscribe, ya sea por primera vez o sea una renovación de suscripción.
+
 ```js
 import { client } from "https://unpkg.com/mtmi@0.0.3/dist/mtmi.js";
 

@@ -9,26 +9,39 @@ const { title, description } = Astro.props;
 
 <style>
   .layout {
-    --menu-width: 500px;
-    --pad: 3rem;
+    --menu-width: 450px;
+    --pad: 2.5rem;
     --page-width: calc(100% - 500px - var(--pad));
 
     display: grid;
     grid-template-columns: var(--menu-width) var(--page-width);
-  }
 
-  .page {
-    margin: 2rem var(--pad) 2rem 0;
+    @media (width <= 1350px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+
+      & .page {
+        padding-left: 2.5rem;
+      }
+    }
   }
 </style>
 
 <style is:global>
 .page {
+  min-height: 100vh;
+  margin: 2rem var(--pad) 2rem 0;
+
+  @media (width <= 1300px) {
+    padding: 0!important;
+    margin: 1rem;
+    box-sizing: border-box;
+  }
 
   & :is(h1, h2, h3) {
     font-family: Jost, sans-serif;
     font-weight: bold;
-    margin: 4rem auto 2rem;
+    margin: 4rem auto 3rem;
   }
 
   & h1 {
@@ -36,18 +49,20 @@ const { title, description } = Astro.props;
     display: flex;
     align-items: center;
   }
+
   & h2 {
     font-size: 2rem;
     display: flex;
     align-items: center;
     color: gold;
     text-decoration: 1px solid underline;
-    text-underline-offset: 10px
+    text-underline-offset: 10px;
+    margin-bottom: 5rem;
   }
 
   & :is(h1, h2)::before {
     display: inline-block;
-    content: url("/images/anchor.svg");
+    content: url("/mtmi/images/anchor.svg");
     width: 32px;
     padding-right: 12px;
     translate: 0 -6px;
@@ -67,7 +82,7 @@ const { title, description } = Astro.props;
 
   & p {
     font-family: "IBM Plex Mono", monospace;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 
     & > :is(code, strong) {
       color: #d24fe1;
@@ -84,6 +99,7 @@ const { title, description } = Astro.props;
     padding: 1.5rem;
     border: 2px solid #d24fe1;
     border-radius: 15px;
+    margin-top: 4rem;
     margin-bottom: 4rem;
     position: relative;
 
@@ -118,6 +134,7 @@ const { title, description } = Astro.props;
     overflow: hidden;
     border-collapse: collapse;
     width: 100%;
+    margin-top: 4rem;
 
     & a {
       text-decoration-color: #f5f5f5;
@@ -136,7 +153,7 @@ const { title, description } = Astro.props;
     }
 
     & :is(th, td) {
-      padding: 0.75rem 0;
+      padding: 0.75rem 1.5rem;
     }
 
     & td {
@@ -150,7 +167,31 @@ const { title, description } = Astro.props;
     & code { color: #f27cff; }
     & td:first-child code { color: #f5f5f5 }
   }
+
+  & blockquote {
+    background: #784bb718;
+    border: 2px solid #6623b144;
+    color: #b581f0;
+    padding: 0.25rem 2rem;
+    margin: 2rem 0;
+    border-radius: 10px;
+
+    & p { font-size: 1.1rem; }
+  }
 }
+
+/*
+@media (width <= 1300px) {
+  pre {
+    width: calc(100vw - 1.1rem)!important;
+    min-height: 100px;
+    border-radius: 0!important;
+    border: 0!important;
+    padding: 0!important;
+    margin: 0 -1rem!important;
+  }
+}
+*/
 </style>
 
 <script type="module">
@@ -158,7 +199,7 @@ const { title, description } = Astro.props;
   preCode.forEach(code => {
     const img = document.createElement("img");
     img.classList.add("popbtn");
-    img.src = "/images/copy.svg";
+    img.src = "/mtmi/images/copy.svg";
     code.append(img);
 
     img.addEventListener("click", async () => {

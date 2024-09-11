@@ -4,8 +4,10 @@ import { Icon } from 'astro-icon/components';
 
 <style>
   mark.warning {
-    display: inline-flex;
-    flex-wrap: wrap;
+    display: inline-grid;
+    display: none;
+    justify-content: center;
+    grid-template-columns: 42px 1fr 42px;
     align-items: center;
     background: transparent;
     border: 2px solid #e8ff39;
@@ -25,9 +27,9 @@ import { Icon } from 'astro-icon/components';
 </style>
 
 <mark class="warning">
+  <Icon name="warning" />
   <div>
-    <Icon name="warning" />
     <slot><strong>IMPORTANTE:</strong> Versión <strong>pre-alpha</strong> actualmente en desarrollo. <strong>NO</strong> usar en <strong>producción</strong>.</slot>
-    <Icon name="warning" />
   </div>
+  <Icon name="warning" />
 </mark>

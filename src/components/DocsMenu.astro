@@ -1,10 +1,32 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+const isCurrentLink = (href) =>
+  Astro.url.pathname.includes(href) && "selected";
+
+const LINKS = [
+  { href: "/docs/getting-started/", icon: "rocket", text: "Inicio rápido" },
+  { href: "/docs/messages/", icon: "message", text: "Mensajes" },
+  { href: "/docs/subs/", icon: "star", text: "Suscripción" },
+  { href: "/docs/gifts/", icon: "gift", text: "Subs regaladas" },
+  { href: "/docs/mass-gifts", icon: "gifts", text: "Subs en masa" },
+  { href: "/docs/events/", icon: "door", text: "Entradas/Salidas" },
+  { href: "/docs/bans/", icon: "ban", text: "Baneos/Timeouts" },
+  { href: "/docs/delete-chat/", icon: "erase", text: "Borrado del chat" },
+  { href: "/docs/modes/", icon: "cat", text: "Modos del canal" },
+  { href: "/docs/announcements/", icon: "announcement", text: "Anuncios de moderador" },
+  { href: "/docs/raids/", icon: "train", text: "Avisos de raids" },
+  { href: "/docs/milestones/", icon: "streak", text: "Logros o hitos" },
+];
 ---
 
 <style>
   nav {
-    padding: 2rem 3rem 2rem 1.5rem;
+    padding: 2rem 1.5rem 2rem 1.5rem;
+
+    @media (width <= 1350px) {
+      order: 5;
+    }
   }
 
   span {
@@ -18,38 +40,53 @@ import { Icon } from 'astro-icon/components';
     font-size: 1.25rem;
     color: #888888;
     display: grid;
-    grid-template-columns: 72px 1fr 32px;
+    grid-template-columns: 72px 1fr;
     align-items: center;
     gap: 0 1rem;
     padding: 1rem 0;
     text-decoration: none;
     transition: translate 0.25s;
 
+    &.selected {
+      color: #d24fe1;
+    }
+
     & :global(svg) {
       font-size: 1.75rem;
       justify-self: center;
     }
 
-    &:hover {
+    &:hover:not(.selected) {
       text-decoration: 2px wavy underline #dbe04f;
       text-underline-offset: 10px;
       color: #f5f5f5;
       translate: 15px 0;
     }
   }
+
+  a:first-child {
+    width: max-content;
+    background: #f27cff;
+    color: #180c1d;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 1rem 2rem 1rem 0;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px #f27cff55);
+    transition: filter 0.25s;
+
+    &:hover {
+      translate: 0 0;
+      text-decoration: none;
+      color: #000;
+      filter: drop-shadow(0 0 10px #f27cff);
+    }
+  }
 </style>
 
-<nav>
-  <a href="/docs/getting-started/"><Icon name="rocket" /> Inicio rápido →</a>
-  <a href="/docs/messages/"><Icon name="message" /> Mensajes →</a>
-  <a href="/docs/subs/"><Icon name="star" /> Suscripción →</a>
-  <a href="/docs/gifts/"><Icon name="gift" /> Subs regaladas   →</a>
-  <a href="/docs/mass-gifts/"><Icon name="gifts" /> Subs en masa →</a>
-  <a href="/docs/events/"><Icon name="door" /> Entradas/Salidas →</a>
-  <a href="/docs/bans/"><Icon name="ban" /> Baneos/Timeouts →</a>
-  <a href="/docs/delete-chat/"><Icon name="erase" /> Borrado del chat →</a>
-  <a href="/docs/modes/"><Icon name="cat" /> Modos del canal →</a>
-  <a href="/docs/announcement/"><Icon name="announcement" /> Anuncios de moderador →</a>
-  <a href="/docs/raids/"><Icon name="train" /> Avisos de Raid →</a>
-  <a href="/docs/milestones/"><Icon name="streak" /> Logros o Rachas →</a>
+<nav class="menu">
+  { LINKS.map(link =>
+      <a href={"/mtmi" + link.href} class={ isCurrentLink(link.href) }>
+        <Icon name={link.icon} /> {link.text} →</a>
+    ) }
 </nav>

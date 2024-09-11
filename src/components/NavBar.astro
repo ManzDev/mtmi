@@ -7,9 +7,17 @@ import { Icon } from 'astro-icon/components';
     display: flex;
     align-items: center;
     width: 100%;
-    /* background: #0003; */
     padding: 1rem 2rem;
     box-sizing: border-box;
+
+    @media (width <= 1300px) {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 1rem;
+
+      .social { margin: auto }
+    }
 
     & svg[data-icon] {
       font-size: 2.5rem;
@@ -46,9 +54,9 @@ import { Icon } from 'astro-icon/components';
 
 <nav>
   <div class="menu">
-    <a href="/">Inicio</a>
+    <a href="/mtmi/">Inicio</a>
     <span>●</span>
-    <a href="/docs/messages/">Documentación</a>
+    <a href="/mtmi/docs/messages/">Documentación</a>
   </div>
 
   <div class="social">

@@ -5,7 +5,7 @@ description:
 
 # Mensajes del chat
 
-Detectar **mensajes** en el chat del **streamer**, con muy **poco código** puedes obtener mucha información.
+Este evento se dispara cuando detecta el **mensaje** de un usuario en el chat. No sólo podemos extraer información del mensaje, sino también información del usuario, si es una respuesta a otro mensaje, si ha regalado bits (*cheers*), etc.
 
 ```js
 import { client } from "https://unpkg.com/mtmi@0.0.3/dist/mtmi.js";
@@ -25,11 +25,11 @@ Lista de los **parámetros** que se pueden utilizar al obtener mensajes del chat
 | `username` | Nombre del usuario (nombre interno) |
 | `channel`  | Canal donde se envió el mensaje. |
 | `message`  | Mensaje enviado (sólo texto). |
-| [`badges`](#badges-del-usuario) ➕ | Lista de badges mostrados por el usuario. |
-| [`userInfo`](#información-del-usuario) ➕ | Información del usuario. |
-| [`messageInfo`](#información-del-mensaje) ➕ | Información del mensaje. |
-| [`replyInfo`](#respuestas-a-los-mensajes) ➕ | Información de la respuesta (si es una respuesta). |
-| [`bitsInfo`](#información-de-bits) ➕ | Información de los bits enviados (si fueron enviados). |
+| [`badges`](#badges-del-usuario) ↘ | Lista de badges mostrados por el usuario. |
+| [`userInfo`](#información-del-usuario) ↘ | Información del usuario. |
+| [`messageInfo`](#información-del-mensaje) ↘ | Información del mensaje. |
+| [`replyInfo`](#respuestas-a-los-mensajes) ↘ | Información de la respuesta (si es una respuesta). |
+| [`bitsInfo`](#información-de-bits) ↘ | Información de los bits enviados (si fueron enviados). |
 | `raw` | Mensaje sin procesar de Twitch. |
 
 ## Badges del usuario
@@ -68,7 +68,7 @@ Lista de los **parámetros** que se pueden utilizar al obtener mensajes del chat
 | `isHighlightedMessage` | Si se trata de un mensaje destacado canjeado por el usuario. |
 | `isGigantifiedEmoteMessage` | Si el mensaje ha sido canjeado para «gigantificar» un emote (bits). |
 | `isAnimatedMessage` | Si el mensaje ha sido canjeado para ser un mensaje animado (bits). |
-| [`flagsInfo`](#información-de-flags) ➕ | Información sobre los flags (automod) del mensaje. |
+| [`flagsInfo`](#información-de-flags) ↘ | Información sobre los flags (automod) del mensaje. |
 | `roomId` | ID del canal. |
 | `userId` | ID del usuario. |
 | `tmi` | Información de TMI. |

@@ -7,12 +7,14 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "gh-pages -d dist",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^4.15.2"
   },
   "devDependencies": {
-    "astro-icon": "^1.1.1"
+    "astro-icon": "^1.1.1",
+    "gh-pages": "^6.1.1"
   }
 }
