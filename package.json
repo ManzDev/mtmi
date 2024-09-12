@@ -7,7 +7,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "deploy": "gh-pages -d dist",
+    "deploy": ".bin/deploy.sh",
     "astro": "astro"
   },
   "dependencies": {
