@@ -1,0 +1,96 @@
+---
+
+---
+
+<script type="module">
+  class MultiTab extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+    }
+
+    static get styles() {
+      return /* css */`
+        multi-tab {
+          display: block;
+          margin: 3.5rem 0;
+          font-family: "IBM Plex Mono", monospace;
+          font-size: 1.25rem;
+
+          & nav label {
+            border-radius: 5px 5px 0 0;
+            padding: 1rem;
+            border-bottom: 3px solid transparent;
+
+            &:hover {
+              background: #fff1;
+              border-bottom-color: var(--border-tab-color, #603073);
+            }
+          }
+
+          & nav label:has(:checked) {
+            border-bottom-color: var(--border-tab-hover-color, #f27cff);
+          }
+
+          & > div {
+            margin: 1.25rem 0;
+
+            & section {
+              padding: 1.5rem 1rem;
+              background: #000;
+            }
+          }
+        }
+      `;
+    }
+
+    connectedCallback() {
+      this.init();
+      this.render();
+    }
+
+    init() {
+      const tabs = this.querySelectorAll("nav > label");
+      tabs.forEach((tab, index) => {
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "multitab";
+        input.hidden = true;
+        tab.dataset.id = index;
+        tab.append(input);
+      });
+      tabs[0].querySelector("input").setAttribute("checked", "");
+
+      const sections = this.querySelectorAll("div > section");
+      sections.forEach(section => (section.hidden = true));
+      sections[0].hidden = false;
+      this.addEventListener("click", (ev) => this.onClick(ev));
+    }
+
+    onClick({ target }) {
+      const isLabel = target.nodeName === "LABEL";
+
+      if (isLabel) {
+        const id = Number(target.dataset.id);
+        this.setSection(id);
+      }
+    }
+
+    setSection(id) {
+      const sections = this.querySelectorAll("div > section");
+      sections.forEach(section => (section.hidden = true));
+      sections[id].hidden = false;
+    }
+
+    render() {
+      const style = document.createElement("style");
+      style.innerHTML = MultiTab.styles;
+      this.append(style);
+      this.shadowRoot.innerHTML = /* html */`<slot></slot>`;
+    }
+  }
+  customElements.define("multi-tab", MultiTab);
+</script>
+
+<section>
+</section>

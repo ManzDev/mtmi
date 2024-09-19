@@ -13,21 +13,34 @@ description: Instalación, uso y consejos iniciales para aprender a utilizar la 
 
 Puedes utilizar `mtmi` directamente desde un CDN, sin necesidad de usar `npm` u otros:
 
-```js
-import { client } from "https://unpkg.com/mtmi@0.0.3/dist/mtmi.js";
-```
+<multi-tab>
+  <nav>
+    <label>CDN</label>
+    <label>npm</label>
+    <label>pnpm</label>
+  </nav>
+  <div>
+  <section>
+      import &lbrace; client &rbrace; from "https://unpkg.com/mtmi@0.0.3/dist/mtmi.js";
+  </section>
+  <section>
+      npm install mtmi
 
-Si lo prefieres, puedes usar `npm`, `yarn` o `pnpm`:
+  <p>Y luego, importando la librería desde el `node_modules/`:</p>
 
-```bash
-npm install mtmi
-```
+      import { client } from "mtmi";
+  </section>
+  <section>
+      pnpm install mtmi
 
-Y luego, importando la librería desde el `node_modules/`:
+  <p>Y luego, importando la librería desde el `node_modules/`:</p>
 
-```js
-import { client } from "mtmi";
-```
+      import { client } from "mtmi";
+  </section>
+  </div>
+</multi-tab>
+
+
 
 ## Uso
 

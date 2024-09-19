@@ -6,11 +6,8 @@ https://www.figma.com/proto/FMdOCmWLnlLKWGWWd2UpCO/Dise%C3%B1o-pa-Manz?page-id=0
 
 https://github.com/svg/svgo
 
-- Offstream: Añadir el resto de documentación
-- Offstream: Añadir rutas dinámicas para el .md
-- Sistema de pestañas
-- Color de la barra de desplazamiento de los fragmentos de código
-- Resaltar el inicio rápido del menú
-- Redactar algunos textos, y revisar keywords
-- Añadir una demo de la librería en la página principal
-- Huevos de pascua
+- [ ] Sistema de pestañas
+- [ ] Color de la barra de desplazamiento de los fragmentos de código
+- [ ] Redactar algunos textos, y revisar keywords
+- [ ] Añadir una demo de la librería en la página principal
+- [ ] Huevos de pascua

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import DocsMenu from "@/components/DocsMenu.astro";
+import MultiTab from "@/components/MultiTab.astro";
 import { Icon } from 'astro-icon/components';
 import "@/layouts/prism-okaidia.min.css";
 
@@ -55,7 +56,7 @@ const { title, description } = Astro.props;
     font-size: 2rem;
     display: flex;
     align-items: center;
-    color: gold;
+    color: #DBE04F;
     text-decoration: 1px solid underline;
     text-underline-offset: 10px;
     margin-bottom: 5rem;
@@ -216,10 +217,13 @@ const { title, description } = Astro.props;
 </script>
 
 <BaseLayout title={title} description={description}>
+  <MultiTab />
   <div class="layout">
     <DocsMenu />
     <div class="page">
       <slot></slot>
+
     </div>
+
   </div>
 </BaseLayout>

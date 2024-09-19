@@ -1,0 +1,87 @@
+---
+---
+
+<style>
+  .container {
+    margin: 2rem;
+  }
+</style>
+
+<style is:global>
+  @keyframes dancing {
+    from { rotate: 15deg }
+    to { rotate: -15deg }
+  }
+
+  .demo {
+    max-width: 800px;
+    height: 300px;
+    max-height: 300px;
+    overflow: hidden;
+    margin: auto;
+    display: grid;
+    justify-items: center;
+
+    & .chat {
+      display: inline-block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.25rem;
+      margin: 0;
+
+      &.gigantified img {
+        width: 64px;
+      }
+    }
+
+    & .channel {
+      font-size: 0.8rem;
+      padding: 0.3rem;
+      margin-right: 0.5rem;
+      background: #4b1f8f;
+      color: #f5f5f5;
+      border-radius: 10px;
+    }
+
+    & .username {
+      font-weight: bold;
+      color: #d24fe1;
+    }
+
+    & .message {
+    }
+
+  }
+</style>
+
+<script type="module">
+  import { client } from "https://unpkg.com/mtmi@0.0.4/dist/mtmi.js";
+  client.connect({ channels: ["manzdev", "frontend_army"] });
+  const demo = document.querySelector(".demo");
+
+  client.on("message", ({ username, channel, messageInfo }) => {
+    const { message, isGigantifiedEmoteMessage } = messageInfo;
+    const chatMessage = document.createElement("div");
+    chatMessage.classList.add("chat");
+    isGigantifiedEmoteMessage && chatMessage.classList.add("gigantified");
+    const chatUsername = document.createElement("span");
+    const chatChannel = document.createElement("span");
+    chatChannel.classList.add("channel");
+    chatChannel.textContent = channel;
+    chatUsername.textContent = `${username}: `;
+    message.classList.add("message");
+    chatUsername.classList.add("username");
+    chatMessage.append(chatChannel, chatUsername, message);
+    demo.append(chatMessage);
+
+    const chatElements = document.querySelectorAll(".demo .chat");
+    chatElements.length > 5 && chatElements[0].remove();
+  });
+</script>
+
+<div class="container">
+
+  <div class="demo">
+
+  </div>
+
+</div>
