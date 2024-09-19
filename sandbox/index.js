@@ -1,16 +1,11 @@
 import { client } from "../dist/mtmi.js";
 // import { client } from "../src/mtmi.ts";
 
-window.client = client;
+// window.client = client;
 
-const channels = ["padawanstrainer"];
+const channels = ["manzdev"];
 
 client.connect({ channels });
-
-// client.on("message", ({ badges }) => {
-//   badges.forEach(data => {
-//   });
-// });
 
 client.on("join", (data) => console.log("JOIN: ", data));
 client.on("part", (data) => console.log("PART: ", data));
