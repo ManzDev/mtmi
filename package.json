@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "rm dist/* && tsup --format esm,cjs --dts src/mtmi.ts src/mtmi.ts",
+    "build": "rm -f dist/mtmi.* && tsup --format esm,cjs --dts src/mtmi.ts src/mtmi.ts",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "test": "vitest"

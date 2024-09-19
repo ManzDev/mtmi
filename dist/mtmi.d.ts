@@ -330,19 +330,12 @@ type EventTypeMap = {
 interface OptionsObject {
     channels: Array<String>;
 }
-interface OnParametersType<T extends keyof EventTypeMap> {
-    type: T;
-    action: (data: EventTypeMap[T]) => void;
-}
 declare class Client {
     #private;
     channels: Array<String>;
-    client: WebSocket | undefined;
-    startTime: Number | undefined;
-    events: Array<OnParametersType<any>>;
-    done: boolean;
     options: OptionsObject | undefined;
     connect(options: OptionsObject): void;
+    isLive(channel: any): Promise<boolean>;
     on<T extends keyof EventTypeMap>(type: T, action: (data: EventTypeMap[T]) => void): void;
     pong(): void;
     close(): void;

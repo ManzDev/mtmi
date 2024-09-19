@@ -1477,13 +1477,16 @@ var parseBadges = (fields) => {
 };
 
 // src/modules/message/bots.js
-var bots_default = [
+var BOTLIST = [
   { name: "streamelements", type: "bot" },
   { name: "nightbot", type: "bot" }
 ];
+var bots_default = {
+  add: (name) => BOTLIST.push({ name, type: "bot" }),
+  getAll: () => BOTLIST.map((bot) => bot.name)
+};
 
 // src/modules/message/parseUser.ts
-var BOTNAMES = bots_default.map((bot) => bot.name);
 var parseUser = (fields) => ({
   username: fields.username,
   displayName: fields["display-name"] || fields.username,
@@ -1494,7 +1497,7 @@ var parseUser = (fields) => ({
   isPrime: Boolean(fields.badges?.premium === "1"),
   // isTurbo: Boolean(fields.turbo), // Deprecated
   isTurbo: Boolean(fields.badges?.turbo === "1"),
-  isBot: Boolean(BOTNAMES.includes(fields.username))
+  isBot: bots_default.getAll().includes(fields.username)
   // serType: fields["user-type"] || "normal",
 });
 
@@ -1550,6 +1553,7 @@ var parseMessageWithEmotes = (fields) => {
     newMessage.push(getEmoteImage(name));
     i = end + 1;
   });
+  i < rawMessage.length && newMessage.push(createFragment(rawMessage.substring(i, rawMessage.length)));
   return groupElements(newMessage);
 };
 
@@ -1977,31 +1981,37 @@ var WEBSOCKET_URL = isHttp ? "ws://irc-ws.chat.twitch.tv:80" : "wss://irc-ws.cha
 var USERNAME = "justinfan123";
 var DEBUG = true;
 var Client = class {
+  #client;
+  #startTime;
+  #events = [];
+  #done = false;
   channels = [];
-  client;
-  startTime;
-  events = [];
-  done = false;
   options;
   connect(options) {
     this.options = options;
-    this.done = false;
-    this.client = new WebSocket(WEBSOCKET_URL);
-    this.startTime = (/* @__PURE__ */ new Date()).getTime();
+    this.#done = false;
+    this.#client = new WebSocket(WEBSOCKET_URL);
+    this.#startTime = (/* @__PURE__ */ new Date()).getTime();
     this.channels = [...options.channels];
-    this.client.addEventListener("open", this.#open.bind(this));
-    this.client.addEventListener("message", this.#message.bind(this));
-    this.client.addEventListener("close", this.#close.bind(this));
+    this.#client.addEventListener("open", this.#open.bind(this));
+    this.#client.addEventListener("message", this.#message.bind(this));
+    this.#client.addEventListener("close", this.#close.bind(this));
+  }
+  async isLive(channel) {
+    const URL = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${channel}-150x100.jpg`;
+    return await fetch(URL, { method: "HEAD" }).then((response) => !response.url.includes("/404_preview"));
   }
   #open(event) {
     DEBUG && console.log(`Conectado a Twitch: ${event.target.url}`);
-    this.client?.send("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership");
-    this.client?.send(`NICK ${USERNAME}`);
-    this.channels.forEach((channel) => this.client?.send(`JOIN #${channel}`));
+    this.#client?.send("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership");
+    this.#client?.send(`NICK ${USERNAME}`);
+    this.channels.forEach(
+      (channel) => this.#client?.send(`JOIN #${channel}`)
+    );
   }
   on(type, action) {
     const object = { type, action };
-    this.events.push(object);
+    this.#events.push(object);
   }
   #message(event) {
     const data = chop(event.data);
@@ -2051,7 +2061,7 @@ var Client = class {
         case "421":
           break;
         default:
-          !this.done && console.log(eventMessage);
+          !this.#done && console.log(eventMessage);
           this.#manageEvent(parseRawMessage({ eventMessage }));
           break;
       }
@@ -2062,18 +2072,18 @@ var Client = class {
     if (["join", "part"].includes(eventType) && eventData.username && eventData.username.startsWith("justinfan")) {
       return;
     }
-    this.done = true;
-    this.events.filter(({ type }) => type === eventType).forEach(({ action }) => action(eventData));
+    this.#done = true;
+    this.#events.filter(({ type }) => type === eventType).forEach(({ action }) => action(eventData));
   }
   pong() {
-    this.client?.send("PONG :tmi.twitch.tv");
+    this.#client?.send("PONG :tmi.twitch.tv");
     DEBUG && console.log("PONG :tmi.twitch.tv");
   }
   close() {
-    this.client?.removeEventListener("open", this.#open.bind(this));
-    this.client?.removeEventListener("message", this.#message.bind(this));
-    this.client?.removeEventListener("close", this.#close.bind(this));
-    this.client?.close();
+    this.#client?.removeEventListener("open", this.#open.bind(this));
+    this.#client?.removeEventListener("message", this.#message.bind(this));
+    this.#client?.removeEventListener("close", this.#close.bind(this));
+    this.#client?.close();
   }
   #close(event) {
     const { type, reason, code } = event;
