@@ -25,36 +25,44 @@ const USERNAME = "justinfan123";
 const DEBUG = true;
 
 class Client {
+  #client : WebSocket | undefined;
+  #startTime: Number | undefined;
+  #events : Array<OnParametersType<any>> = [];
+  #done = false;
   channels : Array<String> = [];
-  client : WebSocket | undefined;
-  startTime: Number | undefined;
-  events : Array<OnParametersType<any>> = [];
-  done = false;
   options: OptionsObject | undefined;
 
   connect(options: OptionsObject) {
     this.options = options;
-    this.done = false;
-    this.client = new WebSocket(WEBSOCKET_URL);
-    this.startTime = new Date().getTime();
+    this.#done = false;
+    this.#client = new WebSocket(WEBSOCKET_URL);
+    this.#startTime = new Date().getTime();
     this.channels = [...options.channels];
 
-    this.client.addEventListener("open", this.#open.bind(this));
-    this.client.addEventListener("message", this.#message.bind(this));
-    this.client.addEventListener("close", this.#close.bind(this));
+    this.#client.addEventListener("open", this.#open.bind(this));
+    this.#client.addEventListener("message", this.#message.bind(this));
+    this.#client.addEventListener("close", this.#close.bind(this));
   }
+
+  async isLive(channel) {
+    const URL = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${channel}-150x100.jpg`;
+    return await fetch(URL, { method: "HEAD" })
+      .then(response => !response.url.includes("/404_preview"));
+  };
 
   #open(event : any) {
     DEBUG && console.log(`Conectado a Twitch: ${event.target.url}`);
 
-    this.client?.send("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership");
-    this.client?.send(`NICK ${USERNAME}`);
-    this.channels.forEach(channel => this.client?.send(`JOIN #${channel}`));
+    this.#client?.send("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership");
+    this.#client?.send(`NICK ${USERNAME}`);
+    this.channels.forEach(channel =>
+      this.#client?.send(`JOIN #${channel}`)
+    );
   }
 
   on<T extends keyof EventTypeMap>(type: T, action: (data: EventTypeMap[T]) => void): void {
     const object : OnParametersType<T> = { type, action };
-    this.events.push(object as OnParametersType<any>);
+    this.#events.push(object as OnParametersType<any>);
   }
 
   #message(event : any) {
@@ -124,7 +132,7 @@ class Client {
         // Ignore
         break;
       default:
-        !this.done && console.log(eventMessage);
+        !this.#done && console.log(eventMessage);
         this.#manageEvent(parseRawMessage({ eventMessage }));
         break;
       }
@@ -139,9 +147,9 @@ class Client {
       return;
     }
 
-    this.done = true;
+    this.#done = true;
 
-    this.events
+    this.#events
       .filter(({ type }) => type === eventType)
       .forEach(({ action }) => action(eventData));
 
@@ -149,15 +157,15 @@ class Client {
   }
 
   pong() {
-    this.client?.send("PONG :tmi.twitch.tv");
+    this.#client?.send("PONG :tmi.twitch.tv");
     DEBUG && console.log("PONG :tmi.twitch.tv");
   }
 
   close() {
-    this.client?.removeEventListener("open", this.#open.bind(this));
-    this.client?.removeEventListener("message", this.#message.bind(this));
-    this.client?.removeEventListener("close", this.#close.bind(this));
-    this.client?.close();
+    this.#client?.removeEventListener("open", this.#open.bind(this));
+    this.#client?.removeEventListener("message", this.#message.bind(this));
+    this.#client?.removeEventListener("close", this.#close.bind(this));
+    this.#client?.close();
   }
 
   #close(event : any) {
