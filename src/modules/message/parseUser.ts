@@ -1,7 +1,5 @@
 import { PremiumColorType, ColorType } from "./colors/colors";
-import bots from "./bots.js";
-
-const BOTNAMES = bots.map((bot : any) => bot.name);
+import BOTS from "./bots.js";
 
 // type UserType = "normal" | "admin" | "global_mod" | "staff";  // Deprecated
 
@@ -28,6 +26,6 @@ export const parseUser = (fields: any): UserInfoType => ({
   isPrime: Boolean(fields.badges?.premium === "1"),
   // isTurbo: Boolean(fields.turbo), // Deprecated
   isTurbo: Boolean(fields.badges?.turbo === "1"),
-  isBot: Boolean(BOTNAMES.includes(fields.username))
+  isBot: BOTS.getAll().includes(fields.username)
   // serType: fields["user-type"] || "normal",
 });
