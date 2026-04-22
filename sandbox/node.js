@@ -1,9 +1,7 @@
 import { client } from "../dist/index.js";
 import { styleText } from "node:util";
 
-const channels = ["manzdev"];
-
-client.connect({ channels });
+client.connect({ channels: ["manzdev"] });
 
 const ansiColors = {
   black: [225, 225, 225], /* Force to white */
