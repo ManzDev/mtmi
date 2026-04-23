@@ -3,6 +3,7 @@
 import { defineConfig } from "tsdown";
 import { resolve } from "node:path";
 import { readFileSync, writeFileSync } from "node:fs";
+import { rolldownPluginDtsMinifyLite } from 'rolldown-plugin-dts-minify-lite';
 
 export default defineConfig({
   entry: ["src/index.ts"],
@@ -10,6 +11,9 @@ export default defineConfig({
   dts: true,
   clean: true,
   minify: true,
+  plugins: [
+    rolldownPluginDtsMinifyLite({ keepJsDocs: true })
+  ],
   alias: {
     "@": resolve("./src")
   },
