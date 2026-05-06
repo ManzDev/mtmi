@@ -1,11 +1,17 @@
 // Cliente principal
 export { client } from "./mtmi.ts";
 
+// Funciones de utilidad para el cliente
+export { getAvatar, setCustomApiFromJson } from "./modules/message/avatars/getAvatar.ts";
+
 // Opciones y configuración
 export type { OptionsObject, BadgeJSONInfoType } from "./mtmi.ts";
 
 // Tipos del mapa de eventos
 export type { EventType, EventTypeMap } from "./types.ts";
+
+// Avatares
+export type { CustomJsonApi, CustomJsonApiConfig } from "./modules/message/avatars/getAvatar.ts";
 
 // Mensaje de chat
 export type { UserMessageInfoType } from "./modules/message/parseUserMessage.ts";
