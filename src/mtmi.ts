@@ -22,10 +22,10 @@ export interface OptionsObject {
 }
 
 export interface BadgeJSONInfoType {
-  /** Nombre del badge. */
-  name: string,
+  /** Identificador del badge en formato "nombre/valor" (ej: "subscriber/12"). */
+  text: string,
   /** Valor asociado al badge. */
-  value: string,
+  value: string | number,
   /** Imagen identificativa del badge. */
   image: string,
   /** Descripción del badge. */
