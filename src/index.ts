@@ -1,6 +1,9 @@
 // Cliente principal
 export { client } from "./mtmi.ts";
 
+// Opciones y configuración
+export type { OptionsObject, BadgeJSONInfoType } from "./mtmi.ts";
+
 // Tipos del mapa de eventos
 export type { EventType, EventTypeMap } from "./types.ts";
 
