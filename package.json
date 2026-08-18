@@ -49,6 +49,7 @@
     "jsdoc": "^4.0.5",
     "oxfmt": "^0.46.0",
     "oxlint": "^1.60.0",
+    "rolldown-plugin-dts-minify-lite": "^0.5.2",
     "tsdown": "^0.21.9",
     "typescript": "^6.0.3",
     "vite": "^8.0.8"
