@@ -421,89 +421,89 @@
       "value": 1
     },
     {
-      "text": "predictions/blue-1",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/e33d8b46-f63b-4e67-996d-4a7dcec0ad33/3",
-      "description": "Predicted Blue (1)",
-      "value": null
-    },
-    {
-      "text": "predictions/blue-10",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/072ae906-ecf7-44f1-ac69-a5b2261d8892/3",
-      "description": "Predicted Blue (10)",
-      "value": null
-    },
-    {
-      "text": "predictions/blue-2",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/ffdda3fe-8012-4db3-981e-7a131402b057/3",
-      "description": "Predicted Blue (2)",
-      "value": null
-    },
-    {
-      "text": "predictions/blue-3",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/f2ab9a19-8ef7-4f9f-bd5d-9cf4e603f845/3",
-      "description": "Predicted Blue (3)",
-      "value": null
-    },
-    {
-      "text": "predictions/blue-4",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/df95317d-9568-46de-a421-a8520edb9349/3",
-      "description": "Predicted Blue (4)",
-      "value": null
-    },
-    {
-      "text": "predictions/blue-5",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/88758be8-de09-479b-9383-e3bb6d9e6f06/3",
-      "description": "Predicted Blue (5)",
-      "value": null
-    },
-    {
-      "text": "predictions/blue-6",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/46b1537e-d8b0-4c0d-8fba-a652e57b9df0/3",
-      "description": "Predicted Blue (6)",
-      "value": null
-    },
-    {
-      "text": "predictions/blue-7",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/07cd34b2-c6a1-45f5-8d8a-131e3c8b2279/3",
-      "description": "Predicted Blue (7)",
-      "value": null
-    },
-    {
-      "text": "predictions/blue-8",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/4416dfd7-db97-44a0-98e7-40b4e250615e/3",
-      "description": "Predicted Blue (8)",
-      "value": null
-    },
-    {
-      "text": "predictions/blue-9",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/fc74bd90-2b74-4f56-8e42-04d405e10fae/3",
-      "description": "Predicted Blue (9)",
-      "value": null
-    },
-    {
-      "text": "predictions/gray-1",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/144f77a2-e324-4a6b-9c17-9304fa193a27/3",
-      "description": "Predicted Gray (1)",
-      "value": null
-    },
-    {
-      "text": "predictions/gray-2",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/097a4b14-b458-47eb-91b6-fe74d3dbb3f5/3",
-      "description": "Predicted Gray (2)",
-      "value": null
-    },
-    {
-      "text": "predictions/pink-1",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/75e27613-caf7-4585-98f1-cb7363a69a4a/3",
-      "description": "Predicted Pink (1)",
-      "value": null
-    },
-    {
-      "text": "predictions/pink-2",
-      "image": "https://static-cdn.jtvnw.net/badges/v1/4b76d5f2-91cc-4400-adf2-908a1e6cfd1e/3",
-      "description": "Predicted Pink (2)",
-      "value": null
-    },
+			"text": "predictions/blue-1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/e33d8b46-f63b-4e67-996d-4a7dcec0ad33/3",
+			"description": "Predicted Blue (1)",
+			"value": 1
+		},
+		{
+			"text": "predictions/blue-10",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/072ae906-ecf7-44f1-ac69-a5b2261d8892/3",
+			"description": "Predicted Blue (10)",
+			"value": 1
+		},
+		{
+			"text": "predictions/blue-2",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/ffdda3fe-8012-4db3-981e-7a131402b057/3",
+			"description": "Predicted Blue (2)",
+			"value": 1
+		},
+		{
+			"text": "predictions/blue-3",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/f2ab9a19-8ef7-4f9f-bd5d-9cf4e603f845/3",
+			"description": "Predicted Blue (3)",
+			"value": 1
+		},
+		{
+			"text": "predictions/blue-4",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/df95317d-9568-46de-a421-a8520edb9349/3",
+			"description": "Predicted Blue (4)",
+			"value": 1
+		},
+		{
+			"text": "predictions/blue-5",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/88758be8-de09-479b-9383-e3bb6d9e6f06/3",
+			"description": "Predicted Blue (5)",
+			"value": 1
+		},
+		{
+			"text": "predictions/blue-6",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/46b1537e-d8b0-4c0d-8fba-a652e57b9df0/3",
+			"description": "Predicted Blue (6)",
+			"value": 1
+		},
+		{
+			"text": "predictions/blue-7",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/07cd34b2-c6a1-45f5-8d8a-131e3c8b2279/3",
+			"description": "Predicted Blue (7)",
+			"value": 1
+		},
+		{
+			"text": "predictions/blue-8",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/4416dfd7-db97-44a0-98e7-40b4e250615e/3",
+			"description": "Predicted Blue (8)",
+			"value": 1
+		},
+		{
+			"text": "predictions/blue-9",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/fc74bd90-2b74-4f56-8e42-04d405e10fae/3",
+			"description": "Predicted Blue (9)",
+			"value": 1
+		},
+		{
+			"text": "predictions/gray-1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/144f77a2-e324-4a6b-9c17-9304fa193a27/3",
+			"description": "Predicted Gray (1)",
+			"value": 1
+		},
+		{
+			"text": "predictions/gray-2",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/097a4b14-b458-47eb-91b6-fe74d3dbb3f5/3",
+			"description": "Predicted Gray (2)",
+			"value": 1
+		},
+		{
+			"text": "predictions/pink-1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/75e27613-caf7-4585-98f1-cb7363a69a4a/3",
+			"description": "Predicted Pink (1)",
+			"value": 1
+		},
+		{
+			"text": "predictions/pink-2",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/4b76d5f2-91cc-4400-adf2-908a1e6cfd1e/3",
+			"description": "Predicted Pink (2)",
+			"value": 1
+		},
     {
       "text": "premium/1",
       "image": "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3",
