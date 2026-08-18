@@ -2273,6 +2273,600 @@
 			"image": "https://static-cdn.jtvnw.net/badges/v1/a7dda6c4-4994-4d8d-99f4-525f06690329/3",
 			"description": "Cryana",
 			"value": 1
+		},
+		{
+			"text": "final-fantasy-xiv-fan-festival-2026-eu---content-unlock-quest-chat/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/df82d637-1c58-4dd9-a439-b2518c5fbf5f/3",
+			"description": "Final Fantasy XIV Fan Festival 2026 EU - Content Unlock Quest Chat",
+			"value": 1
+		},
+		{
+			"text": "final-fantasy-xiv-fan-festival-2026-eu---moogle-chat/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/96e02b5f-f444-48ba-889f-591c7ad18e59/3",
+			"description": "Final Fantasy XIV Fan Festival 2026 EU - Moogle Chat",
+			"value": 1
+		},
+		{
+			"text": "final-fantasy-xiv-fan-festival-2026-na---fat-cat-chat/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/82ff2bf7-45cf-4cfa-8eb0-253dc879c2a9/3",
+			"description": "Final Fantasy XIV Fan Festival 2026 NA - Fat Cat Chat",
+			"value": 1
+		},
+		{
+			"text": "final-fantasy-xiv-fan-festival-2026-na---main-scenario-quest-chat/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/da897ed5-2676-4e90-a92e-fc7764bd7e45/3",
+			"description": "Final Fantasy XIV Fan Festival 2026 NA - Main Scenario Quest Chat",
+			"value": 1
+		},
+		{
+			"text": "final-fantasy-xiv-fan-festival-2026-jp---alpha-chat/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/1826cb5f-32a9-409a-9829-f6f47ea68239/3",
+			"description": "Final Fantasy XIV Fan Festival 2026 JP - Alpha Chat",
+			"value": 1
+		},
+		{
+			"text": "final-fantasy-xiv-fan-festival-2026-jp---quest-complete-chat/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/e7d696ad-4479-4e44-bceb-5643f80bef38/3",
+			"description": "Final Fantasy XIV Fan Festival 2026 JP - Quest Complete Chat",
+			"value": 1
+		},
+		{
+			"text": "invincible-vs/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/5bec611b-d8a1-4da4-9218-341e8e46d847/3",
+			"description": "Invincible VS",
+			"value": 1
+		},
+		{
+			"text": "final-fantasy-xiv-fan-festival-2026-na---fat-cat/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/dd9eae59-5dfd-499d-9cb2-f9e4440ef622/3",
+			"description": "Final Fantasy XIV Fan Festival 2026 NA - Fat Cat",
+			"value": 1
+		},
+		{
+			"text": "final-fantasy-xiv-fan-festival-2026-na---main-scenario-quest-/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/4629468f-897e-4466-8599-d828cf079cdc/3",
+			"description": "Final Fantasy XIV Fan Festival 2026 NA - Main Scenario Quest ",
+			"value": 1
+		},
+		{
+			"text": "unicorn-tachanka/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/dc23d5e0-b9ec-4729-9d53-ca1a8328add0/3",
+			"description": "Unicorn Tachanka",
+			"value": 1
+		},
+		{
+			"text": "speedons-6/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/00fff6f2-8ac0-4001-b736-c02654756697/3",
+			"description": "SpeeDons 6",
+			"value": 1
+		},
+		{
+			"text": "went-outside/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/544b6594-e11e-4230-8d42-d81c84002524/3",
+			"description": "Went Outside",
+			"value": 1
+		},
+		{
+			"text": "crash/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/c194a433-5fb4-4f57-a5e7-64ff9f02bf24/3",
+			"description": "CRASH",
+			"value": 1
+		},
+		{
+			"text": "default-creator-campaign-reward/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/072f22ee-9efb-486d-997c-2a5b575b4845/3",
+			"description": "Creator Campaign Reward",
+			"value": 1
+		},
+		{
+			"text": "hime/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/20098028-701d-49c5-a5b6-22763ce23dd9/3",
+			"description": "Hime",
+			"value": 1
+		},
+		{
+			"text": "yuzu/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/bc590afa-de5e-4202-96ff-fe4bdff3e04e/3",
+			"description": "Yuzu",
+			"value": 1
+		},
+		{
+			"text": "waterslug/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/7c98905d-49ed-44f0-886e-ab6983268db6/3",
+			"description": "Waterslug",
+			"value": 1
+		},
+		{
+			"text": "brawlhallawoo/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/a3e4f5e7-a6c9-4458-b8c4-f83a0f725566/3",
+			"description": "BrawlhallAwoo",
+			"value": 1
+		},
+		{
+			"text": "civ-vii---test-of-time/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/eae24f68-7b45-4cf0-8854-d3e419006238/3",
+			"description": "Civ VII - Test of Time",
+			"value": 1
+		},
+		{
+			"text": "007-gun-barrel/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/6ae7ce40-99e6-4d83-8487-f8b990bf5f32/3",
+			"description": "007 Gun Barrel",
+			"value": 1
+		},
+		{
+			"text": "skulls-10th-anniversary/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/682bdd23-f49d-4c5b-bd82-2c00a65ea22a/3",
+			"description": "Skulls 10th Anniversary",
+			"value": 1
+		},
+		{
+			"text": "lego-batman-legacy-of-the-dark-knight/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/4d54795e-5f6c-4b5b-9a30-0d78e6d0d67b/3",
+			"description": "LEGO® Batman™: Legacy of the Dark Knight",
+			"value": 1
+		},
+		{
+			"text": "road-to-twitchcon-26/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/03eeb136-3249-49cc-b45a-569edea04907/3",
+			"description": "RoadToTwitchCon26",
+			"value": 1
+		},
+		{
+			"text": "alterra-corporation/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/18d8ad18-788e-4b47-9c9b-783a41c13ec3/3",
+			"description": "Alterra Corporation",
+			"value": 1
+		},
+		{
+			"text": "bubsy-4d/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/0652a149-9fc6-4a9b-82c4-31793c0e384a/3",
+			"description": "Bubsy 4D!",
+			"value": 1
+		},
+		{
+			"text": "wholesome-direct-2026/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/76c44199-6ad5-4bde-a1c7-65f13adf07d6/3",
+			"description": "Wholesome Direct 2026",
+			"value": 1
+		},
+		{
+			"text": "mod-founder/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/b1d1da41-5616-42a5-b1fa-132753d29f8a/3",
+			"description": "Mod Founder",
+			"value": 1
+		},
+		{
+			"text": "rematch-brazil/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/7ec48e22-597f-4900-81e9-a6daa817e78f/3",
+			"description": "Rematch Brazil",
+			"value": 1
+		},
+		{
+			"text": "rematch-england/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/34f1ef71-41e7-440e-9f7e-ed3a56ff8bcc/3",
+			"description": "Rematch England",
+			"value": 1
+		},
+		{
+			"text": "rematch-france/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/0c2bf01c-5f83-459c-804c-484d42bf278a/3",
+			"description": "Rematch France",
+			"value": 1
+		},
+		{
+			"text": "rematch-nations-cup/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/a0ee40aa-d779-4f2e-bfe4-850d10bf8eae/3",
+			"description": "Rematch Nations Cup",
+			"value": 1
+		},
+		{
+			"text": "rematch-us/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/8d7a5df0-b8ae-4192-bc5f-d4c443406238/3",
+			"description": "Rematch US",
+			"value": 1
+		},
+		{
+			"text": "rematch-nations-cup-eng/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/514cce91-edf6-4c20-9676-e1ba7431926f/3",
+			"description": "Rematch Nations Cup ENG",
+			"value": 1
+		},
+		{
+			"text": "runescape-dragon-dagger/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/0a4afdfc-7b58-4674-beb4-631766208b6d/3",
+			"description": "RuneScape Dragon Dagger",
+			"value": 1
+		},
+		{
+			"text": "runescape-skull/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/7f382386-e3ce-4c3d-8c23-464851415321/3",
+			"description": "RuneScape Skull",
+			"value": 1
+		},
+		{
+			"text": "football-fest-2026/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/2b195857-8531-4487-a998-62fb9dbbe0e5/3",
+			"description": "Football Fest 2026",
+			"value": 1
+		},
+		{
+			"text": "you-got-this/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/b1e71597-54d4-497e-9e2a-f63b01f4dc82/3",
+			"description": "YOU GOT THIS",
+			"value": 1
+		},
+		{
+			"text": "dead-by-daylight-icon/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/4f1be82e-d29e-4898-a4c7-29b3ce6ce807/3",
+			"description": "Dead by Daylight Icon",
+			"value": 1
+		},
+		{
+			"text": "dead-by-daylight-x-jason-universe/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/f54d7865-e97d-4e1a-8392-788ccbcd1199/3",
+			"description": "Dead by Daylight x Jason Universe",
+			"value": 1
+		},
+		{
+			"text": "assassins-creed-black-flag-resynced/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/393bfb62-dca0-4133-9a63-eb53b031b404/3",
+			"description": "Assassin's Creed Black Flag Resynced",
+			"value": 1
+		},
+		{
+			"text": "two-point-museum/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/5008ac34-9165-4fc2-a87c-f7f2526c0509/3",
+			"description": "Two Point Museum",
+			"value": 1
+		},
+		{
+			"text": "two-point-pickle/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/42c77849-e591-48dc-84e4-556438f7c5c2/3",
+			"description": "Two Point Pickle",
+			"value": 1
+		},
+		{
+			"text": "blossom-badge/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/c255cb27-7e04-4be1-9dee-434e85523638/3",
+			"description": "Blossom Badge Level 1",
+			"value": 1
+		},
+		{
+			"text": "blossom-badge/2",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/d045617b-c37f-4643-9170-df05222cacc3/3",
+			"description": "Blossom Badge Level 2",
+			"value": 1
+		},
+		{
+			"text": "blossom-badge/3",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/75fd2129-b0d6-4290-83f6-41740d1b7825/3",
+			"description": "Blossom Badge Level 3",
+			"value": 1
+		},
+		{
+			"text": "blossom-badge/4",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/b00f8ff9-aeee-4c27-b974-5513f3abc91a/3",
+			"description": "Blossom Badge Level 4",
+			"value": 1
+		},
+		{
+			"text": "detroit-android-triangle/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/69bf153a-cfa9-4290-9d00-6b1edc4dbe43/3",
+			"description": "Detroit Android Triangle",
+			"value": 1
+		},
+		{
+			"text": "detroit-blue-led/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/b3cc4258-07e4-4b3b-b37f-a9c9268853fb/3",
+			"description": "Detroit Blue LED",
+			"value": 1
+		},
+		{
+			"text": "doa6lr-kasumi/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/709a8b0c-cdf3-4a49-9f93-911376a1cb2e/3",
+			"description": "DOA6LR Kasumi",
+			"value": 1
+		},
+		{
+			"text": "evo-las-vegas-2026/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/6838631a-037c-4dc3-b0f5-1cc15367bd53/3",
+			"description": "Evo Las Vegas 2026",
+			"value": 1
+		},
+		{
+			"text": "msi-2026/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/8c36a423-f3f0-49c2-a886-ecec931b05cb/3",
+			"description": "MSI 2026",
+			"value": 1
+		},
+		{
+			"text": "grey-zone-warfare/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/7e1936c6-4e73-4aa5-8bd6-e5ae5ab8fcd5/3",
+			"description": "Grey Zone Warfare",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-bronze/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/40b8d131-61f0-4ae6-9f65-65a23b27c139/3",
+			"description": "EWC 2026 (Bronze)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-diamond/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/cb874239-c790-4f58-93c2-319254d61d18/3",
+			"description": "EWC 2026 (Diamond)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-gold/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/aa891ef7-b24b-49ff-ae08-13819621fc4b/3",
+			"description": "EWC 2026 (Gold)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-platinum/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/ccd6c0c5-7854-4bc1-b196-ad13e097f2da/3",
+			"description": "EWC 2026 (Platinum)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-silver/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/b58c52e5-ed3c-41e4-9cda-90b26aa1dbcb/3",
+			"description": "EWC 2026 (Silver)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-ultraviolet/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/a3f5d70f-268f-498d-b0cc-db51bdf355a2/3",
+			"description": "EWC 2026 (Ultraviolet)",
+			"value": 1
+		},
+		{
+			"text": "cool-cattiva/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/e3d90ca4-f274-431f-bcc0-c0f8963e6624/3",
+			"description": "Cool Cattiva",
+			"value": 1
+		},
+		{
+			"text": "mint/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/835ca28b-5b99-4729-9c88-3dcd772b84f5/3",
+			"description": "Mint",
+			"value": 1
+		},
+		{
+			"text": "relink-fabicon/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/fda40ef0-dbad-47ed-8293-789babaead05/3",
+			"description": "Relink Fabicon",
+			"value": 1
+		},
+		{
+			"text": "ayane/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/471b7cc9-875f-445b-86f6-8009cee27843/3",
+			"description": "Ayane",
+			"value": 1
+		},
+		{
+			"text": "killer-inn/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/0900e6b7-23bf-4c64-b5c7-abfd7e9704e7/3",
+			"description": "Killer Inn",
+			"value": 1
+		},
+		{
+			"text": "perlica/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/c81d6782-6f5a-4c63-a00b-f041ac2cdcda/3",
+			"description": "Perlica",
+			"value": 1
+		},
+		{
+			"text": "meltan/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/bf3cca10-6aec-4143-96ce-c41d15feebf8/3",
+			"description": "Meltan",
+			"value": 1
+		},
+		{
+			"text": "jubilee/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/9722b4f6-c818-4f7c-8cc3-c22c70d00c53/3",
+			"description": "Jubilee",
+			"value": 1
+		},
+		{
+			"text": "dream-beyond/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/2cbd5102-928f-4e99-819a-e38511752918/3",
+			"description": "Dream Beyond",
+			"value": 1
+		},
+		{
+			"text": "team-valor/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/8837af43-de4b-488b-b3f0-d6117b365196/3",
+			"description": "Team Valor",
+			"value": 1
+		},
+		{
+			"text": "team-mystic/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/b927a7fe-13e4-4e00-9dd0-c060eb7b9ab1/3",
+			"description": "Team Mystic",
+			"value": 1
+		},
+		{
+			"text": "team-instinct/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/53dd634e-9efd-46a9-9e5b-0d9da7262171/3",
+			"description": "Team Instinct",
+			"value": 1
+		},
+		{
+			"text": "hotline/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/31d7dfb0-2687-486c-a3f4-b86d1e307fa5/3",
+			"description": "Hotline",
+			"value": 1
+		},
+		{
+			"text": "twitchcon-2026---san-diego---beachball/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/b3f69c97-a9a7-4360-bb9e-485ec8db72bb/3",
+			"description": "TwitchCon 2026 - San Diego - BeachBall",
+			"value": 1
+		},
+		{
+			"text": "twitchcon-2026---san-diego---taco/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/aea5244a-3fb5-48f9-a17c-a377760df226/3",
+			"description": "TwitchCon 2026 - San Diego - Taco",
+			"value": 1
+		},
+		{
+			"text": "dreamers/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/fe2c830a-81d6-4915-b77d-f779bcfa121b/3",
+			"description": "Dreamers",
+			"value": 1
+		},
+		{
+			"text": "meccha-chameleon/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/97f7f702-fde1-48a2-8992-ae0711e06819/3",
+			"description": "Meccha Chameleon",
+			"value": 1
+		},
+		{
+			"text": "sand/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/b732ba75-3f73-4ce9-b0d0-5bbe1fa3be7e/3",
+			"description": "SAND",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-co-streamer-bronze/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/22d9f0cd-02a2-41e7-8e3c-f5b2387a3a3e/3",
+			"description": "EWC 2026 Co-Streamer (Bronze)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-co-streamer-diamond/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/a883985f-fd23-4365-bc80-28726a8cd735/3",
+			"description": "EWC 2026 Co-Streamer (Diamond)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-co-streamer-gold/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/933df6d6-70bb-445a-8b85-c7b39af82ffd/3",
+			"description": "EWC 2026 Co-Streamer (Gold)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-co-streamer-platinum/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/fb93617f-b5fa-46c3-8354-6d1d3460b9d2/3",
+			"description": "EWC 2026 Co-Streamer (Platinum)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-co-streamer-silver/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/a17b6a0f-6a06-4ca2-a153-82ebb368edab/3",
+			"description": "EWC 2026 Co-Streamer (Silver)",
+			"value": 1
+		},
+		{
+			"text": "ewc-2026-co-streamer-ultraviolet/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/548010ef-5b5b-497c-82dc-61fbb52738b5/3",
+			"description": "EWC 2026 Co-Streamer (Ultraviolet)",
+			"value": 1
+		},
+		{
+			"text": "la-velada-vi/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/e767e17a-252a-4047-9365-910f4f05a883/3",
+			"description": "La Velada VI",
+			"value": 1
+		},
+		{
+			"text": "budz/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/a7c72bfa-8758-4ba6-92ad-b31edcac1267/3",
+			"description": "Budz",
+			"value": 1
+		},
+		{
+			"text": "spiderman/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/03ba20e2-11e1-481c-80d8-155e87afc724/3",
+			"description": "Spiderman",
+			"value": 1
+		},
+		{
+			"text": "dead-by-daylight-pride-icon/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/61aac75c-fb98-4f75-9fa8-4d843c5c545a/3",
+			"description": "Dead by Daylight Pride Icon",
+			"value": 1
+		},
+		{
+			"text": "egg/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/74c777c3-715f-4c40-b991-6a36239e6ef0/3",
+			"description": "Egg",
+			"value": 1
+		},
+		{
+			"text": "hulk/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/b56139ed-b483-441f-9d89-70f5d0bca1b6/3",
+			"description": "Hulk",
+			"value": 1
+		},
+		{
+			"text": "enchantedbigboiboxers/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/267664ac-261c-48e1-8dc3-dad180eb5146/3",
+			"description": "EnchantedBigBoiBoxers",
+			"value": 1
+		},
+		{
+			"text": "princessdonutbrown/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/88264e40-69cf-4afb-8b12-3df0ba5ca460/3",
+			"description": "PrincessDonutBrown",
+			"value": 1
+		},
+		{
+			"text": "princessdonutpink/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/c70f2113-d552-44be-9f8f-40550dbe5fdd/3",
+			"description": "PrincessDonutPink",
+			"value": 1
+		},
+		{
+			"text": "league-of-legends-classic/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/4bd0a409-4313-4f21-8a5a-00b1bdb77d73/3",
+			"description": "League of Legends Classic",
+			"value": 1
+		},
+		{
+			"text": "the-blood-of-dawnwalker-launch/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/1c04ddd1-6baa-4e5c-a685-976c621d5114/3",
+			"description": "The Blood of Dawnwalker Launch",
+			"value": 1
+		},
+		{
+			"text": "the-blood-of-dawnwalker-supporter/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/63076299-4910-4594-a05c-60899d32c765/3",
+			"description": "The Blood of Dawnwalker Supporter",
+			"value": 1
+		},
+		{
+			"text": "resonance-minotaur/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/63cf6329-f34c-449e-8f70-fafa1eb1de9e/3",
+			"description": "Resonance Minotaur",
+			"value": 1
+		},
+		{
+			"text": "bulbasaur/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/68072d07-8648-4066-9694-3f9fb594eb3d/3",
+			"description": "Bulbasaur",
+			"value": 1
+		},
+		{
+			"text": "charmander/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/afe60f97-56d1-493d-a55c-2f1cec7aca7c/3",
+			"description": "Charmander",
+			"value": 1
+		},
+		{
+			"text": "pichu/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/3",
+			"description": "Pichu",
+			"value": 1
+		},
+		{
+			"text": "squirtle/1",
+			"image": "https://static-cdn.jtvnw.net/badges/v1/6e19714e-571f-4737-bc8b-865ebfb3e2c7/3",
+			"description": "Squirtle",
+			"value": 1
 		}
 	]
 }
