@@ -26,7 +26,7 @@ Nota: Si tu intención es escribir mensajes en el chat, tendrías que utilizar l
 Puedes utilizar `mtmi` directamente desde un CDN, sin necesidad de usar `npm` u otros:
 
 ```js
-import { client } from "https://unpkg.com/mtmi@0.0.6/dist/mtmi.js";
+import { client } from "https://unpkg.com/mtmi@0.0.19/dist/index.js";
 ```
 
 Si lo prefieres, puedes usar `npm`, `yarn` o `pnpm`:
@@ -50,12 +50,25 @@ A continuación tienes una lista de desplegables con la información necesaria p
 <div>
 
 ```js
-import { client } from "https://unpkg.com/mtmi@0.0.6/dist/mtmi.js";
+import { client } from "https://unpkg.com/mtmi@0.0.19/dist/index.js";
+const data = await import("https://unpkg.com/mtmi/dist/badges.full.json", { with: { type: "json" }});
 
-client.connect({ channels: ["manzdev"] });
+client.connect({
+  channels: ["manzdev"],
+  /* Puedes indicar las API "decapi", "ivr" o "custom" (tienen rate limit) */
+  avatarProvider: "decapi",
+  badges: data.default.badges,
+  /* Si necesitas limites más altos, puedes añadir tu propia API */
+  // customApi: {
+  //   "url": "http://localhost:8080/api/userInfo/{{username}}",
+  //   "extract": "picture"
+  // }
+  debug: true,
+});
 
-client.on("message", ({ username, channel, message }) => {
-  console.log(`${channel} [${username}]: ${message}`);
+client.on("message", async ({ username, channel, message }) => {
+  const avatar = await userInfo.avatar;  // url image
+  console.log(`${channel} [${username}]: ${message} ${avatar}`);
 });
 ```
 
@@ -190,7 +203,7 @@ Los `scoreList` tienen un campo `level` (numérico) y un campo `flag` que puede 
 <div>
 
 ```js
-import { client } from "https://unpkg.com/mtmi@0.0.6/dist/mtmi.js";
+import { client } from "https://unpkg.com/mtmi@0.0.19/dist/index.js";
 
 client.connect({ channels: ["manzdev"] });
 

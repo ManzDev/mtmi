@@ -2,8 +2,8 @@ import { client } from "../dist/index.js";
 import { badges } from "../dist/badges.full.json";
 
 client.connect({
-  channels: ["manzdev"],
-  badges,
+  channels: ["ManzDev"],
+  badges: [...badges],
   avatarProvider: "decapi",
   // avatarProvider: "custom",
   // customApi: {
